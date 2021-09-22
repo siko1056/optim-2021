@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UM02 &#8212; Selected Topics on Optimization</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bibliography" href="nlo-lecture-bib.html" />
+    <link rel="prev" title="UM01" href="nlo-exercise-UM01.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Selected Topics on Optimization</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-00-intro.html">
+   Selected Topics on Optimization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lecture notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-01-optimization-problem.html">
+   The optimization problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-02-unres-min-cond.html">
+   Unconstrained minimization problems
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM01.html">
+   UM01
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   UM02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Back matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-bib.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/nlo-exercise-UM02.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="um02">
+<h1>UM02<a class="headerlink" href="#um02" title="Permalink to this headline">¶</a></h1>
+<p>Consider the function <span class="math notranslate nohighlight">\(f(x,y) = x^{3} - 6xy + 8y^{3}\)</span>.</p>
+<p><strong>1. Create a plot of <span class="math notranslate nohighlight">\(f\)</span> for <span class="math notranslate nohighlight">\(-2 \leq x,y \leq 2\)</span>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">8.</span><span class="o">*</span><span class="n">y</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^3 - 6xy + 8y^3&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-exercise-UM02_2_0.png" src="_images/nlo-exercise-UM02_2_0.png" />
+</div>
+</div>
+<p><strong>2. Compute the gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> and the Hessian matrix <span class="math notranslate nohighlight">\(\nabla^{2} f\)</span>.</strong></p>
+<p><strong>Solution:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla f = \begin{pmatrix} 3x^{2} - 6y \\ 24y^{2} - 6x \end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla^{2} f = \begin{pmatrix} 6x &amp; -6 \\ -6 &amp; 48y \end{pmatrix}
+\end{split}\]</div>
+<p><strong>3. Compute all stationary points and the respective function values.</strong></p>
+<p><strong>Solution:</strong></p>
+<p>Stationary points: <span class="math notranslate nohighlight">\(\nabla f = 0\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+ 3x^{2} - 6y &amp;= 0 \\
+24y^{2} - 6x &amp;= 0 \\
+\end{aligned}
+\end{split}\]</div>
+<p>From the first equation follows <span class="math notranslate nohighlight">\(y = \frac{1}{2} x^{2}\)</span>.
+The resulting equation</p>
+<div class="math notranslate nohighlight">
+\[
+6x^{4} - 6x = 0 \iff (x^{3} - 1) x = 0
+\]</div>
+<p>yields the stationary points <span class="math notranslate nohighlight">\(P_{1} = (0,0)^{T}\)</span> with <span class="math notranslate nohighlight">\(f(P_{1}) = 0\)</span>
+and <span class="math notranslate nohighlight">\(P_{2} = (1,0.5)^{T}\)</span> with <span class="math notranslate nohighlight">\(f(P_{2}) = -1\)</span>.</p>
+<p><strong>4. Classify all stationary points.</strong></p>
+<p><strong>Solution:</strong></p>
+<p>Hessian matrix at <span class="math notranslate nohighlight">\(P_{1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla^{2} f(P_{1}) = \begin{pmatrix} 0 &amp; -6 \\ -6 &amp; 0 \end{pmatrix}
+\end{split}\]</div>
+<p>Classification with eigenvalues (roots of the characteristic polynomial):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0 = \det\begin{pmatrix} -\lambda &amp; -6 \\ -6 &amp; -\lambda \end{pmatrix} = \lambda^{2} - 36
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\Rightarrow \lambda_{1/2} = \pm \sqrt{36} = \pm 6
+\]</div>
+<p>The roots of the characteristic polynomial are positive and negative.
+Thus the Hessian matrix is indefinite and <span class="math notranslate nohighlight">\(P_{1}\)</span> is a <strong>saddle point</strong>.</p>
+<p>Hessian matrix at <span class="math notranslate nohighlight">\(P_{2}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla^{2} f(P_{2}) = \begin{pmatrix} 6 &amp; -6 \\ -6 &amp; 24 \end{pmatrix}
+\end{split}\]</div>
+<p>Classification with eigenvalues (roots of the characteristic polynomial):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0 = \det\begin{pmatrix} 6 - \lambda &amp; -6 \\ -6 &amp; 24 - \lambda \end{pmatrix}
+= (6 - \lambda)(24 - \lambda) - 36
+= \lambda^{2} - 30\lambda + 108
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\Rightarrow \lambda_{1/2} = 15 \pm 3\sqrt{13} \approx 15 \pm 10.8\ldots &gt; 0
+\]</div>
+<p>The roots of the characteristic polynomial are all positive.
+Thus the Hessian matrix is positive definite and <span class="math notranslate nohighlight">\(P_{2}\)</span> is a <strong>strict local minimum</strong>.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="nlo-exercise-UM01.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">UM01</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="nlo-lecture-bib.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Bibliography</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By K. T. Ohlhus<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The optimization problem &#8212; Selected Topics on Optimization</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Unconstrained minimization problems" href="nlo-lecture-02-unres-min-cond.html" />
+    <link rel="prev" title="Selected Topics on Optimization" href="nlo-lecture-00-intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Selected Topics on Optimization</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-00-intro.html">
+   Selected Topics on Optimization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lecture notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The optimization problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-02-unres-min-cond.html">
+   Unconstrained minimization problems
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM01.html">
+   UM01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM02.html">
+   UM02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Back matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-bib.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/nlo-lecture-01-optimization-problem.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classes-of-optimizations-problems">
+   Classes of optimizations problems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#local-and-global-optima">
+   Local and global optima
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-dimensional-constrained-example">
+   Two-dimensional constrained example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notation">
+   Notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extreme-value-theorem">
+   Extreme value theorem
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-optimization-problem">
+<h1>The optimization problem<a class="headerlink" href="#the-optimization-problem" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; f(x)             &amp; \\
+\textrm{subject to} &amp; g_{i}(x) \leq 0, &amp; i = 1, \ldots, m, \\
+                    &amp; h_{j}(x) =    0, &amp; j = 1, \ldots, p, \\
+\end{array}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x = (x_{1}, x_{2}, \ldots)\)</span>:
+<strong>optimization variables</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(f \colon \mathcal{X} \to \mathbb{R}\)</span>:
+<strong>objective function</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(g_{i} \colon \mathcal{X} \to \mathbb{R}, i = 1, \ldots, m\)</span>:
+<strong>inequality constraint</strong> functions</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{j} \colon \mathcal{X} \to \mathbb{R}, j = 1, \ldots, p\)</span>:
+<strong>equality constraint</strong> functions</p></li>
+</ul>
+<p><strong>Decision set</strong> <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> may be finite <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>,
+a set of matrices,
+a discrete set <span class="math notranslate nohighlight">\(\mathbb{Z}^{n}\)</span>,
+or an infinite dimensional set.</p>
+<p><strong>Constraint functions</strong> <span class="math notranslate nohighlight">\(g_{i}(x)\)</span> and <span class="math notranslate nohighlight">\(h_{j}(x)\)</span>
+limit the decision set <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>
+to a set of <strong>feasible points</strong> <span class="math notranslate nohighlight">\(x \in X \subset \mathcal{X}\)</span>.</p>
+<p>The <strong>Optimal solution</strong> <span class="math notranslate nohighlight">\(x^{*} \in X\)</span> has smallest value of <span class="math notranslate nohighlight">\(f\)</span>
+among all feasible points that “satisfy the constraints”:</p>
+<div class="math notranslate nohighlight">
+\[
+\forall x \in X \colon f(x^{*}) \leq f(x).
+\]</div>
+<div class="section" id="classes-of-optimizations-problems">
+<h2>Classes of optimizations problems<a class="headerlink" href="#classes-of-optimizations-problems" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Unconstrained optimization: <span class="math notranslate nohighlight">\(m = p = 0\)</span></p></li>
+<li><p>Constrained optimization <span class="math notranslate nohighlight">\(m &gt; 0\)</span> or <span class="math notranslate nohighlight">\(p &gt; 0\)</span></p></li>
+<li><p>Linear Programming: <span class="math notranslate nohighlight">\(f\)</span> linear, <span class="math notranslate nohighlight">\(g_{i}\)</span>, <span class="math notranslate nohighlight">\(h_{j}\)</span> affin-linear</p></li>
+<li><p>Quadratic Programming: <span class="math notranslate nohighlight">\(f(x) = \frac{1}{2}x^{T}Ax + b^{T}x +c\)</span>, <span class="math notranslate nohighlight">\(g_{i}\)</span>, <span class="math notranslate nohighlight">\(h_{j}\)</span> affin-linear</p></li>
+<li><p>Convex Optimization: <span class="math notranslate nohighlight">\(f\)</span> convex, <span class="math notranslate nohighlight">\(g_{i}\)</span> convex, <span class="math notranslate nohighlight">\(h_{j}\)</span> affin-linear</p></li>
+</ul>
+</div>
+<div class="section" id="local-and-global-optima">
+<h2>Local and global optima<a class="headerlink" href="#local-and-global-optima" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following piece-wise defined function:</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="p">=</span> <span class="p">{@(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...</span>
+     <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...</span>
+     <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">7</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...</span>
+     <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">...</span>
+     <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">...</span>
+     <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">11</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...</span>
+     <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">7</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span><span class="p">};</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">7</span>
+  <span class="n">fun</span> <span class="p">=</span> <span class="n">f</span><span class="p">{</span><span class="n">i</span><span class="p">};</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+  <span class="n">y</span> <span class="p">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">);</span>
+  <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="nb">xlim</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
+<span class="n">ylim</span> <span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;f(x)&#39;</span><span class="p">);</span>
+<span class="n">fmt</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">};</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span> <span class="nb">text</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s">&#39;Global minimum&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">2.50</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span> <span class="nb">text</span> <span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="s">&#39;Global maximum&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">2.00</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span> <span class="nb">text</span> <span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="s">&#39;A (strict) local minimum&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span> <span class="nb">text</span> <span class="p">(</span><span class="mf">6.5</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="s">&#39;A (strict) local maximum&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>     <span class="s">&#39;r&#39;</span><span class="p">);</span> <span class="nb">text</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="s">&#39;A local maximum&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span> <span class="nb">text</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s">&#39;A local minimum&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">],</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="s">&#39;X (feasible points)&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="p">{:});</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-01-optimization-problem_3_0.png" src="_images/nlo-lecture-01-optimization-problem_3_0.png" />
+</div>
+</div>
+<p>Local and global optima of a two-dimensional function.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">40</span><span class="p">));</span>
+
+<span class="c">% Gaussian probability density function (PDF)</span>
+<span class="n">GAUSS</span> <span class="p">=</span> <span class="p">@(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>  <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="nb">sqrt</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span> <span class="o">*</span> <span class="p">...</span>
+                      <span class="nb">exp</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="n">mu</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">mu</span> <span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>^<span class="mi">2</span><span class="p">);</span>
+
+<span class="n">Z</span> <span class="p">=</span> <span class="mi">9</span> <span class="o">*</span> <span class="n">GAUSS</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">2.0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">GAUSS</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="p">[</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">])</span> <span class="p">...</span>
+  <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">GAUSS</span> <span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">GAUSS</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">])</span> <span class="p">...</span>
+  <span class="o">-</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">GAUSS</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">]);</span>
+
+<span class="nb">surf</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">);</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;z(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">colormap</span> <span class="p">(</span><span class="s">&#39;jet&#39;</span><span class="p">);</span>
+<span class="n">props</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="nb">text</span> <span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="s">&#39;Global Minimum&#39;</span><span class="p">,</span> <span class="n">props</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">2.0</span><span class="p">,</span>  <span class="mf">7.2</span><span class="p">,</span> <span class="s">&#39;Global Maximum&#39;</span><span class="p">,</span> <span class="n">props</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.5</span><span class="p">,</span> <span class="s">&#39;A Local Minimum&#39;</span><span class="p">,</span> <span class="n">props</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">5.0</span><span class="p">,</span> <span class="s">&#39;A Local Maximum&#39;</span><span class="p">,</span> <span class="n">props</span><span class="p">{:});</span>
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">55</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-01-optimization-problem_5_0.png" src="_images/nlo-lecture-01-optimization-problem_5_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="two-dimensional-constrained-example">
+<h2>Two-dimensional constrained example<a class="headerlink" href="#two-dimensional-constrained-example" title="Permalink to this headline">¶</a></h2>
+<p>A simple problem can be defined by the constraints</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}
+x_1 \geq 0, \\
+x_2 \geq 0, \\
+x_1^2 + x_2^2 \geq 1, \\
+x_1^2 + x_2^2 \leq 2,
+\end{array}
+\end{split}\]</div>
+<p>with an objective function to be maximized</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = x_1 + x_2
+\]</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">subplot</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c">% Visualize constrained set of feasible solutions (blue).</span>
+<span class="n">circ</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sqrt</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">x_11</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.01</span><span class="p">:</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">x_21</span> <span class="p">=</span> <span class="n">circ</span> <span class="p">(</span><span class="n">x_11</span><span class="p">);</span>
+<span class="n">x_12</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mf">0.01</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">x_22</span> <span class="p">=</span> <span class="n">circ</span> <span class="p">(</span><span class="n">x_12</span><span class="p">);</span>
+<span class="nb">area</span> <span class="p">([</span><span class="n">x_11</span><span class="p">,</span> <span class="n">x_12</span><span class="p">],</span> <span class="p">[</span><span class="n">x_21</span><span class="p">,</span> <span class="n">x_22</span><span class="p">],</span> <span class="s">&#39;FaceColor&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">);</span>
+
+<span class="c">% Visualize level set of the objective function (magenta)</span>
+<span class="c">% and its scaled gradient (red arrow).</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">0</span><span class="p">],</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">);</span>
+<span class="nb">quiver</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
+<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+<span class="nb">xlim</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="n">ylim</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;Contour plot&#39;</span><span class="p">);</span>
+
+<span class="nb">subplot</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">[</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">500</span><span class="p">));</span>
+<span class="n">FX</span> <span class="p">=</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">X2</span><span class="p">;</span>
+
+<span class="c">% Remove infeasible points.</span>
+<span class="n">FX</span><span class="p">((</span><span class="n">X1</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X2</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="nb">inf</span><span class="p">;</span>
+<span class="n">FX</span><span class="p">((</span><span class="n">X1</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X2</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="nb">inf</span><span class="p">;</span>
+<span class="nb">surf</span> <span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">FX</span><span class="p">);</span>
+<span class="nb">shading</span> <span class="n">flat</span><span class="p">;</span>
+<span class="nb">colormap</span> <span class="p">(</span><span class="s">&#39;jet&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;3D plot&#39;</span><span class="p">);</span>
+<span class="nb">view</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-01-optimization-problem_7_0.png" src="_images/nlo-lecture-01-optimization-problem_7_0.png" />
+</div>
+</div>
+<p>The intersection of the level-set of the objective function (<span class="math notranslate nohighlight">\(f(x) = 2 = const.\)</span>)
+and the constrained set of feasible solutions represents the solution.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\max f(x) = -\min -f(x)\)</span></p>
+</div></blockquote>
+<p>In these lectures we are mainly interested in methods for computing local minima.</p>
+</div>
+<div class="section" id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
+<p>Vectors <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> are column vectors.
+<span class="math notranslate nohighlight">\(x^{T}\)</span> is the transposed row vector.</p>
+<p>A norm in <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span> is denoted by <span class="math notranslate nohighlight">\(\lVert \cdot \rVert\)</span>
+and corresponds to the Euclidean norm:</p>
+<div class="math notranslate nohighlight">
+\[
+\lVert x \rVert = \lVert x \rVert_{2} = \left( x^{T}x \right)^{\frac{1}{2}}
+= \sqrt{x_{1}^{2} + \ldots + x_{n}^{2}}.
+\]</div>
+<p>Is <span class="math notranslate nohighlight">\(\lVert \cdot \rVert\)</span> a norm on <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\lVert A \rVert := \max\left\{ \lVert Ax \rVert \colon \lVert x \rVert \leq 1 \right\}
+\]</div>
+<p>defines the matrix norm (operator norm) for <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<p>For the Euclidean vector norm this is</p>
+<div class="math notranslate nohighlight">
+\[
+\lVert A \rVert = \sqrt{\lambda_{\max}(A^{T}A)} = \sigma_{\max}(A),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_{\max}(\cdot)\)</span> denotes the maximal eigenvalue
+and <span class="math notranslate nohighlight">\(\sigma_{\max}(\cdot)\)</span> the maximal singular value of a matrix.</p>
+<p>The open ball with center <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> and radius <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>
+is denoted by</p>
+<div class="math notranslate nohighlight">
+\[
+B_{\varepsilon}(x) := \{ y \in \mathbb{R}^{n} \colon \lVert y - x \rVert &lt; \varepsilon \}.
+\]</div>
+<p>The interior of a set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is denoted by <span class="math notranslate nohighlight">\(int(X)\)</span>
+and the border by <span class="math notranslate nohighlight">\(\partial X\)</span>.
+For <span class="math notranslate nohighlight">\(x \in int(X)\)</span> and <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> there is <span class="math notranslate nohighlight">\(B_{\varepsilon}(x) \subset X\)</span>.</p>
+<p>A subset <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is called <strong>“open”</strong>, if <span class="math notranslate nohighlight">\(int(X) = X\)</span>.
+(“The border <span class="math notranslate nohighlight">\(\partial X\)</span> is not included.”)</p>
+<p>A closed subset <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is called <strong>“compact”</strong>,
+if every open cover of <span class="math notranslate nohighlight">\(X\)</span> has a finite sub-cover.
+(“No holes in <span class="math notranslate nohighlight">\(X\)</span>, border included.”).</p>
+<p>Let <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> be continuously differentiable
+(<span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>),
+then the <strong>gradient</strong> of <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(x\)</span> is denoted by the column vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla f(x) =
+\begin{pmatrix}
+\dfrac{\strut\partial}{\strut\partial x_{1}} f(x) \\
+ \vdots \\
+\dfrac{\strut\partial}{\strut\partial x_{n}} f(x)
+\end{pmatrix}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> be twice continuously differentiable
+(<span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span>),
+then the symmetric <strong>Hessian matrix</strong> of <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(x\)</span> is denoted by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla^{2} f(x) =
+\begin{pmatrix}
+\dfrac{\strut\partial^{2}}{\strut\partial x_{1}\strut\partial x_{1}} f(x)
+&amp; \cdots
+&amp; \dfrac{\strut\partial^{2}}{\strut\partial x_{1}\strut\partial x_{n}} f(x) \\
+\vdots &amp; \ddots &amp; \vdots \\
+\dfrac{\strut\partial^{2}}{\strut\partial x_{n} \strut\partial x_{1}} f(x)
+&amp; \cdots
+&amp; \dfrac{\strut\partial^{2}}{\strut\partial x_{n} \strut\partial x_{n}} f(x)
+\end{pmatrix}
+\end{split}\]</div>
+<p>A real symmetric matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> is positive semi-definte,
+if <span class="math notranslate nohighlight">\(d^{T}Ad \geq 0\)</span> for all <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{ 0 \}\)</span>
+and is denoted by <span class="math notranslate nohighlight">\(A \succeq 0\)</span>.</p>
+<p>A real symmetric matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> is positive definte,
+if <span class="math notranslate nohighlight">\(d^{T}Ad &gt; 0\)</span> for all <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{ 0 \}\)</span>
+and is denoted by <span class="math notranslate nohighlight">\(A \succ 0\)</span>.</p>
+<p>The <strong>Landau symbol</strong> is defined by</p>
+<div class="math notranslate nohighlight">
+\[
+\phi(d) = o\left(\lVert d \rVert^{k}\right)
+\iff \lim_{d \to 0} \frac{\phi(d)}{\lVert d \rVert^{k}} = 0.
+\]</div>
+<p><strong>Taylor’s theorem</strong> (only linear and quadratic)</p>
+<p>Let <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>, <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> open, <span class="math notranslate nohighlight">\(x \in X\)</span>, <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n}\)</span>
+and <span class="math notranslate nohighlight">\(\lVert d \rVert\)</span> sufficiently small, then:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x + d) = f(x) + \nabla f(x)^{T}d + o(\lVert d \rVert).
+\]</div>
+<p>Additionally, if <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span> and for <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span>,
+the remainder is expressible by</p>
+<div class="math notranslate nohighlight">
+\[
+f(x + d) = f(x) + \nabla f(x)^{T}d + \frac{1}{2}d^{T}\nabla^{2} f(x + \theta d)d.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span>, <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> open, <span class="math notranslate nohighlight">\(x \in X\)</span>, <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n}\)</span>
+and <span class="math notranslate nohighlight">\(\lVert d \rVert\)</span> sufficiently small, then:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x + d) = f(x) + \nabla f(x)^{T}d + \frac{1}{2}d^{T}\nabla^{2} f(x)d + o(\lVert d \rVert^{2}).
+\]</div>
+</div>
+<div class="section" id="extreme-value-theorem">
+<h2>Extreme value theorem<a class="headerlink" href="#extreme-value-theorem" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> non-empty and compact
+and <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> continuous.
+Then there exists a <strong>global minimum</strong> of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div></blockquote>
+<p>If a real-valued function <span class="math notranslate nohighlight">\(f\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a,b]\)</span>,
+then <span class="math notranslate nohighlight">\(f\)</span> must attain a maximum and a minimum, each at least once!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="nlo-lecture-00-intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Selected Topics on Optimization</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="nlo-lecture-02-unres-min-cond.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Unconstrained minimization problems</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By K. T. Ohlhus<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
