@@ -1,0 +1,17 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: nlo-lecture-00-intro.ipynb
+parts:
+  - caption: Lecture notes
+    chapters:
+    - file: nlo-lecture-01-optimization-problem.ipynb
+    - file: nlo-lecture-02-unres-min-cond.ipynb
+  - caption: Exercises
+    chapters:
+    - file: nlo-exercise-UM01.ipynb
+    - file: nlo-exercise-UM02.ipynb
+  - caption: Back matter
+    chapters:
+    - file: nlo-lecture-bib.ipynb
