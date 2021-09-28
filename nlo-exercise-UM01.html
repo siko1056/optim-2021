@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -72,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/logo.png" class="logo" alt="logo">
       
@@ -226,7 +230,7 @@
 <h1>UM01<a class="headerlink" href="#um01" title="Permalink to this headline">¶</a></h1>
 <p>Consider the function <span class="math notranslate nohighlight">\(f(x,y) = x^{4} + 2xy + (1 + y)^{2}\)</span>.</p>
 <p><strong>1. Create a 3D plot of <span class="math notranslate nohighlight">\(f\)</span> for <span class="math notranslate nohighlight">\(-3 \leq x,y \leq 3\)</span>.</strong></p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
 
@@ -247,7 +251,13 @@
 </div>
 </div>
 <p><strong>2. Compute the gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> and the Hessian matrix <span class="math notranslate nohighlight">\(\nabla^{2} f\)</span>.</strong></p>
-<p><strong>Solution:</strong></p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<strong>Solution:</strong><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \nabla f(x,y) =
@@ -268,9 +278,16 @@
 \end{pmatrix}
 = \begin{pmatrix} 12x^{2} &amp; 2 \\ 2 &amp; 2 \end{pmatrix}
 \end{split}\]</div>
-<p><strong>3. Compute all real stationary points and the respective function values.</strong></p>
-<p><strong>Solution:</strong></p>
-<p>Stationary points: <span class="math notranslate nohighlight">\(\nabla f = 0\)</span>.</p>
+</div>
+</details><p><strong>3. Compute all real stationary points and the respective function values.</strong></p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<strong>Solution:</strong><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Stationary points: <span class="math notranslate nohighlight">\(\nabla f = 0\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -278,34 +295,41 @@
 2x + 2y + 2 &amp;= 0 \\
 \end{aligned}
 \end{split}\]</div>
-<p>From the second equation follows <span class="math notranslate nohighlight">\(y = -(x + 1)\)</span>.
+<p class="card-text">From the second equation follows <span class="math notranslate nohighlight">\(y = -(x + 1)\)</span>.
 The resulting equation</p>
 <div class="math notranslate nohighlight">
 \[
 2x^{3} - x - 1 = 0
 \]</div>
-<p>yields the real stationary point <span class="math notranslate nohighlight">\(P_{1} = (1,-2)^{T}\)</span>
+<p class="card-text">yields the real stationary point <span class="math notranslate nohighlight">\(P_{1} = (1,-2)^{T}\)</span>
 with <span class="math notranslate nohighlight">\(f(P_{1}) = -2\)</span>.</p>
-<p>Use polynomial long division to find more potential real roots:</p>
+<p class="card-text">Use polynomial long division to find more potential real roots:</p>
 <div class="math notranslate nohighlight">
 \[
 (2x^{3} - x - 1) : (x - 1) = 2x^{2} + 2x + 1
 \]</div>
-<p>Finally the equation</p>
+<p class="card-text">Finally the equation</p>
 <div class="math notranslate nohighlight">
 \[
 x^{2} + x + 0.5 = 0
 \]</div>
-<p>has only complex roots.</p>
-<p>Thus <span class="math notranslate nohighlight">\(P_{1}\)</span> is the only real stationary point.</p>
-<p><strong>4. Classify all stationary points.</strong></p>
-<p><strong>Solution:</strong></p>
-<p>Hessian matrix at <span class="math notranslate nohighlight">\(P_{1}\)</span>:</p>
+<p class="card-text">has only complex roots.</p>
+<p class="card-text">Thus <span class="math notranslate nohighlight">\(P_{1}\)</span> is the only real stationary point.</p>
+</div>
+</details><p><strong>4. Classify all stationary points.</strong></p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<strong>Solution:</strong><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Hessian matrix at <span class="math notranslate nohighlight">\(P_{1}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \nabla^{2} f(P_{1}) = \begin{pmatrix} 12 &amp; 2 \\ 2 &amp; 2 \end{pmatrix}
 \end{split}\]</div>
-<p>Classification with eigenvalues (roots of the characteristic polynomial):</p>
+<p class="card-text">Classification with eigenvalues (roots of the characteristic polynomial):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 0 = \det\begin{pmatrix} 12 - \lambda &amp; 2 \\ 2 &amp; 2 - \lambda \end{pmatrix}
@@ -316,9 +340,10 @@ x^{2} + x + 0.5 = 0
 \[
 \Rightarrow \lambda_{1,2} = 7 \pm \sqrt{29} \approx 7 \pm 5.385\ldots &gt; 0
 \]</div>
-<p>The roots of the characteristic polynomial are all positive.
+<p class="card-text">The roots of the characteristic polynomial are all positive.
 Thus the Hessian matrix is positive definite and <span class="math notranslate nohighlight">\(P_{1}\)</span> is a <strong>strict local minimum</strong>.</p>
 </div>
+</details></div>
 
     <script type="text/x-thebe-config">
     {
@@ -372,7 +397,7 @@ Thus the Hessian matrix is positive definite and <span class="math notranslate n
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
