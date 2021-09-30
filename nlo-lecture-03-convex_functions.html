@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convex functions &#8212; Selected Topics on Optimization</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UM01" href="nlo-exercise-UM01.html" />
+    <link rel="prev" title="Unconstrained minimization problems" href="nlo-lecture-02-unres-min-cond.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Selected Topics on Optimization</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-00-intro.html">
+   Selected Topics on Optimization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Seminar notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-01-optimization-problem.html">
+   The optimization problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-02-unres-min-cond.html">
+   Unconstrained minimization problems
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Convex functions
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM01.html">
+   UM01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM02.html">
+   UM02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Back matter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-bib.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/nlo-lecture-03-convex_functions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/siko1056/optim-2021"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-03-convex_functions.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lines-and-line-segments">
+   Lines and line segments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#affine-sets">
+   Affine sets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convex-sets">
+   Convex sets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperplanes">
+   Hyperplanes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#halfspaces">
+   Halfspaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ellipsoid">
+   Ellipsoid
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convex-functions">
+<h1>Convex functions<a class="headerlink" href="#convex-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lines-and-line-segments">
+<h2>Lines and line segments<a class="headerlink" href="#lines-and-line-segments" title="Permalink to this headline">¶</a></h2>
+<p>Points <span class="math notranslate nohighlight">\(y\)</span> on a <strong>line</strong> through two points <span class="math notranslate nohighlight">\(x_1 \neq x_2\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>
+can be expressed by</p>
+<div class="math notranslate nohighlight">
+\[
+y = \theta x_1 + (1 - \theta) x_2,
+\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[
+y = x_2 + \theta (x_1 - x_2),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span>.</p>
+<p>For a <strong>line segment</strong>, <span class="math notranslate nohighlight">\(\theta\)</span> is limited to <span class="math notranslate nohighlight">\(0 \leq \theta \leq 1\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">];</span>
+<span class="n">x2</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">];</span>
+<span class="n">theta</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">t</span> <span class="o">.*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">);</span>
+<span class="n">yy</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">yy</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">yy</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="n">mprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;MarkerSize&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="p">...</span>
+          <span class="s">&#39;MarkerFaceColor&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">};</span>
+<span class="k">for</span> <span class="n">t</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">]</span>
+  <span class="n">yy</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+  <span class="nb">plot</span> <span class="p">(</span><span class="n">yy</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">yy</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;kx&#39;</span><span class="p">,</span> <span class="n">mprops</span><span class="p">{:});</span>
+  <span class="nb">text</span> <span class="p">(</span><span class="n">yy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.22</span><span class="p">,</span> <span class="n">yy</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">,</span> <span class="p">...</span>
+        <span class="nb">sprintf</span> <span class="p">(</span><span class="s">&#39;\\theta = %.1f&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="k">end</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko&#39;</span><span class="p">,</span> <span class="n">mprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s">&#39;x1&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko&#39;</span><span class="p">,</span> <span class="n">mprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s">&#39;x2&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-convex_functions_2_0.png" src="_images/nlo-lecture-03-convex_functions_2_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="affine-sets">
+<h2>Affine sets<a class="headerlink" href="#affine-sets" title="Permalink to this headline">¶</a></h2>
+<p>An <strong>affine set</strong> contains the <strong>line</strong> through any two distinct points in the set.</p>
+<p>For example the solution set of linear equations <span class="math notranslate nohighlight">\(\{x | Ax = b\}\)</span> is affine.</p>
+<p>Conversely, every affine set can be expressed as solution set of a system of linear equations.</p>
+</div>
+<div class="section" id="convex-sets">
+<h2>Convex sets<a class="headerlink" href="#convex-sets" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>convex set</strong> <span class="math notranslate nohighlight">\(C\)</span> contains the <strong>line segment</strong> through any two distinct points in the set.</p>
+<div class="math notranslate nohighlight">
+\[
+x_1, x_2 \in C, \quad 0 \leq \theta \leq 1 \quad\implies\quad \theta x_1 + (1 - \theta) x_2 \in C.
+\]</div>
+<p><strong>Examples</strong> (from <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id2">BV04</a>]</span> (p. 24): first set is convex, the latter two not)</p>
+<p><img alt="convex_sets" src="_images/convex_sets.png" /></p>
+</div>
+<div class="section" id="hyperplanes">
+<h2>Hyperplanes<a class="headerlink" href="#hyperplanes" title="Permalink to this headline">¶</a></h2>
+<p>Affine and convex sets of the form
+<span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^{n} \colon  a^{T}x = b \}\)</span> with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">];</span>
+<span class="n">x2</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">.*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mf">0.25</span> <span class="o">.*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">);</span>
+<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span> <span class="o">/</span> <span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="n">x1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="s">&#39;k-&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko&#39;</span><span class="p">);</span>
+<span class="nb">quiver</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">quiver</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.04</span><span class="p">,</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.04</span><span class="p">,</span> <span class="s">&#39;x_0&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s">&#39;a^{T}x = b&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-convex_functions_6_0.png" src="_images/nlo-lecture-03-convex_functions_6_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="halfspaces">
+<h2>Halfspaces<a class="headerlink" href="#halfspaces" title="Permalink to this headline">¶</a></h2>
+<p>Convex sets of the form <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^{n} \colon a^{T}x \leq b \}\)</span>
+with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">];</span>
+<span class="n">x2</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">.*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">);</span>
+<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span> <span class="o">/</span> <span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+<span class="n">x3</span> <span class="p">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">x4</span> <span class="p">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">a</span><span class="p">;</span>
+<span class="nb">fill</span> <span class="p">([</span><span class="n">x1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x4</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x3</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x4</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x3</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="p">...</span>
+      <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">]</span> <span class="o">/</span> <span class="mi">256</span><span class="p">,</span> <span class="s">&#39;EdgeColor&#39;</span><span class="p">,</span> <span class="s">&#39;none&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="n">x1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="s">&#39;k-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko&#39;</span><span class="p">);</span>
+<span class="nb">quiver</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.04</span><span class="p">,</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.04</span><span class="p">,</span> <span class="s">&#39;x_0&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;a^{T}x \geq b&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">x2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">x2</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>       <span class="s">&#39;a^{T}x \leq b&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-convex_functions_8_0.png" src="_images/nlo-lecture-03-convex_functions_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="ellipsoid">
+<h2>Ellipsoid<a class="headerlink" href="#ellipsoid" title="Permalink to this headline">¶</a></h2>
+<p>Convex sets of the form</p>
+<div class="math notranslate nohighlight">
+\[
+\{ x \in \mathbb{R}^{n} \colon (x - x_{c})^{T} P^{-1} (x - x_{c}) \leq 1 \},
+\]</div>
+<p>with center <span class="math notranslate nohighlight">\(x_{c} \in \mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(P \succ 0\)</span> (symmetric positive definite) or</p>
+<div class="math notranslate nohighlight">
+\[
+\{ x_{c} + Au \in \mathbb{R}^{n} \colon \lVert u \rVert \leq 1 \},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(A\)</span> square and non-singular.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">ry</span> <span class="p">=</span> <span class="mf">0.7</span><span class="p">;</span>
+<span class="n">rz</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="p">=</span> <span class="nb">ellipsoid</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">rz</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="nb">colormap</span> <span class="p">(</span><span class="s">&#39;gray&#39;</span><span class="p">);</span>
+<span class="nb">surf</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">rx</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;k-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">plot3</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">ry</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;k-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;ko&#39;</span><span class="p">,</span> <span class="s">&#39;MarkerSize&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+<span class="nb">text</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;x_{c}&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+<span class="nb">shading</span> <span class="n">flat</span><span class="p">;</span>
+<span class="nb">view</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>  <span class="c">% reduce to x-y-plane</span>
+<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="n">rx</span><span class="p">,</span> <span class="n">rx</span><span class="p">]);</span>
+<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="n">zlim</span> <span class="p">([</span><span class="o">-</span><span class="n">rz</span><span class="p">,</span> <span class="n">rz</span><span class="p">]);</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-convex_functions_10_0.png" src="_images/nlo-lecture-03-convex_functions_10_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="nlo-lecture-02-unres-min-cond.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Unconstrained minimization problems</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="nlo-exercise-UM01.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">UM01</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By K. T. Ohlhus<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
