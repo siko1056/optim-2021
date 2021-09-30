@@ -34,9 +34,3 @@ html:
 
 launch_buttons:
   binderhub_url: ""
-
-# \usepackage[utf8]{inputenc}
-# \usepackage{xeCJK}
-# \setCJKmainfont{IPAMincho}
-# \setCJKsansfont{IPAGothic}
-# \setCJKmonofont{IPAGothic}

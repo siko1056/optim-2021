@@ -8,6 +8,7 @@ parts:
     chapters:
     - file: nlo-lecture-01-optimization-problem.ipynb
     - file: nlo-lecture-02-unres-min-cond.ipynb
+    - file: nlo-lecture-03-convex_functions.ipynb
   - caption: Exercises
     chapters:
     - file: nlo-exercise-UM01.ipynb
