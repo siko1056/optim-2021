@@ -8,11 +8,13 @@ parts:
     chapters:
     - file: nlo-lecture-01-optimization-problem.ipynb
     - file: nlo-lecture-02-unres-min-cond.ipynb
-    - file: nlo-lecture-03-convex_functions.ipynb
+    - file: nlo-lecture-03-unres-min-alg.ipynb
+    - file: nlo-lecture-04-convex_functions.ipynb
   - caption: Exercises
     chapters:
     - file: nlo-exercise-UM01.ipynb
     - file: nlo-exercise-UM02.ipynb
   - caption: Back matter
     chapters:
+    - file: nlo-lecture-code-listings.ipynb
     - file: nlo-lecture-bib.ipynb
