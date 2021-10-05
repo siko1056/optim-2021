@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -53,7 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Convex functions" href="nlo-lecture-03-convex_functions.html" />
+    <link rel="next" title="Unconstrained minimization algorithms" href="nlo-lecture-03-unres-min-alg.html" />
     <link rel="prev" title="The optimization problem" href="nlo-lecture-01-optimization-problem.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -112,7 +112,12 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-03-convex_functions.html">
+  <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html">
+   Unconstrained minimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-04-convex_functions.html">
    Convex functions
   </a>
  </li>
@@ -140,6 +145,11 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-code-listings.html">
+   Code Listings
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nlo-lecture-bib.html">
    Bibliography
@@ -261,7 +271,7 @@ without any constraint functions.</p>
 \nabla f(x^{*}) = 0
 \]</div>
 <div class="tip admonition">
-<p class="admonition-title">Theorem 2: 1st order optimality condition</p>
+<p class="admonition-title"><strong>Theorem 2:</strong> 1st order optimality condition</p>
 <p>Let the open set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> and let <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>.
 If the point <span class="math notranslate nohighlight">\(x^{*} \in X\)</span> is a local miminum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>,
 then <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span>.</p>
@@ -293,7 +303,8 @@ Because <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},
 \frac{f(x^{*} - td) - f(x^{*})}{t} = -\nabla f(x^{*})^{T}d
 \]</div>
 <p class="card-text">and it follows <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span>.</p>
-<a class="reference internal image-reference" href="_images/qed.png"><img alt="qed" class="align-right" src="_images/qed.png" style="width: 8px;" /></a>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
 </div>
 </details><p>Non-negative curvature at a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -301,7 +312,7 @@ Because <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},
 \nabla^{2} f(x^{*}) \succeq 0 \quad\text{is positive semi-definite}
 \]</div>
 <div class="tip admonition">
-<p class="admonition-title">Theorem 3: 2nd order optimality condition</p>
+<p class="admonition-title"><strong>Theorem 3:</strong> 2nd order optimality condition</p>
 <p>Let the open set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span>.
 If the point <span class="math notranslate nohighlight">\(x^{*} \in X\)</span> is a local minimum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>,
 then the Hessian matrix <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{*})\)</span> is positive semi-definite.</p>
@@ -325,7 +336,8 @@ f(x^{*} + td) = f(x^{*}) + \frac{1}{2}t^{2}d^{T}\nabla^{2} f(x^{*})d + o(t^{2}).
 there exists a <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{0\}\)</span>
 with <span class="math notranslate nohighlight">\(d^{T}\nabla^{2} f(x^{*})d &lt; 0\)</span>.
 This is a contradiction for the minimality of <span class="math notranslate nohighlight">\(x^{*}\)</span>.</p>
-<a class="reference internal image-reference" href="_images/qed.png"><img alt="qed" class="align-right" src="_images/qed.png" style="width: 8px;" /></a>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
 </div>
 </details><div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -360,7 +372,7 @@ but are not local minima.  For example:</p>
 \nabla^{2} f(x^{*}) \succ 0 \quad\text{is positive definite}
 \]</div>
 <div class="tip admonition">
-<p class="admonition-title">Theorem 4: 2nd order sufficient optimality condition</p>
+<p class="admonition-title"><strong>Theorem 4:</strong> 2nd order sufficient optimality condition</p>
 <p>Let <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span> and <span class="math notranslate nohighlight">\(x^{*} \in X \subset \mathbb{R}^{n}\)</span> with
 <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span> and <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{*}) \succeq 0\)</span> (positive definite),
 then <span class="math notranslate nohighlight">\(x^{*}\)</span> is a strict local minimum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>
@@ -406,7 +418,8 @@ f(x^{*} + d) &amp;= f(x^{*})
 \end{split}\]</div>
 <p class="card-text">Because the Hessian matrix is continuous,
 there is <span class="math notranslate nohighlight">\(f(x^{*} + d) &gt; f(x^{*})\)</span> for all <span class="math notranslate nohighlight">\(d \neq 0\)</span> with a sufficiently small norm.</p>
-<a class="reference internal image-reference" href="_images/qed.png"><img alt="qed" class="align-right" src="_images/qed.png" style="width: 8px;" /></a>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
 </div>
 </details><div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -458,10 +471,10 @@ the Hessian matrix is not positive definite.</p>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="nlo-lecture-03-convex_functions.html" title="next page">
+        <a class="right-next" href="nlo-lecture-03-unres-min-alg.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Convex functions</p>
+                <p class="prevnext-title">Unconstrained minimization algorithms</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

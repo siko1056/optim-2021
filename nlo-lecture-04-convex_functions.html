@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="UM01" href="nlo-exercise-UM01.html" />
-    <link rel="prev" title="Unconstrained minimization problems" href="nlo-lecture-02-unres-min-cond.html" />
+    <link rel="prev" title="Unconstrained minimization algorithms" href="nlo-lecture-03-unres-min-alg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -111,6 +111,11 @@
    Unconstrained minimization problems
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html">
+   Unconstrained minimization algorithms
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Convex functions
@@ -140,6 +145,11 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-code-listings.html">
+   Code Listings
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nlo-lecture-bib.html">
    Bibliography
@@ -182,7 +192,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/nlo-lecture-03-convex_functions.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/nlo-lecture-04-convex_functions.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -202,7 +212,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-03-convex_functions.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-04-convex_functions.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -229,34 +239,83 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lines-and-line-segments">
-   Lines and line segments
+  <a class="reference internal nav-link" href="#some-special-sets">
+   Some special sets
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lines-and-line-segments">
+     Lines and line segments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#affine-sets">
+     Affine sets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convex-sets">
+     Convex sets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperplanes">
+     Hyperplanes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#halfspaces">
+     Halfspaces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ellipsoid">
+     Ellipsoid
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polyhedra">
+     Polyhedra
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#affine-sets">
-   Affine sets
+  <a class="reference internal nav-link" href="#id2">
+   Convex functions
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convex-sets">
-   Convex sets
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hyperplanes">
-   Hyperplanes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#halfspaces">
-   Halfspaces
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ellipsoid">
-   Ellipsoid
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-on-mathbb-r">
+     Examples on
+     <span class="math notranslate nohighlight">
+      \(\mathbb{R}\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-on-mathbb-r-n-vectors">
+     Examples on
+     <span class="math notranslate nohighlight">
+      \(\mathbb{R}^{n}\)
+     </span>
+     (vectors)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-on-mathbb-r-m-times-n-m-times-n-matrices">
+     Examples on
+     <span class="math notranslate nohighlight">
+      \(\mathbb{R}^{m \times n}\)
+     </span>
+     (
+     <span class="math notranslate nohighlight">
+      \(m \times n\)
+     </span>
+     matrices)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -271,8 +330,12 @@
                 
   <div class="section" id="convex-functions">
 <h1>Convex functions<a class="headerlink" href="#convex-functions" title="Permalink to this headline">¶</a></h1>
+<p>This section is devoted to <strong>convex sets</strong> and <strong>convex functions</strong>,
+which have useful properties for optimization algorithms.</p>
+<div class="section" id="some-special-sets">
+<h2>Some special sets<a class="headerlink" href="#some-special-sets" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="lines-and-line-segments">
-<h2>Lines and line segments<a class="headerlink" href="#lines-and-line-segments" title="Permalink to this headline">¶</a></h2>
+<h3>Lines and line segments<a class="headerlink" href="#lines-and-line-segments" title="Permalink to this headline">¶</a></h3>
 <p>Points <span class="math notranslate nohighlight">\(y\)</span> on a <strong>line</strong> through two points <span class="math notranslate nohighlight">\(x_1 \neq x_2\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>
 can be expressed by</p>
 <div class="math notranslate nohighlight">
@@ -314,18 +377,18 @@ y = x_2 + \theta (x_1 - x_2),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-convex_functions_2_0.png" src="_images/nlo-lecture-03-convex_functions_2_0.png" />
+<img alt="_images/nlo-lecture-04-convex_functions_2_0.png" src="_images/nlo-lecture-04-convex_functions_2_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="affine-sets">
-<h2>Affine sets<a class="headerlink" href="#affine-sets" title="Permalink to this headline">¶</a></h2>
+<h3>Affine sets<a class="headerlink" href="#affine-sets" title="Permalink to this headline">¶</a></h3>
 <p>An <strong>affine set</strong> contains the <strong>line</strong> through any two distinct points in the set.</p>
 <p>For example the solution set of linear equations <span class="math notranslate nohighlight">\(\{x | Ax = b\}\)</span> is affine.</p>
 <p>Conversely, every affine set can be expressed as solution set of a system of linear equations.</p>
 </div>
 <div class="section" id="convex-sets">
-<h2>Convex sets<a class="headerlink" href="#convex-sets" title="Permalink to this headline">¶</a></h2>
+<h3>Convex sets<a class="headerlink" href="#convex-sets" title="Permalink to this headline">¶</a></h3>
 <p>A <strong>convex set</strong> <span class="math notranslate nohighlight">\(C\)</span> contains the <strong>line segment</strong> through any two distinct points in the set.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -335,7 +398,7 @@ x_1, x_2 \in C, \quad 0 \leq \theta \leq 1 \quad\implies\quad \theta x_1 + (1 - 
 <p><img alt="convex_sets" src="_images/convex_sets.png" /></p>
 </div>
 <div class="section" id="hyperplanes">
-<h2>Hyperplanes<a class="headerlink" href="#hyperplanes" title="Permalink to this headline">¶</a></h2>
+<h3>Hyperplanes<a class="headerlink" href="#hyperplanes" title="Permalink to this headline">¶</a></h3>
 <p>Affine and convex sets of the form
 <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^{n} \colon  a^{T}x = b \}\)</span> with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span>.</p>
 <div class="cell tag_hide_input docutils container">
@@ -361,12 +424,12 @@ x_1, x_2 \in C, \quad 0 \leq \theta \leq 1 \quad\implies\quad \theta x_1 + (1 - 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-convex_functions_6_0.png" src="_images/nlo-lecture-03-convex_functions_6_0.png" />
+<img alt="_images/nlo-lecture-04-convex_functions_6_0.png" src="_images/nlo-lecture-04-convex_functions_6_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="halfspaces">
-<h2>Halfspaces<a class="headerlink" href="#halfspaces" title="Permalink to this headline">¶</a></h2>
+<h3>Halfspaces<a class="headerlink" href="#halfspaces" title="Permalink to this headline">¶</a></h3>
 <p>Convex sets of the form <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^{n} \colon a^{T}x \leq b \}\)</span>
 with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span>.</p>
 <div class="cell tag_hide_input docutils container">
@@ -394,12 +457,12 @@ with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-convex_functions_8_0.png" src="_images/nlo-lecture-03-convex_functions_8_0.png" />
+<img alt="_images/nlo-lecture-04-convex_functions_8_0.png" src="_images/nlo-lecture-04-convex_functions_8_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="ellipsoid">
-<h2>Ellipsoid<a class="headerlink" href="#ellipsoid" title="Permalink to this headline">¶</a></h2>
+<h3>Ellipsoid<a class="headerlink" href="#ellipsoid" title="Permalink to this headline">¶</a></h3>
 <p>Convex sets of the form</p>
 <div class="math notranslate nohighlight">
 \[
@@ -434,7 +497,163 @@ with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-convex_functions_10_0.png" src="_images/nlo-lecture-03-convex_functions_10_0.png" />
+<img alt="_images/nlo-lecture-04-convex_functions_10_0.png" src="_images/nlo-lecture-04-convex_functions_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="polyhedra">
+<h3>Polyhedra<a class="headerlink" href="#polyhedra" title="Permalink to this headline">¶</a></h3>
+<p>A Polyhedron is an <strong>intersection</strong> of a finite number of
+<strong>halfspaces</strong> and <strong>hyperplanes</strong>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
+<span class="n">x2</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">];</span>
+<span class="n">x3</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">];</span>
+<span class="n">x4</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">];</span>
+<span class="n">x5</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">;</span> <span class="n">x2</span><span class="p">;</span> <span class="n">x3</span><span class="p">;</span> <span class="n">x4</span><span class="p">;</span> <span class="n">x5</span><span class="p">];</span>
+<span class="nb">fill</span> <span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="p">...</span>
+      <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">]</span> <span class="o">/</span> <span class="mi">256</span><span class="p">,</span> <span class="p">...</span>
+      <span class="s">&#39;EdgeColor&#39;</span><span class="p">,</span> <span class="s">&#39;none&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
+  <span class="n">j</span> <span class="p">=</span> <span class="nb">mod</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">p</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span><span class="o">&#39;</span> <span class="o">+</span> <span class="n">t</span> <span class="o">.*</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">&#39;</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span><span class="o">&#39;</span><span class="p">);</span>
+  <span class="n">p0</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>  <span class="c">% Start of normal vector</span>
+  <span class="n">p1</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">);</span>
+  <span class="n">p2</span> <span class="p">=</span> <span class="n">p</span><span class="p">(</span><span class="mf">1.2</span><span class="p">);</span>
+  <span class="c">% Normal vector a</span>
+  <span class="n">d</span> <span class="p">=</span> <span class="mf">0.3</span><span class="p">;</span>  <span class="c">% direction and scale</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">d</span> <span class="p">=</span> <span class="o">-</span><span class="n">d</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="n">a</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">&#39;</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span><span class="o">&#39;</span><span class="p">);</span>
+  <span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+  <span class="n">a</span> <span class="p">=</span> <span class="n">a</span> <span class="o">/</span> <span class="nb">norm</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
+  <span class="nb">plot</span> <span class="p">([</span><span class="n">p1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">p2</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">p1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">p2</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="s">&#39;k-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="nb">quiver</span> <span class="p">(</span><span class="n">p0</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">p0</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">t</span> <span class="p">=</span> <span class="n">p0</span> <span class="o">+</span> <span class="mf">1.2</span> <span class="o">.*</span> <span class="n">a</span><span class="p">;</span>
+  <span class="nb">text</span> <span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">t</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">sprintf</span> <span class="p">(</span><span class="s">&#39;a_{%d}&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="k">end</span>
+
+<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-04-convex_functions_12_0.png" src="_images/nlo-lecture-04-convex_functions_12_0.png" />
+</div>
+</div>
+<p>The <strong>intersection</strong> of convex sets is convex.</p>
+<p><em>Proof.</em></p>
+<p>Let <span class="math notranslate nohighlight">\(x_{1}, x_{2} \in C \cap D\)</span>, where <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> are convex sets.
+Then <span class="math notranslate nohighlight">\(\theta x_{1} + (1 - \theta) x_{2} \in C \cap D\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+<p>Solution set of finitely many linear inequalities and equalities is convex</p>
+<div class="math notranslate nohighlight">
+\[
+Ax \leq b, \qquad Cx = d,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, <span class="math notranslate nohighlight">\(C \in \mathbb{R}^{p \times n}\)</span>,
+and <span class="math notranslate nohighlight">\(\leq\)</span> is component-wise inequality.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Convex functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The function <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> is <strong>convex</strong>
+if <span class="math notranslate nohighlight">\(\operatorname{dom}(f)\)</span> is a convex set and</p>
+<div class="math notranslate nohighlight">
+\[
+f( \theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta)f(y),
+\]</div>
+<p>for all <span class="math notranslate nohighlight">\(x,y \in \operatorname{dom}(f)\)</span> and <span class="math notranslate nohighlight">\(0 \leq \theta \leq 1\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span><span class="o">.^</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;(x, f(x))&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">&#39;(y, f(y))&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-04-convex_functions_15_0.png" src="_images/nlo-lecture-04-convex_functions_15_0.png" />
+</div>
+</div>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is <strong>concave</strong> if <span class="math notranslate nohighlight">\(-f\)</span> is convex.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is <strong>strictly convex</strong> if <span class="math notranslate nohighlight">\(\operatorname{dom}(f)\)</span> is a convex set and</p>
+<div class="math notranslate nohighlight">
+\[
+  f( \theta x + (1 - \theta) y ) &lt; \theta f(x) + (1 - \theta)f(y),
+  \]</div>
+<p>for all <span class="math notranslate nohighlight">\(x,y \in \operatorname{dom}(f)\)</span>, <span class="math notranslate nohighlight">\(x \neq y\)</span>, and <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span>.</p>
+</li>
+</ul>
+<div class="section" id="examples-on-mathbb-r">
+<h3>Examples on <span class="math notranslate nohighlight">\(\mathbb{R}\)</span><a class="headerlink" href="#examples-on-mathbb-r" title="Permalink to this headline">¶</a></h3>
+<p>Convex:</p>
+<ul class="simple">
+<li><p>affine: <span class="math notranslate nohighlight">\(ax + b\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, for any <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span></p></li>
+<li><p>exponential: <span class="math notranslate nohighlight">\(e^{ax}\)</span>, for any <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span></p></li>
+<li><p>powers: <span class="math notranslate nohighlight">\(x^{\alpha}\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span>, for <span class="math notranslate nohighlight">\(\alpha \geq 1\)</span> or <span class="math notranslate nohighlight">\(\alpha \leq 0\)</span></p></li>
+<li><p>powers of absolute value: <span class="math notranslate nohighlight">\(\lvert x \rvert^{p}\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, for <span class="math notranslate nohighlight">\(p \geq 1\)</span></p></li>
+<li><p>negative entropy: <span class="math notranslate nohighlight">\(x\log(x)\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span></p></li>
+</ul>
+<p>Concave:</p>
+<ul class="simple">
+<li><p>affine: <span class="math notranslate nohighlight">\(ax + b\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, for any <span class="math notranslate nohighlight">\(a, b \in \mathbb{R}\)</span></p></li>
+<li><p>powers: <span class="math notranslate nohighlight">\(x^{\alpha}\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span>, for <span class="math notranslate nohighlight">\(0 \leq \alpha \leq 1\)</span></p></li>
+<li><p>logarithm: <span class="math notranslate nohighlight">\(\log(x)\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span></p></li>
+</ul>
+</div>
+<div class="section" id="examples-on-mathbb-r-n-vectors">
+<h3>Examples on <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span> (vectors)<a class="headerlink" href="#examples-on-mathbb-r-n-vectors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>affine function <span class="math notranslate nohighlight">\(f(x) = a^{T}x + b\)</span> are convex and concave</p></li>
+<li><p>norms are convex: <span class="math notranslate nohighlight">\(\lVert x \rVert_{p} = (\sum_{i = 1}^{n} \lvert x_i \rvert^{p} )^{1/p}\)</span> for <span class="math notranslate nohighlight">\(p \geq 1\)</span>;
+<span class="math notranslate nohighlight">\(\lVert x \rVert_{\infty} = \max(\lvert x_1 \rvert, \ldots, \lvert x_n \rvert)\)</span></p></li>
+</ul>
+</div>
+<div class="section" id="examples-on-mathbb-r-m-times-n-m-times-n-matrices">
+<h3>Examples on <span class="math notranslate nohighlight">\(\mathbb{R}^{m \times n}\)</span> (<span class="math notranslate nohighlight">\(m \times n\)</span> matrices)<a class="headerlink" href="#examples-on-mathbb-r-m-times-n-m-times-n-matrices" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>affine function</p>
+<div class="math notranslate nohighlight">
+\[
+  f(X) = \operatorname{tr}A^{T}X + b = \left( \sum_{i = 1}^{m}\sum_{j = 1}^{n} A_{ij} X_{ij} \right) + b
+  \]</div>
+</li>
+<li><p>spectral (maximum singular value) norm</p>
+<div class="math notranslate nohighlight">
+\[
+  f(X) = \lVert X \rVert_{2} = \sigma_{\max}(X) = \sqrt{\lambda_{\max}(X^{T}X)}.
+  \]</div>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="p">:::{</span><span class="n">admonition</span><span class="p">}</span> <span class="o">**</span><span class="n">Theorem</span> <span class="mi">5</span><span class="p">:</span><span class="o">**</span> <span class="n">Global</span> <span class="n">minimum</span>
+<span class="p">:</span><span class="nb">class</span><span class="p">:</span> <span class="n">tip</span>
+
+<span class="n">Let</span> $<span class="n">X</span> <span class="o">\</span><span class="n">subset</span> <span class="o">\</span><span class="n">mathbb</span><span class="p">{</span><span class="n">R</span><span class="p">}</span>^<span class="p">{</span><span class="n">n</span><span class="p">}</span>$ <span class="n">be</span> <span class="n">a</span> <span class="n">convex</span> <span class="k">set</span>
+<span class="nb">and</span> $<span class="n">f</span> <span class="o">\</span><span class="nb">colon</span> <span class="o">\</span><span class="n">mathbb</span><span class="p">{</span><span class="n">R</span><span class="p">}</span>^<span class="p">{</span><span class="n">n</span><span class="p">}</span> <span class="o">\</span><span class="n">to</span> <span class="o">\</span><span class="n">mathbb</span><span class="p">{</span><span class="n">R</span><span class="p">}</span>$ <span class="n">continuous</span><span class="p">.</span>
+<span class="n">Then</span> <span class="n">there</span> <span class="n">exists</span> <span class="n">a</span> <span class="o">**</span><span class="k">global</span> <span class="n">minimum</span><span class="o">**</span> <span class="n">of</span> $<span class="n">f</span>$ <span class="n">over</span> $<span class="n">X</span>$<span class="p">.</span>
+
+<span class="p">:::</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -470,11 +689,11 @@ with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="nlo-lecture-02-unres-min-cond.html" title="previous page">
+        <a class="left-prev" href="nlo-lecture-03-unres-min-alg.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Unconstrained minimization problems</p>
+                <p class="prevnext-title">Unconstrained minimization algorithms</p>
             </div>
         </a>
     </div>

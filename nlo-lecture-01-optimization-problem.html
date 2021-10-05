@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -112,7 +112,12 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-03-convex_functions.html">
+  <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html">
+   Unconstrained minimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-04-convex_functions.html">
    Convex functions
   </a>
  </li>
@@ -140,6 +145,11 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-code-listings.html">
+   Code Listings
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nlo-lecture-bib.html">
    Bibliography
@@ -478,14 +488,16 @@ is denoted by</p>
 B_{\varepsilon}(x) := \{ y \in \mathbb{R}^{n} \colon \lVert y - x \rVert &lt; \varepsilon \}
 = \{ x + \varepsilon u \in \mathbb{R}^{n} \colon \lVert u \rVert \leq 1 \}.
 \]</div>
-<p>The interior of a set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is denoted by <span class="math notranslate nohighlight">\(int(X)\)</span>
+<p>The interior of a set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is denoted by <span class="math notranslate nohighlight">\(\operatorname{int}(X)\)</span>
 and the border by <span class="math notranslate nohighlight">\(\partial X\)</span>.
-For <span class="math notranslate nohighlight">\(x \in int(X)\)</span> and <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> there is <span class="math notranslate nohighlight">\(B_{\varepsilon}(x) \subset X\)</span>.</p>
+For <span class="math notranslate nohighlight">\(x \in \operatorname{int}(X)\)</span> and <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> there is <span class="math notranslate nohighlight">\(B_{\varepsilon}(x) \subset X\)</span>.</p>
 <p>A subset <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is called <strong>“open”</strong>, if <span class="math notranslate nohighlight">\(int(X) = X\)</span>.
 (“The border <span class="math notranslate nohighlight">\(\partial X\)</span> is not included.”)</p>
 <p>A closed subset <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is called <strong>“compact”</strong>,
 if every open cover of <span class="math notranslate nohighlight">\(X\)</span> has a finite sub-cover.
 (“No holes in <span class="math notranslate nohighlight">\(X\)</span>, border included.”).</p>
+<p>In the notation <span class="math notranslate nohighlight">\(f \colon X \to Y\)</span>, the set <span class="math notranslate nohighlight">\(X\)</span> is the <strong>domain</strong> of <span class="math notranslate nohighlight">\(f\)</span>
+and is alternatively denoted as <span class="math notranslate nohighlight">\(\operatorname{dom}(f)\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> be continuously differentiable
 (<span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>),
 then the <strong>gradient</strong> of <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(x\)</span> is denoted by the column vector:</p>
@@ -546,7 +558,7 @@ and <span class="math notranslate nohighlight">\(\lVert d \rVert\)</span> suffic
 f(x + d) = f(x) + \nabla f(x)^{T}d + \frac{1}{2}d^{T}\nabla^{2} f(x)d + o(\lVert d \rVert^{2}).
 \]</div>
 <div class="tip admonition">
-<p class="admonition-title">Theorem 1: Extreme value theorem</p>
+<p class="admonition-title"><strong>Theorem 1:</strong> Extreme value theorem</p>
 <p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> non-empty and compact
 and <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> continuous.
 Then there exists a <strong>global minimum</strong> of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>

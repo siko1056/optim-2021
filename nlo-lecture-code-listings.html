@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Listings &#8212; Selected Topics on Optimization</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bibliography" href="nlo-lecture-bib.html" />
+    <link rel="prev" title="UM02" href="nlo-exercise-UM02.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Selected Topics on Optimization</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-00-intro.html">
+   Selected Topics on Optimization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Seminar notes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-01-optimization-problem.html">
+   The optimization problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-02-unres-min-cond.html">
+   Unconstrained minimization problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html">
+   Unconstrained minimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-04-convex_functions.html">
+   Convex functions
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Exercises
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM01.html">
+   UM01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM02.html">
+   UM02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Back matter
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Code Listings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-bib.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/nlo-lecture-code-listings.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/siko1056/optim-2021"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-code-listings.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newton-simple-m">
+   newton_simple.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#um01-experiment-m">
+   um01_experiment.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#um02-experiment-m">
+   um02_experiment.m
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="code-listings">
+<h1>Code Listings<a class="headerlink" href="#code-listings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="newton-simple-m">
+<span id="newton-simple"></span><h2>newton_simple.m<a class="headerlink" href="#newton-simple-m" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[x, fval, exitflag] = newton_simple </span><span class="p">(</span>fun, x0, options<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="c">% Find minimum of unconstrained multivariable function.</span>
+  <span class="c">%</span>
+  <span class="c">%   Input:</span>
+  <span class="c">%         fun - function (returning function value, gradient</span>
+  <span class="c">%               vector value and Hessian matrix value)</span>
+  <span class="c">%          x0 - initial guess</span>
+  <span class="c">%     options - structure with fields</span>
+  <span class="c">%       .MaxIterations       - max. number of iterations</span>
+  <span class="c">%       .OptimalityTolerance - tolerance for the norm of gradient</span>
+  <span class="c">%       .Display             - display details for &#39;iter&#39;</span>
+  <span class="c">%</span>
+  <span class="c">%   Output:</span>
+  <span class="c">%           x - solution</span>
+  <span class="c">%        fval - objective value at solution</span>
+  <span class="c">%    exitflag - 0 = no solution found</span>
+  <span class="c">%               1 = solution found</span>
+  <span class="c">%</span>
+
+  <span class="n">narginchk</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+  <span class="n">opt</span> <span class="p">=</span> <span class="nb">struct</span> <span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">nargin</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">isstruct</span> <span class="p">(</span><span class="n">options</span><span class="p">))</span>
+    <span class="n">opt</span> <span class="p">=</span> <span class="n">options</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;MaxIterations&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">isempty</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;Display&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;off&#39;</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;OptimalityTolerance&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">OptimalityTolerance</span> <span class="p">=</span> <span class="mf">1e-9</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span><span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Iteration\tStep-size\tf(x)\t\t||df(x)||\n&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="n">x0</span><span class="p">(:);</span>
+  <span class="n">i</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">fval</span><span class="p">,</span> <span class="n">fgrad</span><span class="p">,</span> <span class="n">fhess</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">norm</span> <span class="p">(</span><span class="n">fgrad</span><span class="p">,</span> <span class="s">&#39;inf&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">OptimalityTolerance</span><span class="p">)</span>
+      <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% success!</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="n">d</span> <span class="p">=</span> <span class="n">fhess</span> <span class="o">\</span> <span class="o">-</span><span class="n">fgrad</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+      <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%5d\t\t%e\t%e\t%e\n&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s">&#39;inf&#39;</span><span class="p">),</span> <span class="p">...</span>
+        <span class="n">fval</span><span class="p">,</span> <span class="nb">norm</span> <span class="p">(</span><span class="n">fgrad</span><span class="p">,</span> <span class="s">&#39;inf&#39;</span><span class="p">));</span>
+    <span class="k">end</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+    <span class="n">i</span> <span class="p">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span><span class="p">=</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+    <span class="nb">warning</span> <span class="p">(</span><span class="s">&#39;MaxIterations = %d reached.\n&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="um01-experiment-m">
+<span id="um01-experiment"></span><h2>um01_experiment.m<a class="headerlink" href="#um01-experiment-m" title="Permalink to this headline">¶</a></h2>
+<p>Requires <a class="reference internal" href="#newton-simple"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">newton_simple</span></code></span></a> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">um01_experiment </span><span class="p">()</span><span class="w"></span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 1: plotting the problem&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^4 + 2xy + (1 + y)^2&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">70</span><span class="p">);</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 2: Try fminsearch&#39;</span><span class="p">)</span>
+
+<span class="n">format</span> <span class="n">long</span><span class="p">;</span>
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminsearch</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 3: Try fminunc&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">GradObj</span> <span class="p">=</span> <span class="s">&#39;on&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminunc</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;go-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 4: Try newton_simple&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">newton_simple</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;ro-&#39;</span><span class="p">});</span>
+
+
+<span class="c">% Nested function to pass to fminsearch and fminunc.</span>
+
+  <span class="k">function</span> <span class="p">[</span><span class="n">fx</span><span class="p">,</span> <span class="n">gx</span><span class="p">,</span> <span class="n">hx</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">fx</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+    
+    <span class="n">gx</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">4.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>   <span class="p">...</span>
+           <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="p">];</span>
+    
+    <span class="n">hx</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">12.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="p">...</span>
+                     <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span>  <span class="p">];</span>
+    
+    <span class="n">xpath</span> <span class="p">=</span> <span class="p">[</span><span class="n">xpath</span><span class="p">;</span> <span class="n">x</span><span class="p">(:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">fx</span><span class="p">];</span>  <span class="c">% Memorize path</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="nf">animate_path </span><span class="p">(</span>xpath, LineSpec<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">size</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot3</span> <span class="p">(</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
+    <span class="nb">pause</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+    <span class="nb">drawnow</span> <span class="p">();</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="um02-experiment-m">
+<span id="um02-experiment"></span><h2>um02_experiment.m<a class="headerlink" href="#um02-experiment-m" title="Permalink to this headline">¶</a></h2>
+<p>Requires <a class="reference internal" href="#newton-simple"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">newton_simple</span></code></span></a> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">um02_experiment </span><span class="p">()</span><span class="w"></span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 1: plotting the problem&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">8.</span><span class="o">*</span><span class="n">y</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^3 - 6xy + 8y^3&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 2: Try fminsearch&#39;</span><span class="p">)</span>
+
+<span class="n">format</span> <span class="n">long</span><span class="p">;</span>
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminsearch</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 3: Try fminunc&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">GradObj</span> <span class="p">=</span> <span class="s">&#39;on&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminunc</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;go-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 4: Try newton_simple&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">newton_simple</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;ro-&#39;</span><span class="p">});</span>
+
+
+<span class="c">% Nested function to pass to fminsearch and fminunc.</span>
+
+  <span class="k">function</span> <span class="p">[</span><span class="n">fx</span><span class="p">,</span> <span class="n">gx</span><span class="p">,</span> <span class="n">hx</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">fx</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">8.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+    
+    <span class="n">gx</span> <span class="p">=</span> <span class="p">[</span>  <span class="mf">3.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="p">...</span>
+           <span class="mf">24.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="p">];</span>
+    
+    <span class="n">hx</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>       <span class="o">-</span><span class="mi">6</span><span class="p">;</span> <span class="p">...</span>
+                <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mf">48.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="p">];</span>
+    
+    <span class="n">xpath</span> <span class="p">=</span> <span class="p">[</span><span class="n">xpath</span><span class="p">;</span> <span class="n">x</span><span class="p">(:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">fx</span><span class="p">];</span>  <span class="c">% Memorize path</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="nf">animate_path </span><span class="p">(</span>xpath, LineSpec<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">size</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot3</span> <span class="p">(</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
+    <span class="nb">pause</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+    <span class="nb">drawnow</span> <span class="p">();</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="nlo-exercise-UM02.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">UM02</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="nlo-lecture-bib.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Bibliography</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By K. T. Ohlhus<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
