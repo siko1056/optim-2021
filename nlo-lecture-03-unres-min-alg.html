@@ -233,6 +233,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-methods">
+   Gradient methods
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -259,7 +272,7 @@
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f\)</span> is convex <span class="math notranslate nohighlight">\(\iff A \succeq 0\)</span> (positive semi-definite).</p>
 <ul>
-<li><p><strong>Local minima are also global!</strong></p></li>
+<li><p><strong>Local minima are global for convex functions!</strong></p></li>
 </ul>
 </li>
 <li><p><span class="math notranslate nohighlight">\(f\)</span> is strict convex <span class="math notranslate nohighlight">\(\iff A \succ 0\)</span> (positive definite).</p>
@@ -269,6 +282,94 @@
 </li>
 <li><p><span class="math notranslate nohighlight">\(A \nsucceq 0 \implies f\)</span> has no local minima.</p></li>
 </ul>
+<div class="section" id="gradient-methods">
+<h2>Gradient methods<a class="headerlink" href="#gradient-methods" title="Permalink to this headline">¶</a></h2>
+<p>The general idea of gradient methods is
+to find the minimum of an optimization problem of the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize} &amp; f(x), &amp; \\
+\end{array}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span>.</p>
+<p>Many common solution strategies
+choose from a <strong>starting point</strong> <span class="math notranslate nohighlight">\(x^{0} \in \mathbb{R}^{n}\)</span>
+in each step <span class="math notranslate nohighlight">\(k = 0, 1, \ldots\)</span> a scaled <strong>descent direction</strong> <span class="math notranslate nohighlight">\(\alpha^{k} d^{k}\)</span>
+with <span class="math notranslate nohighlight">\(d^{k} \in \mathbb{R}^{n}\)</span>
+and positive bounded <strong>step size</strong> <span class="math notranslate nohighlight">\(0 &lt; \alpha^{k} &lt; \delta\)</span>
+with <span class="math notranslate nohighlight">\(\delta, \alpha^{k} \in \mathbb{R}\)</span>,
+such that a new point</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} + \alpha^{k} d^{k}, \quad k = 0, 1, \ldots
+\]</div>
+<p>is smaller than the previous one,
+in other words:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x^{k} + \alpha^{k} d^{k}) &lt; f(x^{k}).
+\]</div>
+<p>According to <strong>Taylor’s theorem</strong>,
+close to a point <span class="math notranslate nohighlight">\(x^{k} \in \mathbb{R}^{n}\)</span>
+a function <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span>
+can be locally approximated by a linear</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{f}(x^{k} + \alpha^{k} d^{k}) := f(x^{k}) + \nabla f(x^{k})^{T}(\alpha^{k} d^{k})
+\]</div>
+<p>or quadratic function</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{f}(x^{k} + \alpha^{k} d^{k}) := f(x^{k}) + \nabla f(x^{k})^{T}(\alpha^{k} d^{k})
+  + \frac{1}{2}(\alpha^{k} d^{k})^{T}\nabla^{2} f(x^{k})(\alpha^{k} d^{k}).
+\]</div>
+<p>From the second term of the linar Taylor approximation,
+the property <span class="math notranslate nohighlight">\(f(x^{k} + \alpha^{k} d^{k}) &lt; f(x^{k})\)</span>
+can only be fulfilled, if <span class="math notranslate nohighlight">\(d^{k}\)</span> is a <strong>decent direction</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla f(x^{k})^{T}d^{k} &lt; 0.
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The most obvious choice for such a decent direction
+is <span class="math notranslate nohighlight">\(d^{k} := -\nabla f(x^{k})\)</span>.
+The repetitive application of this method is called
+<strong>gradient descent</strong> or <strong>steepest decent</strong>.</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} - \alpha^{k} \nabla f(x^{k}), \quad k = 0, 1, \ldots
+\]</div>
+</div>
+<p>A more sophisticated choice for the decent direction <span class="math notranslate nohighlight">\(d^{k}\)</span>
+can be obtained from the quadratic Taylor approximation.</p>
+<p>Like in the example from the introduction
+this is a quadratic unconstrained problem
+and it has a unique global minimum,
+if the Hessian matrix is positive definte.</p>
+<p>Thus deriving the quadratic Taylor approximation to <span class="math notranslate nohighlight">\(d^{k}\)</span>
+choosing <span class="math notranslate nohighlight">\(\alpha^{k} = 1\)</span>, one obtains</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla \tilde{f}(x^{k} + d^{k}) := \nabla f(x^{k}) + \nabla^{2} f(x^{k}) d^{k}.
+\]</div>
+<p>Finally, the decent direction <span class="math notranslate nohighlight">\(d^{k}\)</span> is the solution of the following
+linear system of equations:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{2} f(x^{k}) d^{k} = -\nabla f(x^{k})
+\]</div>
+<p>The repetitive application of this method is called <strong>Newton’s method</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} - \alpha^{k} (\nabla^{2} f(x^{k}))^{-1} \nabla f(x^{k}), \quad k = 0, 1, \ldots
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>So far the <strong>step size</strong> can be assumed as <span class="math notranslate nohighlight">\(\alpha^{k} = 1\)</span>.</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
