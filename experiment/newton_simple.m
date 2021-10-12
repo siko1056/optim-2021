@@ -55,6 +55,6 @@ function [x, fval, exitflag] = newton_simple (fun, x0, options)
   end
 
   if (i >= opt.MaxIterations)
-    warning ('MaxIterations = %d reached.\n', n);
+    warning ('MaxIterations = %d reached.\n', opt.MaxIterations);
   end
 end

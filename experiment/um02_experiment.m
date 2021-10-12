@@ -76,6 +76,26 @@ fprintf ('exitflag = %d\n', exitflag);
 animate_path (xpath, {'ro-'});
 
 
+disp ('Step 5: Try nelder_mead')
+
+xpath = zeros(0, 3);  % Memorize path
+
+%x0 = [1, 1];
+options.Display = 'iter';
+options.MaxIterations = 4;
+[xopt, fval, exitflag] = nelder_mead (@fun, x0, options);
+
+disp ('Solution');
+disp (xopt);
+
+disp ('Objective value at solution');
+disp (fval);
+
+fprintf ('exitflag = %d\n', exitflag);
+
+animate_path (xpath, {'mo-'});
+
+
 % Nested function to pass to fminsearch and fminunc.
 
   function [fx, gx, hx] = fun (x)
