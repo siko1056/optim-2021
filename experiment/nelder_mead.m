@@ -85,8 +85,8 @@ function [x, fval, exitflag] = nelder_mead (fun, x0, options)
       delete (h3);
       h1 = plot3 ([x(1,:), x(1,1)], [x(2,:), x(2,1)], [fvals, fvals(1)]);
       h2 = plot3 (x(1,1), x(2,1), fvals(1), 'ro');
-      h3 = plot3 ([x(1,end), r(1)], [x(2,end), r(2)], [fvals(end), fr], 'ro');
-      pause (0.5);
+      h3 = plot3 ([x(1,end), r(1)], [x(2,end), r(2)], [fvals(end), fr], 'go-');
+      pause;
     end
 
     if (fr <= fvals(2))  % Case 1: reflect
