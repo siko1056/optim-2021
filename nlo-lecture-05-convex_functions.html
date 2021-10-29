@@ -91,7 +91,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="nlo-lecture-00-intro.html">
-   Selected Topics on Optimization
+   Selected Topics in Mathematical Optimization
   </a>
  </li>
 </ul>
@@ -328,8 +328,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#first-order-condition">
-     First-order condition
+    <a class="reference internal nav-link" href="#st-order-convex-function-condition">
+     1st order convex function condition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nd-order-convex-function-condition">
+     2nd order convex function condition
     </a>
    </li>
   </ul>
@@ -583,13 +588,14 @@ and <span class="math notranslate nohighlight">\(\leq\)</span> is component-wise
 </div>
 <div class="section" id="id2">
 <h2>Convex functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>The function <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> is <strong>convex</strong>
-if <span class="math notranslate nohighlight">\(\operatorname{dom}(f)\)</span> is a convex set and</p>
+<p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set.
+A function <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> is <strong>convex</strong> on <span class="math notranslate nohighlight">\(X\)</span>,
+if</p>
 <div class="math notranslate nohighlight">
 \[
-f( \theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta)f(y),
+f( \theta x + (1 - \theta) y ) \;\leq\; \theta f(x) + (1 - \theta)f(y)
 \]</div>
-<p>for all <span class="math notranslate nohighlight">\(x,y \in \operatorname{dom}(f)\)</span> and <span class="math notranslate nohighlight">\(0 \leq \theta \leq 1\)</span>.</p>
+<p>for all <span class="math notranslate nohighlight">\(x,y \in X\)</span> and <span class="math notranslate nohighlight">\(0 \leq \theta \leq 1\)</span>.</p>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
@@ -609,12 +615,12 @@ f( \theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta)f(y),
 </div>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(f\)</span> is <strong>concave</strong> if <span class="math notranslate nohighlight">\(-f\)</span> is convex.</p></li>
-<li><p><span class="math notranslate nohighlight">\(f\)</span> is <strong>strictly convex</strong> if <span class="math notranslate nohighlight">\(\operatorname{dom}(f)\)</span> is a convex set and</p>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is <strong>strictly convex</strong> if <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> is a convex set and</p>
 <div class="math notranslate nohighlight">
 \[
-  f( \theta x + (1 - \theta) y ) &lt; \theta f(x) + (1 - \theta)f(y),
+  f( \theta x + (1 - \theta) y ) \;&lt;\; \theta f(x) + (1 - \theta)f(y),
   \]</div>
-<p>for all <span class="math notranslate nohighlight">\(x,y \in \operatorname{dom}(f)\)</span>, <span class="math notranslate nohighlight">\(x \neq y\)</span>, and <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span>.</p>
+<p>for all <span class="math notranslate nohighlight">\(x,y \in X\)</span>, <span class="math notranslate nohighlight">\(x \neq y\)</span>, and <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span>.</p>
 </li>
 </ul>
 <div class="section" id="examples-on-mathbb-r">
@@ -648,7 +654,8 @@ f( \theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta)f(y),
 <li><p>affine function</p>
 <div class="math notranslate nohighlight">
 \[
-  f(X) = \operatorname{tr}A^{T}X + b = \left( \sum_{i = 1}^{m}\sum_{j = 1}^{n} A_{ij} X_{ij} \right) + b
+  f(X) = \operatorname{tr} \left( A^{T}X \right) + b
+       = \left( \sum_{i = 1}^{m}\sum_{j = 1}^{n} A_{ij} X_{ij} \right) + b
   \]</div>
 </li>
 <li><p>spectral (maximum singular value) norm</p>
@@ -658,23 +665,115 @@ f( \theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta)f(y),
   \]</div>
 </li>
 </ul>
-<div class="tip admonition">
-<p class="admonition-title"><strong>Theorem 5:</strong> Global minimum</p>
+<div class="tip admonition" id="theorem6">
+<p class="admonition-title"><strong>Theorem 6:</strong> Unique global minimum</p>
 <p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set
 and <span class="math notranslate nohighlight">\(f \colon X \to \mathbb{R}\)</span> a convex function,
 then each <strong>local minimum</strong> is a <strong>global minimum</strong>.</p>
+<p>Furthermore,
+if <span class="math notranslate nohighlight">\(f \in C^{1}\)</span> (continuously differentiable)
+over an open and convex set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span>,
+then every stationay point is a global minimum
+of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Assume <span class="math notranslate nohighlight">\(x^{*}\)</span> is a local, but no global minimum.
+Then there is <span class="math notranslate nohighlight">\(y \in X\)</span> such that <span class="math notranslate nohighlight">\(f(y) &lt; f(x^{*})\)</span>.
+For <span class="math notranslate nohighlight">\(0 &lt; \theta \leq 1\)</span> it follows</p>
+<div class="math notranslate nohighlight">
+\[
+f(x^{*} + \theta (y - x^{*}))
+\leq f(x^{*}) + \theta (f(y) - f(x^{*}))
+&lt; f(x^{*}) + \theta (f(x^{*}) - f(x^{*}))
+= f(x^{*})
+\]</div>
+<p class="card-text">Thus in every neighborhood of <span class="math notranslate nohighlight">\(x^{*}\)</span> there exist points
+with smaller objective function value than <span class="math notranslate nohighlight">\(f(x^{*})\)</span>.
+Therefore <span class="math notranslate nohighlight">\(x^{*}\)</span> cannot be a local minimum, contradiction.</p>
+<p class="card-text">Regarding the second statement,
+for <span class="math notranslate nohighlight">\(y \in X\)</span> assume the helper function</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi(\theta) := f(x^{*}) + \theta (f(y) - f(x^{*})) - f(x^{*} + \theta (y - x^{*})) \geq 0.
+\]</div>
+<p class="card-text"><span class="math notranslate nohighlight">\(\Psi\)</span> is continuously differentiable and for <span class="math notranslate nohighlight">\(0 \leq \theta \leq 1\)</span> not negative.
+Furthermore <span class="math notranslate nohighlight">\(\Psi(0) = 0\)</span>.
+Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi'(0) = (f(y) - f(x^{*})) - \nabla f(x^{*})^{T}(y - x^{*}) \geq 0.
+\]</div>
+<p class="card-text">If <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span>,
+then <span class="math notranslate nohighlight">\(f(y) - f(x^{*}) \geq 0\)</span> for all <span class="math notranslate nohighlight">\(y \in X\)</span>.
+Thus <span class="math notranslate nohighlight">\(x^{*}\)</span> is a global minimum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
 </div>
-<div class="section" id="first-order-condition">
-<h3>First-order condition<a class="headerlink" href="#first-order-condition" title="Permalink to this headline">¶</a></h3>
+</details></div>
+<div class="section" id="st-order-convex-function-condition">
+<h3>1st order convex function condition<a class="headerlink" href="#st-order-convex-function-condition" title="Permalink to this headline">¶</a></h3>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 7:</strong> 1st order convex function condition</p>
 <p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set
-and <span class="math notranslate nohighlight">\(f \colon X \to \mathbb{R}\)</span> a convex function,
+and <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n}, \mathbb{R})\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>,
 then</p>
 <div class="math notranslate nohighlight">
 \[
 f(y) \;\geq\; f(x) + \nabla f(x)^{T}(y - x)
 \]</div>
-<div class="cell docutils container">
+<p>for all <span class="math notranslate nohighlight">\(x,y \in X\)</span>.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<ol>
+<li><p class="card-text">Assume <span class="math notranslate nohighlight">\(f\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>.
+For <span class="math notranslate nohighlight">\(y \in X\)</span>, <span class="math notranslate nohighlight">\(0 \leq \theta \leq 1\)</span> the function</p>
+<div class="math notranslate nohighlight">
+\[
+   \Psi(\theta) := f(x) + \theta (f(y) - f(x)) - f(x + \theta (y - x)) \geq 0
+   \]</div>
+<p class="card-text">is continuously differentiable and <span class="math notranslate nohighlight">\(\Psi(0) = 0\)</span>.
+Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+   \Psi'(0) = (f(y) - f(x)) - \nabla f(x)^{T}(y - x) \geq 0.
+   \]</div>
+</li>
+<li><p class="card-text">Assume <span class="math notranslate nohighlight">\(f(y) \geq f(x) + \nabla f(x)^{T}(y - x)\)</span> holds.
+Using <span class="math notranslate nohighlight">\(\bar{x} := x + \theta(y - x)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+   f(x) \geq f(\bar{x}) + \nabla f(\bar{x})^{T}(x - \bar{x})
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   f(y) \geq f(\bar{x}) + \nabla f(\bar{x})^{T}(y - \bar{x})
+   \]</div>
+<p class="card-text">Multiply the first inequality with <span class="math notranslate nohighlight">\((1 - \theta)\)</span>,
+the second inequality with <span class="math notranslate nohighlight">\(\theta\)</span>,
+and finally add both inequalities,
+then the assertion follows:</p>
+<div class="math notranslate nohighlight">
+\[
+   (1 - \theta) f(x) + \theta f(y) \geq f(\bar{x}) + 0 = f(x + \theta(y - x)).
+   \]</div>
+</li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+</div>
+</details><div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
@@ -691,8 +790,24 @@ f(y) \;\geq\; f(x) + \nabla f(x)^{T}(y - x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_22_0.png" src="_images/nlo-lecture-05-convex_functions_22_0.png" />
+<img alt="_images/nlo-lecture-05-convex_functions_24_0.png" src="_images/nlo-lecture-05-convex_functions_24_0.png" />
 </div>
+</div>
+<p>The first-order approximation of <span class="math notranslate nohighlight">\(f\)</span> is <strong>global underestimator</strong>.</p>
+<p>Theorem 7 can be extended to <strong>strict convexity</strong>, which is omitted here.</p>
+</div>
+<div class="section" id="nd-order-convex-function-condition">
+<h3>2nd order convex function condition<a class="headerlink" href="#nd-order-convex-function-condition" title="Permalink to this headline">¶</a></h3>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 8:</strong> 2nd order convex function condition</p>
+<p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set
+and <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n}, \mathbb{R})\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>,
+then</p>
+<div class="math notranslate nohighlight">
+\[
+f(y) \;\geq\; f(x) + \nabla f(x)^{T}(y - x)
+\]</div>
+<p>for all <span class="math notranslate nohighlight">\(x,y \in X\)</span>.</p>
 </div>
 </div>
 </div>
