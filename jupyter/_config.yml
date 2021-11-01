@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Selected Topics on Optimization
+title: Selected Topics in Mathematical Optimization
 author: K. T. Ohlhus
 copyright: "2021"
 logo: res/logo.png

@@ -16,6 +16,7 @@ parts:
     chapters:
     - file: nlo-exercise-UM01.ipynb
     - file: nlo-exercise-UM02.ipynb
+    - file: nlo-exercise-UM03.ipynb
   - caption: Back matter
     chapters:
     - file: nlo-lecture-code-listings.ipynb
