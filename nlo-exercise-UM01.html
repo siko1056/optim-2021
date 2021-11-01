@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>UM01 &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +34,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -54,7 +55,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="UM02" href="nlo-exercise-UM02.html" />
-    <link rel="prev" title="Convex functions" href="nlo-lecture-05-convex_functions.html" />
+    <link rel="prev" title="Constrained minimization problems" href="nlo-lecture-06-con-min-theory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
@@ -129,12 +130,17 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-05-convex_functions.html">
+  <a class="reference internal" href="nlo-lecture-05-convex-functions.html">
    Convex functions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-06-con-min-theory.html">
+   Constrained minimization problems
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -150,8 +156,13 @@
    UM02
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM03.html">
+   UM03
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -253,7 +264,7 @@
         
               <div>
                 
-  <div class="section" id="um01">
+  <section class="tex2jax_ignore mathjax_ignore" id="um01">
 <h1>UM01<a class="headerlink" href="#um01" title="Permalink to this headline">¶</a></h1>
 <p>Consider the function <span class="math notranslate nohighlight">\(f(x,y) = x^{4} + 2xy + (1 + y)^{2}\)</span>.</p>
 <p><strong>1. Create a 3D plot of <span class="math notranslate nohighlight">\(f\)</span> for <span class="math notranslate nohighlight">\(-3 \leq x,y \leq 3\)</span>.</strong></p>
@@ -372,7 +383,7 @@ Thus the Hessian matrix is positive definite and <span class="math notranslate n
 </div>
 </details><p><strong>5. Numerical experiments.</strong></p>
 <p>Study <a class="reference internal" href="nlo-lecture-code-listings.html#um01-experiment"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">um01_experiment</span></code></span></a> in Matlab/Octave.</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -404,11 +415,11 @@ Thus the Hessian matrix is positive definite and <span class="math notranslate n
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="nlo-lecture-05-convex_functions.html" title="previous page">
+        <a class="left-prev" href="nlo-lecture-06-con-min-theory.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Convex functions</p>
+                <p class="prevnext-title">Constrained minimization problems</p>
             </div>
         </a>
     </div>

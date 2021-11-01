@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Convex functions &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +34,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -53,7 +54,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="UM01" href="nlo-exercise-UM01.html" />
+    <link rel="next" title="Constrained minimization problems" href="nlo-lecture-06-con-min-theory.html" />
     <link rel="prev" title="Nelder–Mead method" href="nlo-lecture-04-unres-min-alg-nelder-mead.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
@@ -133,8 +134,13 @@
    Convex functions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-06-con-min-theory.html">
+   Constrained minimization problems
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -150,8 +156,13 @@
    UM02
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM03.html">
+   UM03
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -204,7 +215,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/nlo-lecture-05-convex_functions.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/nlo-lecture-05-convex-functions.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -224,7 +235,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-05-convex_functions.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-05-convex-functions.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -337,6 +348,16 @@
      2nd order convex function condition
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-convex-function-condition">
+     Examples convex function condition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operations-that-preserve-convexity">
+     Operations that preserve convexity
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -350,13 +371,13 @@
         
               <div>
                 
-  <div class="section" id="convex-functions">
+  <section class="tex2jax_ignore mathjax_ignore" id="convex-functions">
 <h1>Convex functions<a class="headerlink" href="#convex-functions" title="Permalink to this headline">¶</a></h1>
 <p>This section is devoted to <strong>convex sets</strong> and <strong>convex functions</strong>,
 which have useful properties for optimization algorithms.</p>
-<div class="section" id="some-special-sets">
+<section id="some-special-sets">
 <h2>Some special sets<a class="headerlink" href="#some-special-sets" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="lines-and-line-segments">
+<section id="lines-and-line-segments">
 <h3>Lines and line segments<a class="headerlink" href="#lines-and-line-segments" title="Permalink to this headline">¶</a></h3>
 <p>Points <span class="math notranslate nohighlight">\(y\)</span> on a <strong>line</strong> through two points <span class="math notranslate nohighlight">\(x_1 \neq x_2\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>
 can be expressed by</p>
@@ -399,17 +420,17 @@ y = x_2 + \theta (x_1 - x_2),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_2_0.png" src="_images/nlo-lecture-05-convex_functions_2_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_2_0.png" src="_images/nlo-lecture-05-convex-functions_2_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="affine-sets">
+</section>
+<section id="affine-sets">
 <h3>Affine sets<a class="headerlink" href="#affine-sets" title="Permalink to this headline">¶</a></h3>
 <p>An <strong>affine set</strong> contains the <strong>line</strong> through any two distinct points in the set.</p>
 <p>For example the solution set of linear equations <span class="math notranslate nohighlight">\(\{x | Ax = b\}\)</span> is affine.</p>
 <p>Conversely, every affine set can be expressed as solution set of a system of linear equations.</p>
-</div>
-<div class="section" id="convex-sets">
+</section>
+<section id="convex-sets">
 <h3>Convex sets<a class="headerlink" href="#convex-sets" title="Permalink to this headline">¶</a></h3>
 <p>A <strong>convex set</strong> <span class="math notranslate nohighlight">\(C\)</span> contains the <strong>line segment</strong> through any two distinct points in the set.</p>
 <div class="math notranslate nohighlight">
@@ -418,8 +439,8 @@ x_1, x_2 \in C, \quad 0 \leq \theta \leq 1 \quad\implies\quad \theta x_1 + (1 - 
 \]</div>
 <p><strong>Examples</strong> (from <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id2">BV04</a>]</span> (p. 24): first set is convex, the latter two not)</p>
 <p><img alt="convex_sets" src="_images/convex_sets.png" /></p>
-</div>
-<div class="section" id="hyperplanes">
+</section>
+<section id="hyperplanes">
 <h3>Hyperplanes<a class="headerlink" href="#hyperplanes" title="Permalink to this headline">¶</a></h3>
 <p>Affine and convex sets of the form
 <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^{n} \colon  a^{T}x = b \}\)</span> with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span>.</p>
@@ -446,11 +467,11 @@ x_1, x_2 \in C, \quad 0 \leq \theta \leq 1 \quad\implies\quad \theta x_1 + (1 - 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_6_0.png" src="_images/nlo-lecture-05-convex_functions_6_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_6_0.png" src="_images/nlo-lecture-05-convex-functions_6_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="halfspaces">
+</section>
+<section id="halfspaces">
 <h3>Halfspaces<a class="headerlink" href="#halfspaces" title="Permalink to this headline">¶</a></h3>
 <p>Convex sets of the form <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^{n} \colon a^{T}x \leq b \}\)</span>
 with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span>.</p>
@@ -479,11 +500,11 @@ with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_8_0.png" src="_images/nlo-lecture-05-convex_functions_8_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_8_0.png" src="_images/nlo-lecture-05-convex-functions_8_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ellipsoid">
+</section>
+<section id="ellipsoid">
 <h3>Ellipsoid<a class="headerlink" href="#ellipsoid" title="Permalink to this headline">¶</a></h3>
 <p>Convex sets of the form</p>
 <div class="math notranslate nohighlight">
@@ -519,11 +540,11 @@ with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_10_0.png" src="_images/nlo-lecture-05-convex_functions_10_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_10_0.png" src="_images/nlo-lecture-05-convex-functions_10_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="polyhedra">
+</section>
+<section id="polyhedra">
 <h3>Polyhedra<a class="headerlink" href="#polyhedra" title="Permalink to this headline">¶</a></h3>
 <p>A Polyhedron is an <strong>intersection</strong> of a finite number of
 <strong>halfspaces</strong> and <strong>hyperplanes</strong>.</p>
@@ -568,7 +589,7 @@ with normal vector <span class="math notranslate nohighlight">\(a \neq 0\)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_12_0.png" src="_images/nlo-lecture-05-convex_functions_12_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_12_0.png" src="_images/nlo-lecture-05-convex-functions_12_0.png" />
 </div>
 </div>
 <p>The <strong>intersection</strong> of convex sets is convex.</p>
@@ -584,9 +605,9 @@ Ax \leq b, \qquad Cx = d,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, <span class="math notranslate nohighlight">\(C \in \mathbb{R}^{p \times n}\)</span>,
 and <span class="math notranslate nohighlight">\(\leq\)</span> is component-wise inequality.</p>
-</div>
-</div>
-<div class="section" id="id2">
+</section>
+</section>
+<section id="id2">
 <h2>Convex functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set.
 A function <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span> is <strong>convex</strong> on <span class="math notranslate nohighlight">\(X\)</span>,
@@ -610,7 +631,7 @@ f( \theta x + (1 - \theta) y ) \;\leq\; \theta f(x) + (1 - \theta)f(y)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_15_0.png" src="_images/nlo-lecture-05-convex_functions_15_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_15_0.png" src="_images/nlo-lecture-05-convex-functions_15_0.png" />
 </div>
 </div>
 <ul>
@@ -623,7 +644,7 @@ f( \theta x + (1 - \theta) y ) \;\leq\; \theta f(x) + (1 - \theta)f(y)
 <p>for all <span class="math notranslate nohighlight">\(x,y \in X\)</span>, <span class="math notranslate nohighlight">\(x \neq y\)</span>, and <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span>.</p>
 </li>
 </ul>
-<div class="section" id="examples-on-mathbb-r">
+<section id="examples-on-mathbb-r">
 <h3>Examples on <span class="math notranslate nohighlight">\(\mathbb{R}\)</span><a class="headerlink" href="#examples-on-mathbb-r" title="Permalink to this headline">¶</a></h3>
 <p>Convex:</p>
 <ul class="simple">
@@ -639,16 +660,16 @@ f( \theta x + (1 - \theta) y ) \;\leq\; \theta f(x) + (1 - \theta)f(y)
 <li><p>powers: <span class="math notranslate nohighlight">\(x^{\alpha}\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span>, for <span class="math notranslate nohighlight">\(0 \leq \alpha \leq 1\)</span></p></li>
 <li><p>logarithm: <span class="math notranslate nohighlight">\(\log(x)\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="examples-on-mathbb-r-n-vectors">
+</section>
+<section id="examples-on-mathbb-r-n-vectors">
 <h3>Examples on <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span> (vectors)<a class="headerlink" href="#examples-on-mathbb-r-n-vectors" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>affine function <span class="math notranslate nohighlight">\(f(x) = a^{T}x + b\)</span> are convex and concave</p></li>
 <li><p>norms are convex: <span class="math notranslate nohighlight">\(\lVert x \rVert_{p} = (\sum_{i = 1}^{n} \lvert x_i \rvert^{p} )^{1/p}\)</span> for <span class="math notranslate nohighlight">\(p \geq 1\)</span>;
 <span class="math notranslate nohighlight">\(\lVert x \rVert_{\infty} = \max(\lvert x_1 \rvert, \ldots, \lvert x_n \rvert)\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="examples-on-mathbb-r-m-times-n-m-times-n-matrices">
+</section>
+<section id="examples-on-mathbb-r-m-times-n-m-times-n-matrices">
 <h3>Examples on <span class="math notranslate nohighlight">\(\mathbb{R}^{m \times n}\)</span> (<span class="math notranslate nohighlight">\(m \times n\)</span> matrices)<a class="headerlink" href="#examples-on-mathbb-r-m-times-n-m-times-n-matrices" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>affine function</p>
@@ -673,7 +694,7 @@ then each <strong>local minimum</strong> is a <strong>global minimum</strong>.</
 <p>Furthermore,
 if <span class="math notranslate nohighlight">\(f \in C^{1}\)</span> (continuously differentiable)
 over an open and convex set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span>,
-then every stationay point is a global minimum
+then every stationary point is a global minimum
 of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </div>
 <details class="sphinx-bs dropdown card mb-3">
@@ -715,12 +736,12 @@ Thus <span class="math notranslate nohighlight">\(x^{*}\)</span> is a global min
 <div class="math notranslate nohighlight">
 \[\tag*{$\Box$}\]</div>
 </div>
-</details></div>
-<div class="section" id="st-order-convex-function-condition">
+</details></section>
+<section id="st-order-convex-function-condition">
 <h3>1st order convex function condition<a class="headerlink" href="#st-order-convex-function-condition" title="Permalink to this headline">¶</a></h3>
-<div class="tip admonition">
+<div class="tip admonition" id="theorem7">
 <p class="admonition-title"><strong>Theorem 7:</strong> 1st order convex function condition</p>
-<p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set
+<p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a non-empty, convex set
 and <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n}, \mathbb{R})\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>,
 then</p>
 <div class="math notranslate nohighlight">
@@ -790,28 +811,158 @@ then the assertion follows:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-05-convex_functions_24_0.png" src="_images/nlo-lecture-05-convex_functions_24_0.png" />
+<img alt="_images/nlo-lecture-05-convex-functions_24_0.png" src="_images/nlo-lecture-05-convex-functions_24_0.png" />
 </div>
 </div>
 <p>The first-order approximation of <span class="math notranslate nohighlight">\(f\)</span> is <strong>global underestimator</strong>.</p>
 <p>Theorem 7 can be extended to <strong>strict convexity</strong>, which is omitted here.</p>
-</div>
-<div class="section" id="nd-order-convex-function-condition">
+</section>
+<section id="nd-order-convex-function-condition">
 <h3>2nd order convex function condition<a class="headerlink" href="#nd-order-convex-function-condition" title="Permalink to this headline">¶</a></h3>
 <div class="tip admonition">
 <p class="admonition-title"><strong>Theorem 8:</strong> 2nd order convex function condition</p>
-<p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a convex set
-and <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n}, \mathbb{R})\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>,
+<p>Let <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> be a open, non-empty, convex set
+and <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n}, \mathbb{R})\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>,
 then</p>
 <div class="math notranslate nohighlight">
 \[
-f(y) \;\geq\; f(x) + \nabla f(x)^{T}(y - x)
+\nabla^{2} f(x) \succeq 0 \quad \text{(positive semi-definite)}
 \]</div>
-<p>for all <span class="math notranslate nohighlight">\(x,y \in X\)</span>.</p>
+<p>for all <span class="math notranslate nohighlight">\(x \in X\)</span>.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<ol>
+<li><p class="card-text">Assume <span class="math notranslate nohighlight">\(f\)</span> is convex over <span class="math notranslate nohighlight">\(X\)</span>.
+According to <a class="reference internal" href="#theorem7"><span class="std std-ref">Theorem 7</span></a> and Taylor’s Theorem
+for <span class="math notranslate nohighlight">\(x \in X\)</span>, <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n}\)</span>, and sufficiently small <span class="math notranslate nohighlight">\(t &gt; 0\)</span>
+there is</p>
+<div class="math notranslate nohighlight">
+\[
+   0 \leq f(x + td) - f(x) - t\nabla f(x)^{T}d
+   = \frac{t^2}{2} d^{T}\nabla^{2}f(x)d + o(t^2).
+   \]</div>
+<p class="card-text">Division by <span class="math notranslate nohighlight">\(\frac{t^2}{2}\)</span> and taking the limit <span class="math notranslate nohighlight">\(t \to 0\)</span>
+results in <span class="math notranslate nohighlight">\(d^{T}\nabla^{2}f(x)d \geq 0\)</span>,
+i.e. the Hessian matrix must be positive semi-definite.
+Note that <span class="math notranslate nohighlight">\(X\)</span> is an open set.
+Thus <span class="math notranslate nohighlight">\(x + td \in X\)</span> holds for all sufficiently small <span class="math notranslate nohighlight">\(t &gt; 0\)</span>.</p>
+</li>
+<li><p class="card-text">Assume <span class="math notranslate nohighlight">\(\nabla^{2}f(x) \succeq 0\)</span> for all <span class="math notranslate nohighlight">\(x \in X\)</span>.
+According to Taylor’s Theorem there is for <span class="math notranslate nohighlight">\(x,y \in X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   f(y) = f(x) + \nabla f(x)^{T}(y - x)
+   + \frac{1}{2}(y - x)^{T} \nabla^{2} f( x + \theta (y - x) ) (y - x)
+   \]</div>
+<p class="card-text">with <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span> depending on <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.
+Because the Hessian matrix is positive semi-definite</p>
+<div class="math notranslate nohighlight">
+\[
+   f(y) \geq f(x) + \nabla f(x)^{T}(y - x)
+   \]</div>
+<p class="card-text">holds and therefore the convexity of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>
+according to <a class="reference internal" href="#theorem7"><span class="std std-ref">Theorem 7</span></a>.</p>
+</li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+</div>
+</details><p>Again, the extension of Theorem 8 to <strong>strict convexity</strong> is omitted here.</p>
+</section>
+<section id="examples-convex-function-condition">
+<h3>Examples convex function condition<a class="headerlink" href="#examples-convex-function-condition" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p><strong>Quadratic function</strong>: <span class="math notranslate nohighlight">\(f(x) = \frac{1}{2}x^{T}Ax + b^{T}x + c\)</span>,
+where <span class="math notranslate nohighlight">\(A\)</span> is a symmetric <span class="math notranslate nohighlight">\(n \times n\)</span> matrix, <span class="math notranslate nohighlight">\(x,b \in \mathbb{R}^{n}\)</span>,
+and <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+  \nabla f(x) = Ax + b \quad\text{and}\quad \nabla^{2} f(x) = A.
+  \]</div>
+<p>If <span class="math notranslate nohighlight">\(A \succeq 0\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> is a convex function.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Least-squares objective function</strong>: <span class="math notranslate nohighlight">\(f(x) = \lVert Ax - b \rVert_{2}^{2}\)</span>,
+with <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span>,
+and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{m}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+  \nabla f(x) = 2A^{T}(Ax - b) \quad\text{and}\quad \nabla^{2} f(x) = 2A^{T}A
+  \]</div>
+<p>is a convex function for <strong>any <span class="math notranslate nohighlight">\(A\)</span></strong>!</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Quadratic-over-linear</strong>: <span class="math notranslate nohighlight">\(f(x,y) = x^2 / y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \nabla^{2} f(x,y) = \frac{2}{y^3}
+  \begin{pmatrix} y \\ -x \end{pmatrix}
+  \begin{pmatrix} y \\ -x \end{pmatrix}^{T} \succeq 0
+  \end{split}\]</div>
+<p>is a convex function for <span class="math notranslate nohighlight">\(y &gt; 0\)</span>.</p>
+</li>
+</ul>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Following equivalent to (x,y,z := x^2/y) for plotting.</span>
+<span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="mi">0</span><span class="p">:.</span><span class="mi">08</span><span class="p">:</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">y</span><span class="o">.*</span><span class="n">z</span><span class="p">);</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="nb">sqrt</span> <span class="p">(</span><span class="n">x</span> <span class="o">.*</span> <span class="n">z</span><span class="p">);</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^2 / y&#39;</span><span class="p">);</span>
+</pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-05-convex-functions_32_0.png" src="_images/nlo-lecture-05-convex-functions_32_0.png" />
 </div>
 </div>
+</section>
+<section id="operations-that-preserve-convexity">
+<h3>Operations that preserve convexity<a class="headerlink" href="#operations-that-preserve-convexity" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Non-negative multiple</strong>:
+<span class="math notranslate nohighlight">\(\alpha f\)</span> is convex, if <span class="math notranslate nohighlight">\(f\)</span> is convex and <span class="math notranslate nohighlight">\(\alpha \geq 0\)</span>.</p></li>
+<li><p><strong>Sum</strong>:
+<span class="math notranslate nohighlight">\(f_1 + f_2\)</span> is convex, if <span class="math notranslate nohighlight">\(f_1\)</span> and <span class="math notranslate nohighlight">\(f_2\)</span> are convex.
+This extends to infinite sums and integrals).</p></li>
+<li><p><strong>Composition with affine function</strong>:
+f(Ax + b) is convex, if <span class="math notranslate nohighlight">\(f\)</span> is convex.</p></li>
+<li><p><strong>Point-wise maximum</strong>:
+<span class="math notranslate nohighlight">\(f(x) = \max\{ f_1(x), \ldots, f_m(x) \}\)</span> is convex,
+if <span class="math notranslate nohighlight">\(f_1, \ldots, f_m\)</span> are convex.</p></li>
+</ul>
+<p><strong>More examples for convex functions:</strong></p>
+<ul>
+<li><p>(Any) <strong>norm of an affine function</strong>: <span class="math notranslate nohighlight">\(f(x) = \lVert Ax + b \rVert\)</span>.</p></li>
+<li><p><strong>Log-barrier-function</strong> for expressing linear inequalities:</p>
+<div class="math notranslate nohighlight">
+\[
+  f(x) = -\sum_{i = 1}^{m} \log\left( b_i - a_i^{T}x \right), \quad
+  \operatorname{dom}(f) = \left\{ x \colon a_i^{T}x &lt; b_i, i = 1, \ldots, m \right\}.
+  \]</div>
+</li>
+<li><p><strong>Piecewise-linear-function</strong>:
+<span class="math notranslate nohighlight">\(f(x) = \max_{i = 1, \ldots, m} \left( b_i - a_i^{T}x \right)\)</span>.</p></li>
+</ul>
+<p>For many more examples, see <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id2">BV04</a>]</span> (chapters 2 and 3).</p>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -852,10 +1003,10 @@ f(y) \;\geq\; f(x) + \nabla f(x)^{T}(y - x)
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="nlo-exercise-UM01.html" title="next page">
+        <a class="right-next" href="nlo-lecture-06-con-min-theory.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">UM01</p>
+                <p class="prevnext-title">Constrained minimization problems</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

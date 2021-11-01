@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Unconstrained minimization algorithms &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +34,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
@@ -129,12 +130,17 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-05-convex_functions.html">
+  <a class="reference internal" href="nlo-lecture-05-convex-functions.html">
    Convex functions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-06-con-min-theory.html">
+   Constrained minimization problems
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -150,8 +156,13 @@
    UM02
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM03.html">
+   UM03
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -254,21 +265,40 @@
   <a class="reference internal nav-link" href="#gradient-methods">
    Gradient methods
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-can-go-wrong">
-   What can go wrong?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#choices-of-step-size">
-   Choices of step size
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-gradient-descent-zig-zagging">
-     Example: gradient descent zig-zagging
+    <a class="reference internal nav-link" href="#gradient-descent">
+     Gradient Descent
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-can-go-wrong">
+       What can go wrong?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choosing-the-step-size">
+       Choosing the step size
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-gradient-descent-zig-zagging">
+       Example: gradient descent zig-zagging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-s-method">
+     Newton’s method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-newton-s-method">
+       Example: Newton’s method
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -278,20 +308,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#newton-s-method">
-   Newton’s method
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-newton-s-method">
-     Example: Newton’s method
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#further-gradient-method-approaches">
-   Further gradient method approaches
+  <a class="reference internal nav-link" href="#further-approaches">
+   Further approaches
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -310,7 +328,7 @@
         
               <div>
                 
-  <div class="section" id="unconstrained-minimization-algorithms">
+  <section class="tex2jax_ignore mathjax_ignore" id="unconstrained-minimization-algorithms">
 <h1>Unconstrained minimization algorithms<a class="headerlink" href="#unconstrained-minimization-algorithms" title="Permalink to this headline">¶</a></h1>
 <p>Consider the following quadratic unconstrained problem</p>
 <div class="math notranslate nohighlight">
@@ -328,7 +346,7 @@
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f\)</span> is convex <span class="math notranslate nohighlight">\(\iff A \succeq 0\)</span> (positive semi-definite).</p>
 <ul>
-<li><p><strong>Local minima are global for convex functions!</strong> (See <a class="reference internal" href="nlo-lecture-05-convex_functions.html#theorem6"><span class="std std-ref">Theorem 6</span></a>).</p></li>
+<li><p><strong>Local minima are global for convex functions!</strong> (See <a class="reference internal" href="nlo-lecture-05-convex-functions.html#theorem6"><span class="std std-ref">Theorem 6</span></a>).</p></li>
 </ul>
 </li>
 <li><p><span class="math notranslate nohighlight">\(f\)</span> is strict convex <span class="math notranslate nohighlight">\(\iff A \succ 0\)</span> (positive definite).</p>
@@ -338,7 +356,7 @@
 </li>
 <li><p><span class="math notranslate nohighlight">\(A \nsucceq 0 \implies f\)</span> has no local minima.</p></li>
 </ul>
-<div class="section" id="gradient-methods">
+<section id="gradient-methods">
 <h2>Gradient methods<a class="headerlink" href="#gradient-methods" title="Permalink to this headline">¶</a></h2>
 <p>The general idea of gradient methods is
 to find the minimum of an optimization problem of the form</p>
@@ -430,20 +448,21 @@ From this follows the assertion.</p>
 <div class="math notranslate nohighlight">
 \[\tag*{$\Box$}\]</div>
 </div>
-</details><div class="admonition note">
-<p class="admonition-title">Note</p>
+</details><section id="gradient-descent">
+<h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h3>
 <p>The most obvious choice for such a descent direction
 is <span class="math notranslate nohighlight">\(d^{k} := -\nabla f(x^{k})\)</span>.
-The repetitive application of this method is called
-<strong>gradient descent</strong> or <strong>steepest descent</strong>.</p>
+This leads to the first algorithm for unconstrained minimization problems.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Gradient descent</strong> or <strong>steepest descent</strong> performs the iteration:</p>
 <div class="math notranslate nohighlight">
 \[
 x^{k + 1} = x^{k} - \alpha^{k} \nabla f(x^{k}), \quad k = 0, 1, \ldots
 \]</div>
 </div>
-</div>
-<div class="section" id="what-can-go-wrong">
-<h2>What can go wrong?<a class="headerlink" href="#what-can-go-wrong" title="Permalink to this headline">¶</a></h2>
+<section id="what-can-go-wrong">
+<h4>What can go wrong?<a class="headerlink" href="#what-can-go-wrong" title="Permalink to this headline">¶</a></h4>
 <p>Consider the function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>,
 the descent directions <span class="math notranslate nohighlight">\(d^{k} = (-1)^{k + 1}\)</span>,
 the step sizes <span class="math notranslate nohighlight">\(\alpha^{k} = 2 + \frac{3}{2^{k + 1}}\)</span>
@@ -469,7 +488,7 @@ and a starting point <span class="math notranslate nohighlight">\(x_{0} = 2\)</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-unres-min-alg_12_0.png" src="_images/nlo-lecture-03-unres-min-alg_12_0.png" />
+<img alt="_images/nlo-lecture-03-unres-min-alg_13_0.png" src="_images/nlo-lecture-03-unres-min-alg_13_0.png" />
 </div>
 </div>
 <p><strong>Step size too large:</strong> convergence against pair <span class="math notranslate nohighlight">\(\pm 1\)</span>.</p>
@@ -498,17 +517,17 @@ and a starting point <span class="math notranslate nohighlight">\(x_{0} = 2\)</s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-unres-min-alg_15_0.png" src="_images/nlo-lecture-03-unres-min-alg_15_0.png" />
+<img alt="_images/nlo-lecture-03-unres-min-alg_16_0.png" src="_images/nlo-lecture-03-unres-min-alg_16_0.png" />
 </div>
 </div>
 <p><strong>Step size too short.</strong></p>
-</div>
-<div class="section" id="choices-of-step-size">
-<h2>Choices of step size<a class="headerlink" href="#choices-of-step-size" title="Permalink to this headline">¶</a></h2>
-<p>Equipped with an idea how to determine a <strong>descent direction</strong>,
-the remaining missing parameter
-for the <strong>gradient descent method</strong>
-is the <strong>step size</strong> <span class="math notranslate nohighlight">\(\alpha^{k}\)</span>.</p>
+</section>
+<section id="choosing-the-step-size">
+<h4>Choosing the step size<a class="headerlink" href="#choosing-the-step-size" title="Permalink to this headline">¶</a></h4>
+<p>From the two (admittedly constructed) examples of the previous section
+it becomes apparent
+that not any <strong>step size</strong> <span class="math notranslate nohighlight">\(\alpha^{k}\)</span> is suiteable
+for the <strong>gradient descent method</strong> or other <strong>gradient methods</strong>.</p>
 <p>One classical method to choose the step size
 is the <strong>Armijo rule</strong>.
 This method is in general not efficient,
@@ -525,7 +544,7 @@ with its first derivate <span class="math notranslate nohighlight">\(\texttt{dfx
 and a descent direction <span class="math notranslate nohighlight">\(d := d^{k}\)</span>.</p>
 <p>Furthermore,
 three parameters are defined in the function:
-a start value for the step width <span class="math notranslate nohighlight">\(\alpha^{k} =: \texttt{alpha}\)</span>,
+a start value for the step size <span class="math notranslate nohighlight">\(\texttt{alpha} := \alpha^{k}\)</span>,
 <span class="math notranslate nohighlight">\(\texttt{beta} := \beta\)</span> with <span class="math notranslate nohighlight">\(0 &lt; \beta &lt; 1\)</span>,
 and a shrink factor <span class="math notranslate nohighlight">\(\texttt{tau} := \tau\)</span> with <span class="math notranslate nohighlight">\(0 &lt; \tau &lt; 1\)</span>.</p>
 <div class="cell docutils container">
@@ -551,7 +570,7 @@ until the objective function value
 is below the red line, depending on <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <p>This ensures a decreasing objective function value.
 However,
-a bad choice of the parameters might slow the convergence down.</p>
+a bad parameter choice might slow the convergence down.</p>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
@@ -585,14 +604,15 @@ a bad choice of the parameters might slow the convergence down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-unres-min-alg_21_0.png" src="_images/nlo-lecture-03-unres-min-alg_21_0.png" />
+<img alt="_images/nlo-lecture-03-unres-min-alg_22_0.png" src="_images/nlo-lecture-03-unres-min-alg_22_0.png" />
 </div>
 </div>
 <p>In the optimization literature,
-there are depending on the particular problem
-better algorithms for choosing the step size available.</p>
-<div class="section" id="example-gradient-descent-zig-zagging">
-<h3>Example: gradient descent zig-zagging<a class="headerlink" href="#example-gradient-descent-zig-zagging" title="Permalink to this headline">¶</a></h3>
+depending on the given particular problem,
+there are better algorithms for choosing the step size available.</p>
+</section>
+<section id="example-gradient-descent-zig-zagging">
+<h4>Example: gradient descent zig-zagging<a class="headerlink" href="#example-gradient-descent-zig-zagging" title="Permalink to this headline">¶</a></h4>
 <p>Consider the quadratic unconstrained problem
 with the quadratic objective function</p>
 <div class="math notranslate nohighlight">
@@ -643,7 +663,7 @@ for different values of <span class="math notranslate nohighlight">\(M\)</span>.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-unres-min-alg_24_0.png" src="_images/nlo-lecture-03-unres-min-alg_24_0.png" />
+<img alt="_images/nlo-lecture-03-unres-min-alg_25_0.png" src="_images/nlo-lecture-03-unres-min-alg_25_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -651,36 +671,12 @@ for different values of <span class="math notranslate nohighlight">\(M\)</span>.
 The gradient “points” in the direction of the global minimum.</p></li>
 <li><p>Slow zig-zagging, if <span class="math notranslate nohighlight">\(M \gg 1\)</span> or <span class="math notranslate nohighlight">\(M \ll 1\)</span>.
 In each step the gradient “points away” from the global minimum.</p></li>
-<li><p><strong>Note:</strong> with optimal step width, the convergence behavior is similar.</p></li>
+<li><p><strong>Note:</strong> with optimal step size, the convergence behavior is similar.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="choices-of-stopping-criteria">
-<h2>Choices of stopping criteria<a class="headerlink" href="#choices-of-stopping-criteria" title="Permalink to this headline">¶</a></h2>
-<p>As important as good convergence towards the minimal point,
-is to decide when to stop the optimization algorithm.</p>
-<p>In literature there is a huge choice of stopping criteria,
-just to list a few:</p>
-<ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(\quad f(x^{k-1}) - f(x^{k}) \quad \leq \quad \text{TOL} (1 + \lvert f(x^{k}) \rvert )\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\quad \lVert x^{k-1} - x^{k} \rVert \quad \leq \quad \text{TOL} (1 + \lVert x^{k} \rVert )\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\quad \lVert \nabla f(x^{k}) \rVert \quad \leq \quad \text{TOL} (1 + \lvert f(x^{k}) \rvert )\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\quad \lVert \nabla f(x^{k}) \rVert \quad \leq \quad\)</span> machine precision</p></li>
-<li><p><span class="math notranslate nohighlight">\(\quad k \quad \geq \quad k_{\max}\)</span></p></li>
-</ol>
-<p>Criteria 1 to 3 monitor the progress of the algorithm,
-while criteria 4 and 5 can be regarded as “emergency breaks”.
-It is useful to implement criteria like 4 and 5
-to avoid <strong>infinite loops</strong> or to stop stuck algorithm runs.</p>
-<p>However, it often depends on the given problem
-which other stopping criteria are useful.
-For example,
-if the objective function is expensive to evaluate,
-“cheap” stopping criteria which do not cause computational overhead
-or are computed by the algorithms anyways might be preferable.</p>
-</div>
-<div class="section" id="newton-s-method">
-<h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="newton-s-method">
+<h3>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h3>
 <p>A more sophisticated choice for the descent direction <span class="math notranslate nohighlight">\(d^{k}\)</span>
 can be obtained from the quadratic Taylor approximation.</p>
 <p>Like in the example from the introduction
@@ -702,14 +698,14 @@ linear system of equations:</p>
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The repetitive application of this method is called <strong>Newton’s method</strong>:</p>
+<p><strong>Newton’s method</strong> performs the iteration:</p>
 <div class="math notranslate nohighlight">
 \[
 x^{k + 1} = x^{k} - \alpha^{k} (\nabla^{2} f(x^{k}))^{-1} \nabla f(x^{k}), \quad k = 0, 1, \ldots
 \]</div>
 </div>
-<div class="section" id="example-newton-s-method">
-<h3>Example: Newton’s method<a class="headerlink" href="#example-newton-s-method" title="Permalink to this headline">¶</a></h3>
+<section id="example-newton-s-method">
+<h4>Example: Newton’s method<a class="headerlink" href="#example-newton-s-method" title="Permalink to this headline">¶</a></h4>
 <p>Consider again the previous quadratic unconstrained problem
 with the objective function
 <span class="math notranslate nohighlight">\(f(x,y) = \frac{1}{2}(x^2 + M y^2)\)</span>.</p>
@@ -749,7 +745,7 @@ for different values of <span class="math notranslate nohighlight">\(M\)</span>.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-03-unres-min-alg_32_0.png" src="_images/nlo-lecture-03-unres-min-alg_32_0.png" />
+<img alt="_images/nlo-lecture-03-unres-min-alg_30_0.png" src="_images/nlo-lecture-03-unres-min-alg_30_0.png" />
 </div>
 </div>
 <p>While the gradient descent method converged in the latter case zig-zagging,
@@ -758,10 +754,35 @@ and converges in one step.</p>
 <p>This beneficial convergence behavior
 comes at the price of having to evaluate the Hessian matrix
 and solving a linear system of equations in each iteration step.</p>
-</div>
-</div>
-<div class="section" id="further-gradient-method-approaches">
-<h2>Further gradient method approaches<a class="headerlink" href="#further-gradient-method-approaches" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="choices-of-stopping-criteria">
+<h2>Choices of stopping criteria<a class="headerlink" href="#choices-of-stopping-criteria" title="Permalink to this headline">¶</a></h2>
+<p>As important as good convergence towards the minimal point,
+is to decide when to stop the optimization algorithm.</p>
+<p>In literature there is a huge choice of stopping criteria,
+just to list a few:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\quad f(x^{k-1}) - f(x^{k}) \quad \leq \quad \text{TOL} (1 + \lvert f(x^{k}) \rvert )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad \lVert x^{k-1} - x^{k} \rVert \quad \leq \quad \text{TOL} (1 + \lVert x^{k} \rVert )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad \lVert \nabla f(x^{k}) \rVert \quad \leq \quad \text{TOL} (1 + \lvert f(x^{k}) \rvert )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad \lVert \nabla f(x^{k}) \rVert \quad \leq \quad\)</span> machine precision</p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad k \quad \geq \quad k_{\max}\)</span></p></li>
+</ol>
+<p>Criteria 1 to 3 monitor the progress of the algorithm,
+while criteria 4 and 5 can be regarded as “emergency breaks”.
+It is useful to implement criteria like 4 and 5
+to avoid <strong>infinite loops</strong> or to stop stuck algorithm runs.</p>
+<p>However, it often depends on the given problem
+which other stopping criteria are useful.
+For example,
+if the objective function is expensive to evaluate,
+“cheap” stopping criteria which do not cause computational overhead
+or are computed by the algorithms anyways might be preferable.</p>
+</section>
+<section id="further-approaches">
+<h2>Further approaches<a class="headerlink" href="#further-approaches" title="Permalink to this headline">¶</a></h2>
 <p>Other gradient methods follow in principal the form</p>
 <div class="math notranslate nohighlight">
 \[
@@ -821,8 +842,8 @@ and finally update the current Hessian matrix approximation</p>
   \]</div>
 </li>
 </ul>
-</div>
-<div class="section" id="summary">
+</section>
+<section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>The zoo of optimization algorithms and their flavors grows steadily.
 It is beyond the scope of a seminar to cover them all in detail.</p>
@@ -832,7 +853,7 @@ and have been presented without detailed analysis or proof
 of their convergence behavior.</p>
 <p>Summarizing, typical pitfalls for <strong>gradient methods</strong> are:</p>
 <ul class="simple">
-<li><p>Step width too long or short (“damping”, Armijo rule, etc.).</p></li>
+<li><p>Step size too long or short (“damping”, Armijo rule, etc.).</p></li>
 <li><p>Convergence to stationary points (<span class="math notranslate nohighlight">\(\nabla f(x) = 0\)</span>)
 that are no local minima (e.g. saddle points).</p></li>
 <li><p>Stagnation when starting at a stationary point.</p></li>
@@ -841,10 +862,10 @@ that are no local minima (e.g. saddle points).</p></li>
 if started “too far” away from the local optimum.</p></li>
 <li><p>In case of Newton’s method: <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{k}) \nsucc 0\)</span>, convergence unknown.</p></li>
 </ul>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {

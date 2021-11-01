@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>The optimization problem &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +34,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -95,7 +96,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
@@ -129,12 +130,17 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-05-convex_functions.html">
+  <a class="reference internal" href="nlo-lecture-05-convex-functions.html">
    Convex functions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-06-con-min-theory.html">
+   Constrained minimization problems
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -150,8 +156,13 @@
    UM02
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM03.html">
+   UM03
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -281,7 +292,7 @@
         
               <div>
                 
-  <div class="section" id="the-optimization-problem">
+  <section class="tex2jax_ignore mathjax_ignore" id="the-optimization-problem">
 <h1>The optimization problem<a class="headerlink" href="#the-optimization-problem" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -314,7 +325,7 @@ among all feasible points that “satisfy the constraints”:</p>
 \[
 \forall x \in X \colon f(x^{*}) \leq f(x).
 \]</div>
-<div class="section" id="classes-of-optimizations-problems">
+<section id="classes-of-optimizations-problems">
 <h2>Classes of optimizations problems<a class="headerlink" href="#classes-of-optimizations-problems" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Unconstrained optimization: <span class="math notranslate nohighlight">\(m = p = 0\)</span></p></li>
@@ -323,8 +334,8 @@ among all feasible points that “satisfy the constraints”:</p>
 <li><p>Quadratic Programming: <span class="math notranslate nohighlight">\(f(x) = \frac{1}{2}x^{T}Ax + b^{T}x +c\)</span>, <span class="math notranslate nohighlight">\(g_{i}\)</span>, <span class="math notranslate nohighlight">\(h_{j}\)</span> affin-linear</p></li>
 <li><p>Convex Optimization: <span class="math notranslate nohighlight">\(f\)</span> convex, <span class="math notranslate nohighlight">\(g_{i}\)</span> convex, <span class="math notranslate nohighlight">\(h_{j}\)</span> affin-linear</p></li>
 </ul>
-</div>
-<div class="section" id="local-and-global-optima">
+</section>
+<section id="local-and-global-optima">
 <h2>Local and global optima<a class="headerlink" href="#local-and-global-optima" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following piece-wise defined function:</p>
 <div class="cell tag_hide_input docutils container">
@@ -395,8 +406,8 @@ among all feasible points that “satisfy the constraints”:</p>
 <img alt="_images/nlo-lecture-01-optimization-problem_5_0.png" src="_images/nlo-lecture-01-optimization-problem_5_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="two-dimensional-constrained-example">
+</section>
+<section id="two-dimensional-constrained-example">
 <h2>Two-dimensional constrained example<a class="headerlink" href="#two-dimensional-constrained-example" title="Permalink to this headline">¶</a></h2>
 <p>A simple problem can be defined by the constraints</p>
 <div class="math notranslate nohighlight">
@@ -468,8 +479,8 @@ and the constrained set of feasible solutions represents the solution.</p>
 <div><p><span class="math notranslate nohighlight">\(\max f(x) = -\min -f(x)\)</span></p>
 </div></blockquote>
 <p>In these lectures we are mainly interested in methods for computing local minima.</p>
-</div>
-<div class="section" id="notation">
+</section>
+<section id="notation">
 <h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
 <p>Vectors <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> are column vectors.
 <span class="math notranslate nohighlight">\(x^{T}\)</span> is the transposed row vector.</p>
@@ -577,8 +588,8 @@ Then there exists a <strong>global minimum</strong> of <span class="math notrans
 </div>
 <p>If a real-valued function <span class="math notranslate nohighlight">\(f\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a,b]\)</span>,
 then <span class="math notranslate nohighlight">\(f\)</span> must attain a maximum and a minimum, each at least once!</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

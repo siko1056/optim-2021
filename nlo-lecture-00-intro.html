@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Selected Topics in Mathematical Optimization &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +23,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,17 +34,17 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -92,7 +93,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
@@ -126,12 +127,17 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-05-convex_functions.html">
+  <a class="reference internal" href="nlo-lecture-05-convex-functions.html">
    Convex functions
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-06-con-min-theory.html">
+   Constrained minimization problems
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -147,8 +153,13 @@
    UM02
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-UM03.html">
+   UM03
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -280,7 +291,7 @@
         
               <div>
                 
-  <div class="section" id="selected-topics-in-mathematical-optimization">
+  <section class="tex2jax_ignore mathjax_ignore" id="selected-topics-in-mathematical-optimization">
 <h1>Selected Topics in Mathematical Optimization<a class="headerlink" href="#selected-topics-in-mathematical-optimization" title="Permalink to this headline">¶</a></h1>
 <p><img alt="Tokyo Woman's Christian University (TWCU)" src="_images/twcu_logo.png" /></p>
 <ul class="simple">
@@ -290,14 +301,14 @@
 <li><p>email: <a class="reference external" href="mailto:ohlhus&#37;&#52;&#48;lab&#46;twcu&#46;ac&#46;jp">mailto:ohlhus<span>&#64;</span>lab<span>&#46;</span>twcu<span>&#46;</span>ac<span>&#46;</span>jp</a></p></li>
 </ul>
 </li>
-<li><p>Last update: 2021-10-18</p></li>
+<li><p>Last update: 2021-11-01</p></li>
 </ul>
 <blockquote>
 <div><p>Based on lecture material by
 <a class="reference external" href="https://www.tuhh.de/ti3/jansson/">C. Jansson</a> and
 <a class="reference external" href="https://www.math.uni-hamburg.de/home/oberle/skripte/optimierung.html">H. Oberle</a>.</p>
 </div></blockquote>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This one semester course for students of computer science introduces <strong>“classical” optimization methods</strong>.</p>
 <p>The topics covered in this course include:</p>
@@ -322,7 +333,7 @@ or <a class="reference external" href="https://www.octave.org/download">GNU Octa
 Several additional parts, comments, proofs, and intermediate calculations
 are given on the blackboard.</p>
 </div></blockquote>
-<div class="section" id="modeling">
+<section id="modeling">
 <h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Real world problem:</strong> mathematical formulation, preferable as a tractable (linear or convex) problem.</p></li>
@@ -333,9 +344,9 @@ are given on the blackboard.</p>
 Starting with “Operations Research”, “Machine Learning”, … It is superfluous to write them all down.</p>
 <p>Even nature optimizes.
 The basic laws of nature can be formulated in terms of <strong>least action principles</strong>.</p>
-</div>
-</div>
-<div class="section" id="applications-examples-and-software">
+</section>
+</section>
+<section id="applications-examples-and-software">
 <h2>Applications, examples and software<a class="headerlink" href="#applications-examples-and-software" title="Permalink to this headline">¶</a></h2>
 <p>Good resource is the homepage by Hans D. Mittelman:
 <a class="reference external" href="http://plato.asu.edu/guide.html">http://plato.asu.edu/guide.html</a>.</p>
@@ -346,8 +357,8 @@ The basic laws of nature can be formulated in terms of <strong>least action prin
 <li><p><strong>books/tutorials:</strong> a short list of introductory texts, some online</p></li>
 <li><p><strong>tools:</strong> software which helps formulating an optimization problem or simplifying its solution</p></li>
 </ul>
-</div>
-<div class="section" id="literature">
+</section>
+<section id="literature">
 <h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Cottle, Thapa:
@@ -372,14 +383,14 @@ SIAM, 2008.
 (ISBN: 978-0-89871-661-0)</p></li>
 <li><p><span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id2">BV04</a>]</span></p></li>
 </ul>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
