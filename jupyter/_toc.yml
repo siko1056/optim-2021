@@ -11,7 +11,8 @@ parts:
     - file: nlo-lecture-03-unres-min-alg.ipynb
       sections:
       - file: nlo-lecture-04-unres-min-alg-nelder-mead.ipynb
-    - file: nlo-lecture-05-convex_functions.ipynb
+    - file: nlo-lecture-05-convex-functions.ipynb
+    - file: nlo-lecture-06-con-min-theory.ipynb
   - caption: Exercises
     chapters:
     - file: nlo-exercise-UM01.ipynb
