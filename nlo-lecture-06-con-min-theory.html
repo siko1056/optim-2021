@@ -256,6 +256,26 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-lagrangian">
+   The Lagrangian
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kkt-optimality-conditions">
+     KKT optimality conditions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -266,37 +286,119 @@
                 
   <section class="tex2jax_ignore mathjax_ignore" id="constrained-minimization-problems">
 <h1>Constrained minimization problems<a class="headerlink" href="#constrained-minimization-problems" title="Permalink to this headline">¶</a></h1>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<p>Considering the general optimization problem again</p>
+<div class="math notranslate nohighlight" id="equation-optimization-problem">
+<span class="eqno">(1)<a class="headerlink" href="#equation-optimization-problem" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \begin{array}{lll}
 \textrm{minimize}   &amp; f(x)             &amp; \\
 \textrm{subject to} &amp; g_{i}(x) \leq 0, &amp; i = 1, \ldots, m, \\
                     &amp; h_{j}(x) =    0, &amp; j = 1, \ldots, p, \\
 \end{array}
 \end{split}\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x = (x_{1}, x_{2}, \ldots)\)</span>:
-<strong>optimization variables</strong></p></li>
-<li><p><span class="math notranslate nohighlight">\(f \colon \mathcal{X} \to \mathbb{R}\)</span>:
-<strong>objective function</strong></p></li>
-<li><p><span class="math notranslate nohighlight">\(g_{i} \colon \mathcal{X} \to \mathbb{R}, i = 1, \ldots, m\)</span>:
-<strong>inequality constraint</strong> functions</p></li>
-<li><p><span class="math notranslate nohighlight">\(h_{j} \colon \mathcal{X} \to \mathbb{R}, j = 1, \ldots, p\)</span>:
-<strong>equality constraint</strong> functions</p></li>
-</ul>
-<p><strong>Decision set</strong> <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> may be finite <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>,
-a set of matrices,
-a discrete set <span class="math notranslate nohighlight">\(\mathbb{Z}^{n}\)</span>,
-or an infinite dimensional set.</p>
-<p><strong>Constraint functions</strong> <span class="math notranslate nohighlight">\(g_{i}(x)\)</span> and <span class="math notranslate nohighlight">\(h_{j}(x)\)</span>
-limit the decision set <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>
-to a set of <strong>feasible points</strong> <span class="math notranslate nohighlight">\(x \in X \subset \mathcal{X}\)</span>.</p>
-<p>The <strong>Optimal solution</strong> <span class="math notranslate nohighlight">\(x^{*} \in X\)</span> has smallest value of <span class="math notranslate nohighlight">\(f\)</span>
-among all feasible points that “satisfy the constraints”:</p>
+<p>with <strong>optimization variable</strong> <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> and
+twice continuously differentiable
+<strong>objective and constraint functions</strong>
+<span class="math notranslate nohighlight">\(f, g_{i}, h_{j} \in C^{2}(\mathbb{R}^{n}, \mathbb{R})\)</span>.</p>
+<p>The set of <strong>feasible points</strong></p>
 <div class="math notranslate nohighlight">
 \[
-\forall x \in X \colon f(x^{*}) \leq f(x).
+X = \left\{ x \in \mathbb{R}^{n} \colon
+    g_{i}(x) \leq 0 \wedge h_{j}(x) = 0 \right\},
 \]</div>
+<p>with <span class="math notranslate nohighlight">\(g := (g_{1}, \ldots, g_{m})^{T}\)</span>,
+<span class="math notranslate nohighlight">\(h := (h_{1}, \ldots, h_{p})^{T}\)</span>
+is assumed to be <strong>not empty</strong>.</p>
+<p>For a feasible point <span class="math notranslate nohighlight">\(x \in X\)</span> the set of <strong>active inequalities</strong>
+is denoted by</p>
+<div class="math notranslate nohighlight">
+\[
+I(x) := \left\{ i \in \{ 1, \ldots, m \} \colon g_{i}(x) = 0 \right\}.
+\]</div>
+<p>For a <strong>local minimum</strong> <span class="math notranslate nohighlight">\(x^{*} \in X\)</span>
+the active inequalities can be treated as equations,
+the inactive ones don’t matter.</p>
+<section id="the-lagrangian">
+<h2>The Lagrangian<a class="headerlink" href="#the-lagrangian" title="Permalink to this headline">¶</a></h2>
+<p>The key idea is to <strong>augment</strong> the objective function <span class="math notranslate nohighlight">\(f(x)\)</span>
+with a weighted sum of the constraint functions.</p>
+<p>The <strong>Langrangian</strong>
+<span class="math notranslate nohighlight">\(L \colon \mathbb{R}^{n} \times \mathbb{R}^{m} \times \mathbb{R}^{p} \to \mathbb{R}\)</span>
+to the optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x, \lambda, \mu) := f(x) + \sum_{i = 1}^{m} \lambda_{i} g_{i}(x)
+  + \sum_{j = 1}^{p} \mu_{j} h_{j}(x)
+\]</div>
+<p>The <strong>Lagrange multipliers</strong>
+<span class="math notranslate nohighlight">\(\lambda := (\lambda_{1}, \ldots, \lambda_{m})^{T}\)</span>
+and <span class="math notranslate nohighlight">\(\mu := (\mu_{1}, \ldots, \mu_{p})^{T}\)</span>
+are associated with the <span class="math notranslate nohighlight">\(i\)</span>-th and <span class="math notranslate nohighlight">\(j\)</span>-th constraint function,
+respectively.</p>
+<section id="kkt-optimality-conditions">
+<h3>KKT optimality conditions<a class="headerlink" href="#kkt-optimality-conditions" title="Permalink to this headline">¶</a></h3>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 9:</strong> KKT optimality conditions</p>
+<p>For a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span> of the optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a>
+let the gradients</p>
+<div class="math notranslate nohighlight">
+\[
+\left\{ \nabla g_{i}(x^{*}), \nabla h_{j}(x^{*})
+  \colon i \in I(x), j = 1, \ldots, p \right\}
+\]</div>
+<p>be linear independent (<strong>LICQ</strong> = Linear independence constraint qualification).</p>
+<p>Then there exist Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda^{*} \in \mathbb{R}^{m}\)</span>
+and <span class="math notranslate nohighlight">\(\mu^{*} \in \mathbb{R}^{p}\)</span>,
+such that for the Lagrangian</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+L(x^{*}, \lambda^{*}, \mu^{*})
+:=\;&amp; f(x^{*}) + \sum_{i = 1}^{m} \lambda_{i}^{*} g_{i}(x^{*})
+               + \sum_{j = 1}^{p}     \mu_{j}^{*} h_{j}(x^{*}) \\
+=\;&amp; f(x^{*}) + (\lambda^{*})^{T} g(x^{*}) + (\mu^{*})^{T} h(x^{*})
+\end{aligned}
+\end{split}\]</div>
+<p>the following necessary conditions hold:</p>
+<p><strong>Stationarity</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nabla_{x} L(x^{*}, \lambda^{*}, \mu^{*})
+=\;&amp; \nabla f(x^{*}) + \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
+                     + \sum_{j = 1}^{p}     \mu_{j}^{*} \nabla h_{j}(x^{*}) \\
+=\;&amp; \nabla f(x^{*}) + (\lambda^{*})^{T} \nabla g(x^{*}) + (\mu^{*})^{T} \nabla h(x^{*})
+=\; 0
+\end{aligned}
+\end{split}\]</div>
+<p><strong>Complementary slackness</strong></p>
+<div class="math notranslate nohighlight">
+\[
+(\lambda^{*})^{T} \nabla_{\lambda} L(x^{*}, \lambda^{*}, \mu^{*})
+=\; \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
+=\; (\lambda^{*})^{T} \nabla g(x^{*})
+=\; 0
+\]</div>
+<p><strong>Primal feasibility</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\nabla_{\mu} L(x^{*}, \lambda^{*}, \mu^{*}) = ( h_{j}(x^{*}) ) = 0,
+\quad j = 1, \ldots, p
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\nabla_{\lambda} L(x^{*}, \lambda^{*}, \mu^{*}) = ( g_{i}(x^{*}) ) \leq 0,
+\quad i = 1, \ldots, m
+\]</div>
+<p><strong>Dual feasibility</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_{i}^{*} \geq 0, \quad i = 1, \ldots, m
+\]</div>
+<p>Points <span class="math notranslate nohighlight">\((x^{*}, \lambda^{*}, \mu^{*})\)</span> fulfilling the KKT optimality conditions
+are referred to as <strong>KKT-points</strong>.</p>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
