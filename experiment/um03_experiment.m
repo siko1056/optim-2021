@@ -81,7 +81,7 @@ xpath = zeros(0, 3);  % Memorize path
 
 %x0 = [1, 1];
 options.Display = 'iter';
-options.MaxIterations = 4;
+%options.MaxIterations = 4;
 [xopt, fval, exitflag] = nelder_mead (@fun, x0, options);
 
 disp ('Solution');
