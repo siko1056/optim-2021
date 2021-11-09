@@ -386,21 +386,21 @@ L(x^{*}, \lambda^{*}, \mu^{*})
 =\;&amp; \nabla f(x^{*}) + \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
                      + \sum_{j = 1}^{p}     \mu_{j}^{*} \nabla h_{j}(x^{*}) \\
 =\;&amp; \nabla f(x^{*}) + (\lambda^{*})^{T} \nabla g(x^{*}) + (\mu^{*})^{T} \nabla h(x^{*})
-{\color{red}{=\; 0}}
+{\color{red}{\;=\; 0}}
 \end{aligned}
 \end{split}\]</div>
 <p><strong>(2) Complementary slackness</strong></p>
 <div class="math notranslate nohighlight">
 \[
 (\lambda^{*})^{T} {\color{red}{\nabla_{\lambda} L}}(x^{*}, \lambda^{*}, \mu^{*})
-=\; \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
-=\; (\lambda^{*})^{T} \nabla g(x^{*})
-{\color{red}{=\; 0}}
+=\; \sum_{i = 1}^{m} \lambda_{i}^{*} g_{i}(x^{*})
+=\; (\lambda^{*})^{T} g(x^{*})
+{\color{red}{\;=\; 0}}
 \]</div>
 <p><strong>(3) Primal feasibility</strong></p>
 <div class="math notranslate nohighlight">
 \[
-{\color{red}{\nabla_{\mu} L}}(x^{*}, \lambda^{*}, \mu^{*}) = ( h_{j}(x^{*}) ) {\color{red}{= 0}},
+{\color{red}{\nabla_{\mu} L}}(x^{*}, \lambda^{*}, \mu^{*}) = ( h_{j}(x^{*}) ) {\color{red}{\;= 0}},
 \quad j = 1, \ldots, p
 \]</div>
 <div class="math notranslate nohighlight">
@@ -424,9 +424,18 @@ see <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id7
 <ul>
 <li><p>The KKT optimality conditions help to find optimal solutions
 for constraint optimization problems
-by defining a <strong>non-linear system of equations</strong> to solve.
-Many <strong>solution algorithms</strong> for constraint optimization problems
-solve the KKT optimality conditions numerically.</p></li>
+by defining a <strong>non-linear system of equations</strong> to solve.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{aligned}
+  \nabla_{x}       L &amp;= 0 \\
+  \nabla_{\lambda} L &amp;= 0 \\
+  \nabla_{\mu}     L &amp;= 0 \\
+  \end{aligned}
+  \end{split}\]</div>
+<p>Many <strong>solution algorithms</strong> for constraint optimization problems
+solve the KKT optimality conditions numerically.</p>
+</li>
 <li><p>KKT-points <span class="math notranslate nohighlight">\((x^{*}, \lambda^{*})\)</span> are <strong>saddle-points</strong> of the Lagrangian.</p></li>
 <li><p>Approach to find a supporting hyperplane on the feasible set of inequality constraints</p>
 <div class="math notranslate nohighlight">
