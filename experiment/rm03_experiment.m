@@ -1,20 +1,20 @@
-function rm01_experiment ()
+function rm03_experiment()
   % Nonlinear objective function.
-  fun = @(x) (x(1) - 3).^2 + (x(2) - 2).^2;
+  fun = @(x) x(1) + x(2);
 
   % Starting point.
-  x0 = [2, 1];
+  x0 = [0, 0];
 
   % Linear inequality constraints A * x <= b.
-  A = [1 2];  % g_2
-  b = [4];
+  A = [];
+  b = [];
 
   % Linear equality constraints Aeq * x = beq.
   Aeq = [];
   beq = [];
 
   % Bounds lb <= x <= ub
-  lb = [0, 0];      % g_3 and g_4
+  lb = [];
   ub = [];
 
   % Call solver.
@@ -23,18 +23,22 @@ function rm01_experiment ()
   % Display interesting details.
   
   exitflag  % == 1 success
+  output
   x         % optimal solution
   fval      % function value at optimal solution
   grad      % gradient of fun at optimal solution
   hessian   % Hessian matrix of fun at optimal solution
   lambda    % Lagrange parameter
-  lambda.lower       % lambda_3 and lambda_4
-  lambda.ineqlin     % lambda_2
-  lambda.ineqnonlin  % lambda_1
+  lambda.eqnonlin  % lambda_1 and lambda_2
+  
+  disp ('"="-Constraints')
+  [(x(1) - 1).^2 + x(2).^2 - 1; ...
+   (x(1) - 2).^2 + x(2).^2 - 4]
 end
 
 % Nonlinear constraint function for g_1.
 function [c,ceq] = nonlcon(x)
-  c = x(1).^2 + x(2).^2 - 5;
-  ceq = 0;
+  c = 0;
+  ceq = [(x(1) - 1).^2 + x(2).^2 - 1; ...
+         (x(1) - 2).^2 + x(2).^2 - 4];
 end

@@ -1,4 +1,4 @@
-function rm01_experiment ()
+function rm02_experiment ()
   % Nonlinear objective function.
   fun = @(x) (x(1) - 1.25).^2 + (x(2) - 1).^2;
 
