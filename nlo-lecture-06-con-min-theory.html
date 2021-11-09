@@ -161,6 +161,21 @@
    UM03
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-RM01.html">
+   RM01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-RM02.html">
+   RM02
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-exercise-RM03.html">
+   RM03
+  </a>
+ </li>
 </ul>
 <p class="caption" role="heading">
  <span class="caption-text">
@@ -265,13 +280,11 @@
   <a class="reference internal nav-link" href="#the-lagrangian">
    The Lagrangian
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kkt-optimality-conditions">
-     KKT optimality conditions
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kkt-optimality-conditions">
+   KKT optimality conditions
+  </a>
  </li>
 </ul>
 
@@ -321,7 +334,7 @@ the inactive ones don’t matter.</p>
 <h2>The Lagrangian<a class="headerlink" href="#the-lagrangian" title="Permalink to this headline">¶</a></h2>
 <p>The key idea is to <strong>augment</strong> the objective function <span class="math notranslate nohighlight">\(f(x)\)</span>
 with a weighted sum of the constraint functions.</p>
-<p>The <strong>Langrangian</strong>
+<p>The <strong>Lagrangian</strong>
 <span class="math notranslate nohighlight">\(L \colon \mathbb{R}^{n} \times \mathbb{R}^{m} \times \mathbb{R}^{p} \to \mathbb{R}\)</span>
 to the optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a> is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -334,8 +347,14 @@ L(x, \lambda, \mu) := f(x) + \sum_{i = 1}^{m} \lambda_{i} g_{i}(x)
 and <span class="math notranslate nohighlight">\(\mu := (\mu_{1}, \ldots, \mu_{p})^{T}\)</span>
 are associated with the <span class="math notranslate nohighlight">\(i\)</span>-th and <span class="math notranslate nohighlight">\(j\)</span>-th constraint function,
 respectively.</p>
+</section>
 <section id="kkt-optimality-conditions">
-<h3>KKT optimality conditions<a class="headerlink" href="#kkt-optimality-conditions" title="Permalink to this headline">¶</a></h3>
+<h2>KKT optimality conditions<a class="headerlink" href="#kkt-optimality-conditions" title="Permalink to this headline">¶</a></h2>
+<p>Having the Lagrangian defined,
+similar to the unconstrained optimization problem,
+first- and higher-order optimality conditions can be defined.</p>
+<p>The first-order conditions are called
+<strong>Karush–Kuhn–Tucker (KKT)</strong> optimality conditions.</p>
 <div class="tip admonition">
 <p class="admonition-title"><strong>Theorem 9:</strong> KKT optimality conditions</p>
 <p>For a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span> of the optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a>
@@ -346,7 +365,7 @@ let the gradients</p>
   \colon i \in I(x), j = 1, \ldots, p \right\}
 \]</div>
 <p>be linear independent (<strong>LICQ</strong> = Linear independence constraint qualification).</p>
-<p>Then there exist Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda^{*} \in \mathbb{R}^{m}\)</span>
+<p>Then there exist <strong>unique</strong> Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda^{*} \in \mathbb{R}^{m}\)</span>
 and <span class="math notranslate nohighlight">\(\mu^{*} \in \mathbb{R}^{p}\)</span>,
 such that for the Lagrangian</p>
 <div class="math notranslate nohighlight">
@@ -359,29 +378,29 @@ L(x^{*}, \lambda^{*}, \mu^{*})
 \end{aligned}
 \end{split}\]</div>
 <p>the following necessary conditions hold:</p>
-<p><strong>Stationarity</strong></p>
+<p><strong>(1) Stationarity</strong></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-\nabla_{x} L(x^{*}, \lambda^{*}, \mu^{*})
+{\color{red}{\nabla_{x} L}}(x^{*}, \lambda^{*}, \mu^{*})
 =\;&amp; \nabla f(x^{*}) + \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
                      + \sum_{j = 1}^{p}     \mu_{j}^{*} \nabla h_{j}(x^{*}) \\
 =\;&amp; \nabla f(x^{*}) + (\lambda^{*})^{T} \nabla g(x^{*}) + (\mu^{*})^{T} \nabla h(x^{*})
-=\; 0
+{\color{red}{=\; 0}}
 \end{aligned}
 \end{split}\]</div>
-<p><strong>Complementary slackness</strong></p>
+<p><strong>(2) Complementary slackness</strong></p>
 <div class="math notranslate nohighlight">
 \[
-(\lambda^{*})^{T} \nabla_{\lambda} L(x^{*}, \lambda^{*}, \mu^{*})
+(\lambda^{*})^{T} {\color{red}{\nabla_{\lambda} L}}(x^{*}, \lambda^{*}, \mu^{*})
 =\; \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
 =\; (\lambda^{*})^{T} \nabla g(x^{*})
-=\; 0
+{\color{red}{=\; 0}}
 \]</div>
-<p><strong>Primal feasibility</strong></p>
+<p><strong>(3) Primal feasibility</strong></p>
 <div class="math notranslate nohighlight">
 \[
-\nabla_{\mu} L(x^{*}, \lambda^{*}, \mu^{*}) = ( h_{j}(x^{*}) ) = 0,
+{\color{red}{\nabla_{\mu} L}}(x^{*}, \lambda^{*}, \mu^{*}) = ( h_{j}(x^{*}) ) {\color{red}{= 0}},
 \quad j = 1, \ldots, p
 \]</div>
 <div class="math notranslate nohighlight">
@@ -389,7 +408,7 @@ L(x^{*}, \lambda^{*}, \mu^{*})
 \nabla_{\lambda} L(x^{*}, \lambda^{*}, \mu^{*}) = ( g_{i}(x^{*}) ) \leq 0,
 \quad i = 1, \ldots, m
 \]</div>
-<p><strong>Dual feasibility</strong></p>
+<p><strong>(4) Dual feasibility</strong></p>
 <div class="math notranslate nohighlight">
 \[
 \lambda_{i}^{*} \geq 0, \quad i = 1, \ldots, m
@@ -397,7 +416,30 @@ L(x^{*}, \lambda^{*}, \mu^{*})
 <p>Points <span class="math notranslate nohighlight">\((x^{*}, \lambda^{*}, \mu^{*})\)</span> fulfilling the KKT optimality conditions
 are referred to as <strong>KKT-points</strong>.</p>
 </div>
-</section>
+<p>Study the exercises <a class="reference internal" href="nlo-exercise-RM01.html#rm01"><span class="std std-ref">RM01</span></a>, <a class="reference internal" href="nlo-exercise-RM02.html#rm02"><span class="std std-ref">RM02</span></a>, and <a class="reference internal" href="nlo-exercise-RM03.html#rm03"><span class="std std-ref">RM03</span></a>
+to apply the KKT optimality conditions.</p>
+<p>For a proof and more detailed discussion on the KKT optimality conditions,
+see <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 5) and <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (chapter 11).</p>
+<p>Summarizing key ideas:</p>
+<ul>
+<li><p>The KKT optimality conditions help to find optimal solutions
+for constraint optimization problems
+by defining a <strong>non-linear system of equations</strong> to solve.
+Many <strong>solution algorithms</strong> for constraint optimization problems
+solve the KKT optimality conditions numerically.</p></li>
+<li><p>KKT-points <span class="math notranslate nohighlight">\((x^{*}, \lambda^{*})\)</span> are <strong>saddle-points</strong> of the Lagrangian.</p></li>
+<li><p>Approach to find a supporting hyperplane on the feasible set of inequality constraints</p>
+<div class="math notranslate nohighlight">
+\[
+  \left\{ x \in X  \colon\; g_{i}(x) \leq 0, \quad i = 1, \ldots ,m \right\}.
+  \]</div>
+<p>The proof of the KKT optimality conditions makes use of the hyperplane separation theorem.</p>
+</li>
+<li><p>From the Lagrangian and the KKT optimality conditions
+to each optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a>
+a <strong>convex dual optimization problem</strong> can be formulated.
+See <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 5).</p></li>
+</ul>
 </section>
 </section>
 
