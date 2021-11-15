@@ -13,6 +13,7 @@ parts:
       - file: nlo-lecture-04-unres-min-alg-nelder-mead.ipynb
     - file: nlo-lecture-05-convex-functions.ipynb
     - file: nlo-lecture-06-con-min-theory.ipynb
+    - file: nlo-lecture-07-con-min-alg.ipynb
   - caption: Exercises
     chapters:
     - file: nlo-exercise-UM01.ipynb
@@ -21,6 +22,7 @@ parts:
     - file: nlo-exercise-RM01.ipynb
     - file: nlo-exercise-RM02.ipynb
     - file: nlo-exercise-RM03.ipynb
+    - file: nlo-exercise-RM04.ipynb
   - caption: Back matter
     chapters:
     - file: nlo-lecture-code-listings.ipynb
