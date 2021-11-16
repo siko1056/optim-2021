@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Selected Topics in Mathematical Optimization &#8212; Selected Topics in Mathematical Optimization</title>
+    <title>Constrained minimization algorithms &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -43,6 +43,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -52,7 +54,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The optimization problem" href="nlo-lecture-01-optimization-problem.html" />
+    <link rel="next" title="UM01" href="nlo-exercise-UM01.html" />
+    <link rel="prev" title="Constrained minimization problems" href="nlo-lecture-06-con-min-theory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -87,8 +90,8 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-00-intro.html">
    Selected Topics in Mathematical Optimization
   </a>
  </li>
@@ -98,7 +101,7 @@
   Seminar notes
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="nlo-lecture-01-optimization-problem.html">
    The optimization problem
@@ -136,8 +139,8 @@
    Constrained minimization problems
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="nlo-lecture-07-con-min-alg.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Constrained minimization algorithms
   </a>
  </li>
@@ -237,7 +240,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/nlo-lecture-00-intro.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/nlo-lecture-07-con-min-alg.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -257,7 +260,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-00-intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-lecture-07-con-min-alg.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -284,25 +287,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modeling">
-     Modeling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications-examples-and-software">
-   Applications, examples and software
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#literature">
-   Literature
+  <a class="reference internal nav-link" href="#sequential-quadratic-programming-sqp">
+   Sequential Quadratic Programming (SQP)
   </a>
  </li>
 </ul>
@@ -316,85 +302,163 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="selected-topics-in-mathematical-optimization">
-<h1>Selected Topics in Mathematical Optimization<a class="headerlink" href="#selected-topics-in-mathematical-optimization" title="Permalink to this headline">¶</a></h1>
-<p><img alt="Tokyo Woman's Christian University (TWCU)" src="_images/twcu_logo.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="constrained-minimization-algorithms">
+<h1>Constrained minimization algorithms<a class="headerlink" href="#constrained-minimization-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Some of the algorithms and techniques
+used to find local minima
+of <strong>unconstrained</strong> optimization problems
+can be applied <em>mutatis mutandis</em>
+for the <strong>constrained</strong> problem case.</p>
+<section id="sequential-quadratic-programming-sqp">
+<h2>Sequential Quadratic Programming (SQP)<a class="headerlink" href="#sequential-quadratic-programming-sqp" title="Permalink to this headline">¶</a></h2>
+<p>For the sake of simplicity
+the equality constrained minimization problem is considered:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; f(x)          &amp; \\
+\textrm{subject to} &amp; h_{j}(x) = 0, &amp; j = 1, \ldots, p, \\
+\end{array}
+\end{split}\]</div>
+<p>with <strong>optimization variable</strong> <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> and
+twice continuously differentiable
+<strong>objective and constraint functions</strong>
+<span class="math notranslate nohighlight">\(f, h_{j} \in C^{2}(\mathbb{R}^{n}, \mathbb{R})\)</span>,
+<span class="math notranslate nohighlight">\(h := (h_{1}, \ldots, h_{p})^{T} \in C^{2}(\mathbb{R}^{n}, \mathbb{R}^{p})\)</span>.</p>
+<p>The corresponding <strong>Lagrangian</strong> is:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x, \mu) := f(x) + \sum_{j = 1}^{p} \mu_{j} h_{j}(x),
+\]</div>
+<p>and <strong>KKT optimality conditions</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nabla_{x} L(x^{*}, \mu^{*})
+&amp;=\; \nabla f(x^{*}) + \sum_{j = 1}^{p} \mu_{j}^{*} \nabla h_{j}(x^{*})
+&amp;=\; 0 &amp; \\
+\nabla_{\mu} L(x^{*}, \mu^{*})
+&amp;=\; ( h_{j}(x^{*}) ) = h(x^{*})
+&amp;=\; 0 &amp;,
+\quad j = 1, \ldots, p
+\end{aligned}
+\end{split}\]</div>
+<p>Again the goal is to perform an iteration</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha \mathbf{d}^{k}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\mathbf{x} = (x, \mu)^{T}\)</span>,
+which converges from a starting point <span class="math notranslate nohighlight">\(\mathbf{x}^{0}\)</span>
+to a local minimum <span class="math notranslate nohighlight">\(\mathbf{x}^{*}\)</span>
+(a stationary point of the KKT optimality conditions)
+choosing a <strong>descent direction</strong> <span class="math notranslate nohighlight">\(\mathbf{d} = (\Delta x, \Delta \mu)^{T}\)</span>
+and a <strong>step size</strong> <span class="math notranslate nohighlight">\(\alpha\)</span> in each step
+(cf. <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#gradient-methods"><span class="std std-ref">Gradient methods</span></a>).</p>
+<p>Using <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#newtons-method"><span class="std std-ref"><strong>Newton’s method</strong></span></a>
+(quadratic Taylor-approximation of the Lagrangian <span class="math notranslate nohighlight">\(L(x, \mu)\)</span>)
+to determine the descent direction,
+results in solving the following system of non-linear equations:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{2} L(x, \mu) \mathbf{d} = -\nabla L(x, \mu)
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\nabla^{2}_{x,x} L(x, \mu)     &amp; \nabla^{2}_{x,\mu} L(x, \mu) \\
+\nabla^{2}_{\mu,x} L(x, \mu) &amp; \nabla^{2}_{\mu,\mu} L(x, \mu)
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+=
+-\begin{pmatrix}
+\nabla_{x} L(x, \mu) \\
+\nabla_{\mu} L(x, \mu)
+\end{pmatrix}
+\end{split}\]</div>
+<p>This <strong>Hessian matrix</strong> has a certain structure:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+Q &amp; B^{T} \\
+B &amp; 0
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+= -\begin{pmatrix} \nabla f(x) + B^{T} \mu \\ h(x) \end{pmatrix}
+= -\begin{pmatrix} \nabla_{x} L(x, \mu)    \\ h(x) \end{pmatrix}
+\end{split}\]</div>
 <ul class="simple">
-<li><p>Kai Torben OHLHUS</p>
+<li><p><span class="math notranslate nohighlight">\(Q := \nabla^{2}_{x,x} L(x, \mu) = \nabla^{2} f(x) + \sum_{j = 1}^{p} \mu_{j} \nabla^{2} h_{j}(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B := \nabla^{2}_{\mu,x} L(x, \mu) = \)</span>
+<span class="math notranslate nohighlight">\(\begin{pmatrix} \nabla^{T} h_{1}(x) \\ \vdots \\ \nabla^{T} h_{p}(x) \end{pmatrix}\)</span>
+is the <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(h(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B^{T} = \nabla^{2}_{x,\mu} L(x, \mu) = \begin{pmatrix} \nabla h_{1}(x) &amp; \ldots &amp; \nabla h_{p}(x) \end{pmatrix}\)</span>
+is the transposed <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(h(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla^{2}_{\mu,\mu} L(x, \mu) = 0\)</span> is a zero matrix,
+as <span class="math notranslate nohighlight">\(L(x, \mu)\)</span> is linear in <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+</ul>
+<p>The derived Newton-equation happens to be identical
+to the KKT optimality conditions
+of the following quadratic optimization problem:</p>
+<div class="math notranslate nohighlight" id="equation-sqp-sub-problem">
+<span class="eqno">(2)<a class="headerlink" href="#equation-sqp-sub-problem" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}
+&amp; F(\Delta x)
+&amp;:= \frac{1}{2} (\Delta x)^{T} Q \Delta x + \nabla_{x} L(x,\mu)^{T} \Delta x \\
+\textrm{subject to}
+&amp; H(\Delta x)
+&amp;:= B \Delta x + h(x) = 0.
+\end{array}
+\end{split}\]</div>
+<p>By choosing the Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda = \Delta \mu\)</span> for the equality constraints,
+the corresponding Lagrangian is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(\Delta x,\lambda) = F(\Delta x) + H(\Delta x)^{T} \lambda
+\]</div>
+<p>and the KKT optimality conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nabla_{(\Delta x)} \mathcal{L}(\Delta x,\lambda)
+&amp;:=&amp; Q \Delta x +  \nabla_{x} L(x,\mu) + B^{T} \lambda &amp;= 0, \\
+H(\Delta x) = \nabla_{\lambda} \mathcal{L}(\Delta x,\lambda)
+&amp;:=&amp; B \Delta x + h(x) &amp;= 0.
+\end{aligned}
+\end{split}\]</div>
+<p>or written in matrix notation and regarding <span class="math notranslate nohighlight">\(\lambda = \Delta \mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+Q &amp; B^{T} \\
+B &amp; 0
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+= -\begin{pmatrix} \nabla_{x} L(x,\mu) \\ h(x) \end{pmatrix}.
+\end{split}\]</div>
+<p>Summarizing:</p>
+<ul class="simple">
+<li><p>SQP methods solve a sequence of <strong>quadratic optimization sub-problems</strong>
+(quadratic objective function and linearized constraints).</p></li>
+<li><p>In the unconstrained case, SQP reduces to <strong>Newton’s method</strong> for finding a stationary point <span class="math notranslate nohighlight">\(\nabla f(x) = 0\)</span>.</p></li>
+<li><p>In the only equality constrained case, the SQP method is equivalent to applying Newton’s method to the KKT optimality conditions.</p></li>
+<li><p>Extensions for equality and inequality constraints exist,
+but are not discussed in this seminar.</p></li>
+<li><p>Similar problems and limitations
+as discussed in the section about <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#newtons-method"><span class="std std-ref"><strong>Newton’s method</strong></span></a>
+apply to the SQP method.</p>
 <ul>
-<li><p>カイ トーベン オールフス</p></li>
-<li><p>email: <a class="reference external" href="mailto:ohlhus&#37;&#52;&#48;lab&#46;twcu&#46;ac&#46;jp">mailto:ohlhus<span>&#64;</span>lab<span>&#46;</span>twcu<span>&#46;</span>ac<span>&#46;</span>jp</a></p></li>
+<li><p>Computing the Hessian matrix is expensive.</p></li>
+<li><p>If the Hessian matrix is not symmetric positive definite
+or the constraints are not linear independent (LICQ)
+during the iteration,
+convergence cannot be guaranteed.</p></li>
 </ul>
 </li>
-<li><p>Last update: 2021-11-09</p></li>
-</ul>
-<blockquote>
-<div><p>Based on lecture material by
-<a class="reference external" href="https://www.tuhh.de/ti3/jansson/">C. Jansson</a> and
-<a class="reference external" href="https://www.math.uni-hamburg.de/home/oberle/skripte/optimierung.html">H. Oberle</a>.</p>
-</div></blockquote>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>This one semester course for students of computer science introduces <strong>“classical” optimization methods</strong>.</p>
-<p>The topics covered in this course include:</p>
-<ul class="simple">
-<li><p>Optimality conditions for finite-dimensional (un-)constrained continuous problems</p></li>
-<li><p>(Un-)constrained optimization methods</p></li>
-<li><p>Convex analysis</p></li>
-<li><p>Many examples</p></li>
-</ul>
-<p><strong>What do I need?</strong></p>
-<ul class="simple">
-<li><p>Knowledge of elementary calculus and linear algebra.</p></li>
-<li><p><a class="reference external" href="http://www.math.twcu.ac.jp/ogita/lec/MATLAB_install.htm">Matlab</a>
-or <a class="reference external" href="https://www.octave.org/download">GNU Octave</a>.</p>
-<ul>
-<li><p><a class="reference external" href="http://www.math.twcu.ac.jp/ogita/lec/matlab_basic.pdf">荻田先生：MATLABの基本的な使い方</a></p></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<div><p><strong>Please note:</strong> these seminar notes are <strong>not complete</strong>.
-Several additional parts, comments, proofs, and intermediate calculations
-are given on the blackboard.</p>
-</div></blockquote>
-<section id="modeling">
-<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Real world problem:</strong> mathematical formulation, preferable as a tractable (linear or convex) problem.</p></li>
-<li><p><strong>Software:</strong> try to classify the problem, in order to find the appropriate software.</p></li>
-<li><p><strong>Solution:</strong> depends on your choice of the mathematical model and the input data.</p></li>
-</ul>
-<p>Nearly all scientific and engineering fields make knowingly or unknowingly use of some kind of optimization techniques.
-Starting with “Operations Research”, “Machine Learning”, … It is superfluous to write them all down.</p>
-<p>Even nature optimizes.
-The basic laws of nature can be formulated in terms of <strong>least action principles</strong>.</p>
-</section>
-</section>
-<section id="applications-examples-and-software">
-<h2>Applications, examples and software<a class="headerlink" href="#applications-examples-and-software" title="Permalink to this headline">¶</a></h2>
-<p>Good resource is the homepage by Hans D. Mittelman:
-<a class="reference external" href="http://plato.asu.edu/guide.html">http://plato.asu.edu/guide.html</a>.</p>
-<ul class="simple">
-<li><p><strong>problems/software:</strong> software sorted by problem to be solve</p></li>
-<li><p><strong>benchmarks:</strong> collection of test results and performance tests</p></li>
-<li><p><strong>test cases:</strong> example files ready to use with existing software, in different formats</p></li>
-<li><p><strong>books/tutorials:</strong> a short list of introductory texts, some online</p></li>
-<li><p><strong>tools:</strong> software which helps formulating an optimization problem or simplifying its solution</p></li>
+<li><p>See exercise <a class="reference internal" href="nlo-exercise-RM04.html#rm04"><span class="std std-ref">RM04</span></a> for an application example.</p></li>
 </ul>
 </section>
-<section id="literature">
-<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="nlo-lecture-bib.html#bibliography"><span class="std std-ref">bibliography section</span></a> lists teaching books for further studies:
-<span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id3">CT17</a>]</span>, <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span>, <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id5">Ber16</a>]</span>,
-<span id="id4">[<a class="reference internal" href="nlo-lecture-bib.html#id6">GNS08</a>]</span>, and <span id="id5">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span>.</p>
-</section>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -426,11 +490,20 @@ The basic laws of nature can be formulated in terms of <strong>least action prin
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="nlo-lecture-06-con-min-theory.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Constrained minimization problems</p>
+            </div>
+        </a>
+    </div>
      <div id="next">
-        <a class="right-next" href="nlo-lecture-01-optimization-problem.html" title="next page">
+        <a class="right-next" href="nlo-exercise-UM01.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">The optimization problem</p>
+                <p class="prevnext-title">UM01</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
