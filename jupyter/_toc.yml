@@ -23,6 +23,9 @@ parts:
     - file: nlo-exercise-RM02.ipynb
     - file: nlo-exercise-RM03.ipynb
     - file: nlo-exercise-RM04.ipynb
+    - file: nlo-exercise-RM05.ipynb
+    - file: nlo-exercise-RM06.ipynb
+    - file: nlo-exercise-RM07.ipynb
   - caption: Back matter
     chapters:
     - file: nlo-lecture-code-listings.ipynb
