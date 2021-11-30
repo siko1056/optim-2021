@@ -333,8 +333,8 @@
 <h2>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this headline">¶</a></h2>
 <p>Linear Programming (LP; same abbreviation for “Linear Program”) is
 a linear optimization technique
-which became widly known
-for <strong>ressouce planning tasks</strong> after World War II.
+which became widely known
+for <strong>resource planning tasks</strong> after World War II.
 As the name suggests,
 the objective function and (in-)equality constraint functions are linear.</p>
 <blockquote>
@@ -362,22 +362,23 @@ In the following a few <strong>conversion techniques</strong> are described.</p>
 <ul>
 <li><p>“minimize <span class="math notranslate nohighlight">\(c^{T}x\)</span>” is equivalent to “maximize <span class="math notranslate nohighlight">\(-c^{T}x\)</span>”.
 <strong>Flip the sign</strong> of the computed objective value.</p></li>
-<li><p><strong>Slack variabes</strong> <span class="math notranslate nohighlight">\(s \in \mathbb{R}^{m}\)</span>
-help expressing inequality constraints as equality constraints:
-$<span class="math notranslate nohighlight">\(
-\begin{array}{ll}
-\textrm{minimize}   &amp; c^{T} x \\
-\textrm{subject to} &amp; Ax {\color{red}{\;\leq\;}} b \\
-&amp; x \geq 0
-\end{array}
-\quad\iff\quad
-\begin{array}{ll}
-\textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\; 0^{T} s}} \\
-\textrm{subject to} &amp; Ax      {\color{red}{\;+\; Is =}}\; b \\
-&amp; x \geq 0 \\
-&amp; {\color{red}{s \geq 0}}
-\end{array}
-\)</span>$</p>
+<li><p><strong>Slack variables</strong> <span class="math notranslate nohighlight">\(s \in \mathbb{R}^{m}\)</span>
+help expressing inequality constraints as equality constraints:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{array}{ll}
+  \textrm{minimize}   &amp; c^{T} x \\
+  \textrm{subject to} &amp; Ax {\color{red}{\;\leq\;}} b \\
+  &amp; x \geq 0
+  \end{array}
+  \quad\iff\quad
+  \begin{array}{ll}
+  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\; [0]^{T} s}} \\
+  \textrm{subject to} &amp; Ax      {\color{red}{\;+\; Is =}}\; b \\
+  &amp; x \geq 0 \\
+  &amp; {\color{red}{s \geq 0}}
+  \end{array}
+  \end{split}\]</div>
 <p>or</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -388,13 +389,14 @@ $<span class="math notranslate nohighlight">\(
   \end{array}
   \quad\iff\quad
   \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\; 0^{T} s}} \\
+  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\; [0]^{T} s}} \\
   \textrm{subject to} &amp; Ax      {\color{red}{\;-\; Is =}}\; b \\
   &amp; x \geq 0 \\
   &amp; {\color{red}{s \geq 0}}
   \end{array}
   \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(m \times m\)</span> unit matrix (main diagonal elements are <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(0\)</span> otherwise).</p>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(m \times m\)</span> unit matrix (main diagonal elements are <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(0\)</span> otherwise)
+and <span class="math notranslate nohighlight">\([0] \in \mathbb{R}^{m}\)</span> is a vector of zeros.</p>
 </li>
 </ul>
 <ul>
@@ -462,7 +464,7 @@ See also the note about “free variables” above.</p>
   \end{array}
   \end{split}\]</div>
 <p>The resulting problem is usually ill-posed
-and a small tolerace <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> can be added to each element of <span class="math notranslate nohighlight">\(b\)</span> for numerical stability.</p>
+and a small tolerance <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> can be added to each element of <span class="math notranslate nohighlight">\(b\)</span> for numerical stability.</p>
 </li>
 </ul>
 <p>For more information on LP and equivalent formulations,
