@@ -6,10 +6,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>RM07 &#8212; Selected Topics in Mathematical Optimization</title>
+    <title>LP03 &#8212; Selected Topics in Mathematical Optimization</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -43,7 +43,7 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -55,9 +55,12 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Code Listings" href="nlo-lecture-code-listings.html" />
-    <link rel="prev" title="RM06" href="nlo-exercise-RM06.html" />
+    <link rel="prev" title="LP02" href="nlo-exercise-LP02.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -96,7 +99,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
@@ -144,8 +147,23 @@
    Constrained minimization algorithms
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-08-ipm.html">
+   Interior-Point Methods (IPM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-09-penalty.html">
+   Penalty methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-10-LP.html">
+   Linear Programming
+  </a>
+ </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -187,22 +205,22 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-exercise-RM05.html">
-   RM05
+  <a class="reference internal" href="nlo-exercise-LP01.html">
+   LP01
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-exercise-RM06.html">
-   RM06
+  <a class="reference internal" href="nlo-exercise-LP02.html">
+   LP02
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   RM07
+   LP03
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -255,7 +273,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/nlo-exercise-RM07.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/nlo-exercise-LP03.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -275,7 +293,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-exercise-RM07.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/siko1056/optim-2021/issues/new?title=Issue%20on%20page%20%2Fnlo-exercise-LP03.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -334,11 +352,11 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="rm07">
-<span id="id1"></span><h1>RM07<a class="headerlink" href="#rm07" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lp03">
+<span id="id1"></span><h1>LP03<a class="headerlink" href="#lp03" title="Permalink to this headline">¶</a></h1>
 <section id="non-linear-classification">
 <h2>Non-linear classification<a class="headerlink" href="#non-linear-classification" title="Permalink to this headline">¶</a></h2>
-<p>See also <a class="reference internal" href="nlo-exercise-RM06.html#rm06"><span class="std std-ref">exercise RM06</span></a> <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 8.6).</p>
+<p>See also <a class="reference internal" href="nlo-exercise-LP02.html#lp02"><span class="std std-ref">exercise LP02</span></a> <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 8.6).</p>
 <section id="creation-of-labeled-measurements-training-data">
 <h3>Creation of labeled measurements (“training data”)<a class="headerlink" href="#creation-of-labeled-measurements-training-data" title="Permalink to this headline">¶</a></h3>
 <p>Create <span class="math notranslate nohighlight">\(m\)</span> random data pairs <span class="math notranslate nohighlight">\((w_i, l_i)\)</span> of weights and lengths.</p>
@@ -379,7 +397,7 @@ and <strong>“bad”</strong> otherwise.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-RM07_6_0.png" src="_images/nlo-exercise-RM07_6_0.png" />
+<img alt="_images/nlo-exercise-LP03_6_0.png" src="_images/nlo-exercise-LP03_6_0.png" />
 </div>
 </div>
 </section>
@@ -441,7 +459,7 @@ f_{wl}(i) = w_i^2 + l_i^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-RM07_9_0.png" src="_images/nlo-exercise-RM07_9_0.png" />
+<img alt="_images/nlo-exercise-LP03_9_0.png" src="_images/nlo-exercise-LP03_9_0.png" />
 </div>
 </div>
 <p>Regarding the construction of the data set above,
@@ -452,7 +470,7 @@ it is no surprise that <span class="math notranslate nohighlight">\(f_{wl}(i) = 
 <p>For now let’s pretend,
 that the structure of the measurements (test data) is not known,
 and a general quadratic classifier is sought.</p>
-<p>Like in <a class="reference internal" href="nlo-exercise-RM05.html#rm05"><span class="std std-ref">exercise RM05</span></a> this optimization problem
+<p>Like in <a class="reference internal" href="nlo-exercise-LP02.html#lp02"><span class="std std-ref">exercise LP02</span></a> this optimization problem
 can be formulated as LP on the expanded measurement vector:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -523,7 +541,7 @@ without prior knowledge of the test data structure.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-RM07_14_0.png" src="_images/nlo-exercise-RM07_14_0.png" />
+<img alt="_images/nlo-exercise-LP03_14_0.png" src="_images/nlo-exercise-LP03_14_0.png" />
 </div>
 </div>
 <p>The quadratic discrimination function <span class="math notranslate nohighlight">\(f_{quad}(w,l)\)</span> maps all data into higher dimensions
@@ -553,7 +571,7 @@ and projects it to a scalar value to distinguish “good” and “bad” data p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-RM07_16_0.png" src="_images/nlo-exercise-RM07_16_0.png" />
+<img alt="_images/nlo-exercise-LP03_16_0.png" src="_images/nlo-exercise-LP03_16_0.png" />
 </div>
 </div>
 <p>After this “training” the discrimination function can be used to classify other data pairs as well.</p>
@@ -584,31 +602,22 @@ and projects it to a scalar value to distinguish “good” and “bad” data p
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="nlo-exercise-RM06.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">RM06</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nlo-exercise-LP02.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">LP02</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="nlo-lecture-code-listings.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Code Listings</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="nlo-lecture-code-listings.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Code Listings</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -629,8 +638,7 @@ and projects it to a scalar value to distinguish “good” and “bad” data p
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

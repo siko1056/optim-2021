@@ -6,10 +6,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Selected Topics in Mathematical Optimization</title>
+    <title>Interior-Point Methods (IPM) &#8212; Selected Topics in Mathematical Optimization</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -43,6 +43,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -52,8 +54,13 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Penalty methods" href="nlo-lecture-09-penalty.html" />
+    <link rel="prev" title="Constrained minimization algorithms" href="nlo-lecture-07-sqp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -92,12 +99,12 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Seminar notes
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="nlo-lecture-01-optimization-problem.html">
    The optimization problem
@@ -140,8 +147,23 @@
    Constrained minimization algorithms
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Interior-Point Methods (IPM)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-09-penalty.html">
+   Penalty methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="nlo-lecture-10-LP.html">
+   Linear Programming
+  </a>
+ </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Exercises
  </span>
@@ -183,22 +205,22 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-exercise-RM05.html">
-   RM05
+  <a class="reference internal" href="nlo-exercise-LP01.html">
+   LP01
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-exercise-RM06.html">
-   RM06
+  <a class="reference internal" href="nlo-exercise-LP02.html">
+   LP02
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="nlo-exercise-RM07.html">
-   RM07
+  <a class="reference internal" href="nlo-exercise-LP03.html">
+   LP03
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Back matter
  </span>
@@ -292,14 +314,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -308,7 +322,55 @@
         
               <div>
                 
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="interior-point-methods-ipm">
+<h1>Interior-Point Methods (IPM)<a class="headerlink" href="#interior-point-methods-ipm" title="Permalink to this headline">¶</a></h1>
+<p>Penalty-, Barrier-, and Interior-Point Methods are a group of methods
+that solve constrained optimization problems
+iteratively by solving a sequence of unconstrained optimization problems
+and penalizing the violation of constraints:</p>
+<ul class="simple">
+<li><p><strong>Penalty Methods:</strong> impose a penalty for violating a constraint</p></li>
+<li><p><strong>Barrier methods, IPM:</strong> impose a penalty for reaching the boundary
+of an inequality constraint</p></li>
+</ul>
+<p><strong>Idea:</strong> Suppose that the constrained optimization problem has the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ll}
+\textrm{minimize}   &amp; f(x)    \\
+\textrm{subject to} &amp; x \in X.
+\end{array}
+\end{split}\]</div>
+<p>Define <span class="math notranslate nohighlight">\(\mathfrak{b}(x) = 0\)</span> for <span class="math notranslate nohighlight">\(x \in X\)</span>
+and <span class="math notranslate nohighlight">\(\mathfrak{b}(x) = +\infty\)</span> otherwise <strong>(penalty)</strong>.
+Then the constrained problem is equivalent to the unconstrained problem</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{minimize}\quad f(x) {\color{red}{\;+\;\mathfrak{b}(x)}}
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span>.</p>
+<p>Consider the non-linear inequality-constrained optimization problem</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp;     f(x)         &amp; \\
+\textrm{subject to} &amp; g_{j}(x) \leq 0, &amp; j = 1, \ldots, m.
+\end{array}
+\end{split}\]</div>
+<p>IPMs maintain feasibility
+by creating a barrier function <span class="math notranslate nohighlight">\(\beta(x,\mu)\)</span>
+keeping the iterates <span class="math notranslate nohighlight">\(x(\mu^{k})\)</span>
+for decreasing <span class="math notranslate nohighlight">\(\mu = \mu^{k} \to 0\)</span>
+away from the boundary of the feasible region:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; \beta(x,\mu)     &amp; \\
+\textrm{subject to} &amp; g_{j}(x) \leq 0, &amp; j = 1, \ldots, m.
+\end{array}
+\end{split}\]</div>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -332,13 +394,22 @@
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="nlo-lecture-07-sqp.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Constrained minimization algorithms</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="nlo-lecture-09-penalty.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Penalty methods</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -359,8 +430,7 @@
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
