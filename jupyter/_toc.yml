@@ -14,6 +14,9 @@ parts:
     - file: nlo-lecture-05-convex-functions.ipynb
     - file: nlo-lecture-06-con-min-theory.ipynb
     - file: nlo-lecture-07-sqp.ipynb
+    - file: nlo-lecture-08-ipm.ipynb
+    - file: nlo-lecture-09-penalty.ipynb
+    - file: nlo-lecture-10-LP.ipynb
   - caption: Exercises
     chapters:
     - file: nlo-exercise-UM01.ipynb
@@ -23,9 +26,9 @@ parts:
     - file: nlo-exercise-RM02.ipynb
     - file: nlo-exercise-RM03.ipynb
     - file: nlo-exercise-RM04.ipynb
-    - file: nlo-exercise-RM05.ipynb
-    - file: nlo-exercise-RM06.ipynb
-    - file: nlo-exercise-RM07.ipynb
+    - file: nlo-exercise-LP01.ipynb
+    - file: nlo-exercise-LP02.ipynb
+    - file: nlo-exercise-LP03.ipynb
   - caption: Back matter
     chapters:
     - file: nlo-lecture-code-listings.ipynb
