@@ -323,6 +323,13 @@
   <a class="reference internal nav-link" href="#sequential-quadratic-programming-sqp">
    Sequential Quadratic Programming (SQP)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summarizing">
+     Summarizing
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -418,8 +425,9 @@ B &amp; 0
 \end{pmatrix}
 \begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
 = -\begin{pmatrix} \nabla f(x) + B^{T} \mu \\ h(x) \end{pmatrix}
-= -\begin{pmatrix} \nabla_{x} L(x, \mu)    \\ h(x) \end{pmatrix}
+= -\begin{pmatrix} \nabla_{x} L(x, \mu)    \\ h(x) \end{pmatrix},
 \end{split}\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Q := \nabla^{2}_{x,x} L(x, \mu) = \nabla^{2} f(x) + \sum_{j = 1}^{p} \mu_{j} \nabla^{2} h_{j}(x)\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(B := \nabla^{2}_{\mu,x} L(x, \mu) = \)</span>
@@ -470,7 +478,8 @@ B &amp; 0
 \begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
 = -\begin{pmatrix} \nabla_{x} L(x,\mu) \\ h(x) \end{pmatrix}.
 \end{split}\]</div>
-<p>Summarizing:</p>
+<section id="summarizing">
+<h3>Summarizing<a class="headerlink" href="#summarizing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>SQP methods solve a sequence of <strong>quadratic optimization sub-problems</strong>
 (quadratic objective function and linearized constraints).</p></li>
@@ -491,6 +500,7 @@ convergence cannot be guaranteed.</p></li>
 </li>
 <li><p>See exercise <a class="reference internal" href="nlo-exercise-RM04.html#rm04"><span class="std std-ref">RM04</span></a> for an application example.</p></li>
 </ul>
+</section>
 </section>
 </section>
 
