@@ -29,6 +29,7 @@ parts:
     - file: nlo-exercise-LP01.ipynb
     - file: nlo-exercise-LP02.ipynb
     - file: nlo-exercise-LP03.ipynb
+    - file: nlo-exercise-MO01.ipynb
   - caption: Back matter
     chapters:
     - file: nlo-lecture-code-listings.ipynb
