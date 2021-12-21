@@ -336,20 +336,20 @@
 \[
 I = \frac{p}{r^{2}}\cos(\Theta),
 \]</div>
-<p>the <strong>illuminance</strong> on a screen
+<p>the <strong>illuminance</strong> on a patch
 <span class="math notranslate nohighlight">\(I\)</span> (SI unit: lux <span class="math notranslate nohighlight">\([lx = \frac{lm}{m^{2}}]\)</span>)
 depends on:</p>
 <ol class="simple">
 <li><p>the <strong>luminous intensity <span class="math notranslate nohighlight">\(p\)</span></strong> (SI unit: candela <span class="math notranslate nohighlight">\([cd = \frac{lm}{sr}]\)</span>)
 of the lamps,</p></li>
-<li><p>the distance to the respective screen <span class="math notranslate nohighlight">\(r\)</span> (SI unit: meter <span class="math notranslate nohighlight">\([m]\)</span>),</p></li>
-<li><p>the angle <span class="math notranslate nohighlight">\(\Theta\)</span> to between the lamp and screen.</p></li>
+<li><p>the distance to the respective patch <span class="math notranslate nohighlight">\(r\)</span> (SI unit: meter <span class="math notranslate nohighlight">\([m]\)</span>),</p></li>
+<li><p>the angle <span class="math notranslate nohighlight">\(\Theta\)</span> to between the lamp and patch.</p></li>
 </ol>
 <p><img alt="Lamp patch illustration" src="_images/MO01_lamp.png" /></p>
 <p>In case of the given problem data,
 there are <span class="math notranslate nohighlight">\(m = 10\)</span> lamps <span class="math notranslate nohighlight">\(L_{j}\)</span>, <span class="math notranslate nohighlight">\(j = 1, \ldots, m\)</span>,
 with assigned <strong>luminous intensities</strong> <span class="math notranslate nohighlight">\(p_{j}\)</span>
-and <span class="math notranslate nohighlight">\(n = 20\)</span> screens with respective <strong>illumination values</strong>
+and <span class="math notranslate nohighlight">\(n = 20\)</span> patches with respective <strong>illumination values</strong>
 <span class="math notranslate nohighlight">\(I_{k}\)</span>, <span class="math notranslate nohighlight">\(k = 1, \ldots, n\)</span>.</p>
 <p>In the following the SI units are neglected.
 The following linear dependencies between <span class="math notranslate nohighlight">\(I_{k}\)</span> and <span class="math notranslate nohighlight">\(p_{j}\)</span> hold:</p>
@@ -368,7 +368,7 @@ the <strong>luminous intensities</strong> have to be summed up:</p>
 \[
 I_{k} = \sum_{j = 1}^{m} a_{kj} p_{j}.
 \]</div>
-<p>Regarding all <span class="math notranslate nohighlight">\(n = 20\)</span> screens,
+<p>Regarding all <span class="math notranslate nohighlight">\(n = 20\)</span> patches,
 the following overdetermined linear system of equation
 <span class="math notranslate nohighlight">\(I = A \cdot p\)</span> follows:</p>
 <div class="math notranslate nohighlight">
@@ -377,7 +377,7 @@ the following overdetermined linear system of equation
 = \begin{pmatrix} a_{1,1} &amp; \cdots &amp; a_{1,m} \\  \\  \\ \vdots &amp; \ddots &amp; \vdots \\  \\ \\  a_{n,1} &amp; \cdots &amp; a_{n,m} \end{pmatrix} \begin{pmatrix} p_{1} \\ \vdots \\ p_{m} \end{pmatrix}.
 \end{split}\]</div>
 <p>As ultimate goal,
-all screens illuminations <span class="math notranslate nohighlight">\(I_{k}\)</span>
+all patch illuminations <span class="math notranslate nohighlight">\(I_{k}\)</span>
 should be as close as possible to the <strong>desired illumination</strong> <span class="math notranslate nohighlight">\(I_{des}\)</span>.</p>
 <p>Finally,
 the following constrained non-linear optimization problem can be formulated:</p>
@@ -391,8 +391,8 @@ the following constrained non-linear optimization problem can be formulated:</p>
 <p>The objective function formulates a quality measure <span class="math notranslate nohighlight">\(f_{optimal}(p)\)</span>
 depending on the <strong>luminous intensity</strong> of the lamps <span class="math notranslate nohighlight">\(p_{j}\)</span>,
 that minimizes the maximal logarithmic distance
-between the <strong>actual</strong> screen <strong>illumination</strong> <span class="math notranslate nohighlight">\(I_{k} = A_{(k,:)}p\)</span>
-and the <strong>desired</strong> screen <strong>illumination</strong> <span class="math notranslate nohighlight">\(I_{des}\)</span>.</p>
+between the <strong>actual</strong> patch <strong>illumination</strong> <span class="math notranslate nohighlight">\(I_{k} = A_{(k,:)}p\)</span>
+and the <strong>desired</strong> patch <strong>illumination</strong> <span class="math notranslate nohighlight">\(I_{des}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
