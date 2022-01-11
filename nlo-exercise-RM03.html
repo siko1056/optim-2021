@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RM03 &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -335,19 +334,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>RM03</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>RM03</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#numerical-experiment-only-matlab">
    Numerical experiment (only Matlab)
@@ -355,12 +355,14 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="rm03">
+  <div class="tex2jax_ignore mathjax_ignore section" id="rm03">
 <span id="id1"></span><h1>RM03<a class="headerlink" href="#rm03" title="Permalink to this headline">¶</a></h1>
 <p>Consider the following constrained optimization problem:</p>
 <div class="math notranslate nohighlight">
@@ -423,7 +425,7 @@ The KKT conditions cannot be satisfied.</p>
 <img alt="_images/nlo-exercise-RM03_3_0.png" src="_images/nlo-exercise-RM03_3_0.png" />
 </div>
 </div>
-<section id="numerical-experiment-only-matlab">
+<div class="section" id="numerical-experiment-only-matlab">
 <h2>Numerical experiment (only Matlab)<a class="headerlink" href="#numerical-experiment-only-matlab" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -475,8 +477,8 @@ The KKT conditions cannot be satisfied.</p>
 </div>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -500,156 +502,8 @@ The KKT conditions cannot be satisfied.</p>
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="rm03">
-<span id="id1"></span><h1>RM03<a class="headerlink" href="#rm03" title="Permalink to this headline">¶</a></h1>
-<p>Consider the following constrained optimization problem:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{llll}
-\textrm{minimize}   &amp; f(x_1, x_2)     &amp;= x_1 + x_2 &amp; \\
-\textrm{subject to} &amp; g_{1}(x_1, x_2) &amp;= (x_1 - 1)^2 + {x_2}^2 - 1 &amp;= 0, \\
-                    &amp; g_{2}(x_1, x_2) &amp;= (x_1 - 2)^2 + {x_2}^2 - 4 &amp;= 0, \\
-\end{array}
-\end{split}\]</div>
-<p>with</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla     f(x_1, x_2) = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad
-\nabla g_{1}(x_1, x_2) = \nabla g_{2}(x_1, x_2)
-= \begin{pmatrix} 2(x_1 - 1) \\ 2 x_2 \end{pmatrix}.
-\end{split}\]</div>
-<p>The optimal point is
-<span class="math notranslate nohighlight">\(\begin{pmatrix} {x_1}^{*} \\ {x_2}^{*} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\)</span>
-with <span class="math notranslate nohighlight">\(f({x_1}^{*}, {x_2}^{*}) = 0\)</span>.</p>
-<p>However,
-because <span class="math notranslate nohighlight">\(\nabla g_{1}(x_1, x_2) = \nabla g_{2}(x_1, x_2)\)</span>
-are not linear independent,
-the regularity constraint qualification (LICQ) is violated.
-The KKT conditions cannot be satisfied.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Optimal point.</span>
-<span class="n">px</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">py</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="k">function</span><span class="w"> </span><span class="nf">circle </span><span class="p">(</span>x, y, r<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">t</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:(</span><span class="nb">pi</span> <span class="o">/</span> <span class="mi">50</span><span class="p">):</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
-  <span class="n">x</span> <span class="p">=</span> <span class="n">r</span> <span class="o">*</span> <span class="nb">cos</span> <span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
-  <span class="n">y</span> <span class="p">=</span> <span class="n">r</span> <span class="o">*</span> <span class="nb">sin</span> <span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
-  <span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="k">end</span>
-
-<span class="c">% Visualize constrained set of feasible solutions (blue).</span>
-<span class="n">circle</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">circle</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-
-<span class="c">% Visualize scaled gradients of objective function (red arrow)</span>
-<span class="c">% and constraint functions (cyan arrows).</span>
-<span class="nb">quiver</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>   <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">);</span>
-<span class="nb">quiver</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
-<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="s">&#39;- \nabla f ({x_1}^{*}, {x_2}^{*})&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
-<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.8</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;\nabla g_2 ({x_1}^{*}, {x_2}^{*})&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
-<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;\nabla g_1 ({x_1}^{*}, {x_2}^{*})&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
-<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
-<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="mi">2</span> <span class="mi">4</span><span class="p">]);</span>
-<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
-<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;Contour plot&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-RM03_3_0.png" src="_images/nlo-exercise-RM03_3_0.png" />
-</div>
-</div>
-<section id="numerical-experiment-only-matlab">
-<h2>Numerical experiment (only Matlab)<a class="headerlink" href="#numerical-experiment-only-matlab" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">RM03</span><span class="p">()</span><span class="w"></span>
-<span class="w">  </span><span class="c">% Nonlinear objective function.</span>
-  <span class="n">fun</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-
-  <span class="c">% Starting point.</span>
-  <span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
-
-  <span class="c">% Linear inequality constraints A * x &lt;= b.</span>
-  <span class="n">A</span> <span class="p">=</span> <span class="p">[];</span>
-  <span class="n">b</span> <span class="p">=</span> <span class="p">[];</span>
-
-  <span class="c">% Linear equality constraints Aeq * x = beq.</span>
-  <span class="n">Aeq</span> <span class="p">=</span> <span class="p">[];</span>
-  <span class="n">beq</span> <span class="p">=</span> <span class="p">[];</span>
-
-  <span class="c">% Bounds lb &lt;= x &lt;= ub</span>
-  <span class="n">lb</span> <span class="p">=</span> <span class="p">[];</span>
-  <span class="n">ub</span> <span class="p">=</span> <span class="p">[];</span>
-
-  <span class="c">% Call solver.</span>
-  <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="n">lambda</span><span class="p">,</span><span class="n">grad</span><span class="p">,</span><span class="n">hessian</span><span class="p">]</span> <span class="p">=</span> <span class="n">fmincon</span> <span class="p">(</span><span class="n">fun</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">Aeq</span><span class="p">,</span><span class="n">beq</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,@</span><span class="n">nonlcon</span><span class="p">);</span>
-  
-  <span class="c">% Display interesting details.</span>
-  
-  <span class="n">exitflag</span>  <span class="c">% == 1 success</span>
-  <span class="n">output</span>
-  <span class="n">x</span>         <span class="c">% optimal solution</span>
-  <span class="n">fval</span>      <span class="c">% function value at optimal solution</span>
-  <span class="n">grad</span>      <span class="c">% gradient of fun at optimal solution</span>
-  <span class="n">hessian</span>   <span class="c">% Hessian matrix of fun at optimal solution</span>
-  <span class="n">lambda</span>    <span class="c">% Lagrange parameter</span>
-  <span class="n">lambda</span><span class="p">.</span><span class="n">eqnonlin</span>  <span class="c">% lambda_1 and lambda_2</span>
-  
-  <span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;&quot;=&quot;-Constraints&#39;</span><span class="p">)</span>
-  <span class="p">[(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="p">...</span>
-   <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">]</span>
-<span class="k">end</span>
-
-<span class="c">% Nonlinear constraint function for g_1.</span>
-<span class="k">function</span><span class="w"> </span>[c,ceq]<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">nonlcon</span><span class="p">(</span>x<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">c</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">ceq</span> <span class="p">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="p">...</span>
-         <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">];</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-exercise-RM02.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -666,7 +520,7 @@ The KKT conditions cannot be satisfied.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

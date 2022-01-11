@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MO01 - The illumination problem &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -322,19 +321,22 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>MO01 - The illumination problem</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>MO01 - The illumination problem</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="mo01-the-illumination-problem">
+  <div class="tex2jax_ignore mathjax_ignore section" id="mo01-the-illumination-problem">
 <h1>MO01 - The illumination problem<a class="headerlink" href="#mo01-the-illumination-problem" title="Permalink to this headline">¶</a></h1>
 <p>Source: <a class="reference external" href="https://see.stanford.edu/Course/EE364A">https://see.stanford.edu/Course/EE364A</a>
 (<a class="reference external" href="https://see.stanford.edu/materials/lsocoee364a/hw3extra.pdf">hw3extra.pdf</a> task 3).</p>
@@ -467,7 +469,7 @@ and try to find an optimal solution with</p>
 <a class="reference external" href="http://cvxr.com/cvx/">http://cvxr.com/cvx/</a>).</p></li>
 </ol>
 <p><a class="reference external" href="https://see.stanford.edu/materials/lsocoee364a/hw3sol.pdf">Solution hints</a>.</p>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -491,173 +493,8 @@ and try to find an optimal solution with</p>
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="mo01-the-illumination-problem">
-<h1>MO01 - The illumination problem<a class="headerlink" href="#mo01-the-illumination-problem" title="Permalink to this headline">¶</a></h1>
-<p>Source: <a class="reference external" href="https://see.stanford.edu/Course/EE364A">https://see.stanford.edu/Course/EE364A</a>
-(<a class="reference external" href="https://see.stanford.edu/materials/lsocoee364a/hw3extra.pdf">hw3extra.pdf</a> task 3).</p>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Photometry_(optics)">physical law from photometry</a> states</p>
-<div class="math notranslate nohighlight">
-\[
-I = \frac{p}{r^{2}}\cos(\Theta),
-\]</div>
-<p>the <strong>illuminance</strong> on a patch
-<span class="math notranslate nohighlight">\(I\)</span> (SI unit: lux <span class="math notranslate nohighlight">\([lx = \frac{lm}{m^{2}}]\)</span>)
-depends on:</p>
-<ol class="simple">
-<li><p>the <strong>luminous intensity <span class="math notranslate nohighlight">\(p\)</span></strong> (SI unit: candela <span class="math notranslate nohighlight">\([cd = \frac{lm}{sr}]\)</span>)
-of the lamps,</p></li>
-<li><p>the distance to the respective patch <span class="math notranslate nohighlight">\(r\)</span> (SI unit: meter <span class="math notranslate nohighlight">\([m]\)</span>),</p></li>
-<li><p>the angle <span class="math notranslate nohighlight">\(\Theta\)</span> to between the lamp and patch.</p></li>
-</ol>
-<p><img alt="Lamp patch illustration" src="_images/MO01_lamp.png" /></p>
-<p>In case of the given problem data,
-there are <span class="math notranslate nohighlight">\(m = 10\)</span> lamps <span class="math notranslate nohighlight">\(L_{j}\)</span>, <span class="math notranslate nohighlight">\(j = 1, \ldots, m\)</span>,
-with assigned <strong>luminous intensities</strong> <span class="math notranslate nohighlight">\(p_{j}\)</span>
-and <span class="math notranslate nohighlight">\(n = 20\)</span> patches with respective <strong>illumination values</strong>
-<span class="math notranslate nohighlight">\(I_{k}\)</span>, <span class="math notranslate nohighlight">\(k = 1, \ldots, n\)</span>.</p>
-<p>In the following the SI units are neglected.
-The following linear dependencies between <span class="math notranslate nohighlight">\(I_{k}\)</span> and <span class="math notranslate nohighlight">\(p_{j}\)</span> hold:</p>
-<div class="math notranslate nohighlight">
-\[
-I_{k} = \underbrace{\dfrac{1}{r_{kj}^{2}} \max(\cos(\Theta_{kj}), 0)}_{a_{kj}} \; p_{j}
-\]</div>
-<p>with <span class="math notranslate nohighlight">\(r_{kj} = \lVert dVI \rVert\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
-\cos(\Theta_{kj}) = \dfrac{(dVI)^{T} (dVperp)}{\lVert dVI\rVert\cdot\lVert dVperp\rVert}
-\]</div>
-<p>To regard all lamps <span class="math notranslate nohighlight">\(p_{j}\)</span>,
-the <strong>luminous intensities</strong> have to be summed up:</p>
-<div class="math notranslate nohighlight">
-\[
-I_{k} = \sum_{j = 1}^{m} a_{kj} p_{j}.
-\]</div>
-<p>Regarding all <span class="math notranslate nohighlight">\(n = 20\)</span> patches,
-the following overdetermined linear system of equation
-<span class="math notranslate nohighlight">\(I = A \cdot p\)</span> follows:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix} I_{1} \\ \\ \\ \vdots \\ \\ \\ I_{n} \end{pmatrix}
-= \begin{pmatrix} a_{1,1} &amp; \cdots &amp; a_{1,m} \\  \\  \\ \vdots &amp; \ddots &amp; \vdots \\  \\ \\  a_{n,1} &amp; \cdots &amp; a_{n,m} \end{pmatrix} \begin{pmatrix} p_{1} \\ \vdots \\ p_{m} \end{pmatrix}.
-\end{split}\]</div>
-<p>As ultimate goal,
-all patch illuminations <span class="math notranslate nohighlight">\(I_{k}\)</span>
-should be as close as possible to the <strong>desired illumination</strong> <span class="math notranslate nohighlight">\(I_{des}\)</span>.</p>
-<p>Finally,
-the following constrained non-linear optimization problem can be formulated:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{ll}
-\textrm{minimize}   &amp; \displaystyle\max_{k = 1, \ldots, n} |\log{(I_{k})} - \log{(I_{des})}|    \\
-\textrm{subject to} &amp; 0 \leq p_{j} \leq p_{max} \quad j = 1, \ldots, m.
-\end{array}
-\end{split}\]</div>
-<p>The objective function formulates a quality measure <span class="math notranslate nohighlight">\(f_{optimal}(p)\)</span>
-depending on the <strong>luminous intensity</strong> of the lamps <span class="math notranslate nohighlight">\(p_{j}\)</span>,
-that minimizes the maximal logarithmic distance
-between the <strong>actual</strong> patch <strong>illumination</strong> <span class="math notranslate nohighlight">\(I_{k} = A_{(k,:)}p\)</span>
-and the <strong>desired</strong> patch <strong>illumination</strong> <span class="math notranslate nohighlight">\(I_{des}\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-f_{optimal}(p, I_{des})
-:=&amp; \max_{k = 1, \ldots, n} \lvert \log{(I_{k})}      - \log{(I_{des})} \rvert \\
- =&amp; \max_{k = 1, \ldots, n} \lvert \log{(A_{(k,:)}p)} - \log{(I_{des})} \rvert
-\end{aligned}
-\end{split}\]</div>
-<p>Last but not least,
-the constraints might seem trivial,
-but are for a practical application of importance:
-the <strong>luminous intensity</strong> of a lamp <span class="math notranslate nohighlight">\(p_{j}\)</span>
-has the physical constraints that it cannot “shine negative”
-and it cannot “shine brighter than possible”,
-<span class="math notranslate nohighlight">\(0 \leq p_{j} \leq p_{\max}\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="p">=</span> <span class="p">[</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
-     <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">];</span>
-
-<span class="n">m</span> <span class="p">=</span> <span class="nb">size</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c">% number of lamps</span>
-
-<span class="c">% begin and endpoints of patches</span>
-<span class="n">V</span> <span class="p">=</span> <span class="p">[</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">);</span>
-     <span class="p">.</span><span class="mi">4</span><span class="o">*</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">,</span> <span class="p">...</span>
-         <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]];</span>
-<span class="n">n</span> <span class="p">=</span> <span class="nb">size</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c">% number of patches</span>
-
-<span class="nb">plot</span> <span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="s">&#39;ko&#39;</span><span class="p">,</span> <span class="s">&#39;MarkerSize&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">...</span>
-      <span class="s">&#39;MarkerFaceColor&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.9290</span> <span class="mf">0.6940</span> <span class="mf">0.1250</span><span class="p">]);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">V</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="s">&#39;b-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-
-<span class="c">% construct A</span>
-<span class="nb">warning</span><span class="p">(</span><span class="s">&#39;off&#39;</span><span class="p">,</span> <span class="s">&#39;Octave:colon-nonscalar-argument&#39;</span><span class="p">);</span>
-<span class="n">dV</span> <span class="p">=</span> <span class="n">V</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">V</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">);</span> <span class="c">% tangent to patches</span>
-<span class="n">VI</span> <span class="p">=</span> <span class="n">V</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span><span class="p">.</span><span class="mi">5</span><span class="o">*</span><span class="n">dV</span><span class="p">;</span>       <span class="c">% midpoint of patches</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
-  <span class="k">for</span> <span class="n">j</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">m</span>
-    <span class="n">dVI</span> <span class="p">=</span> <span class="n">L</span><span class="p">(:,</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">VI</span><span class="p">(:,</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">dVperp</span> <span class="p">=</span> <span class="nb">null</span> <span class="p">(</span><span class="n">dV</span><span class="p">(:,</span><span class="n">i</span><span class="p">)</span><span class="o">&#39;</span><span class="p">);</span> <span class="c">% upward pointing normal</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">dVperp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">dVperp</span> <span class="p">=</span> <span class="o">-</span><span class="n">dVperp</span><span class="p">;</span>
-    <span class="k">end</span>
-    <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="p">=</span> <span class="nb">max</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dVI</span><span class="o">&#39;*</span><span class="n">dVperp</span><span class="o">/</span><span class="p">...</span>
-      <span class="p">(</span><span class="nb">norm</span><span class="p">(</span><span class="n">dVI</span><span class="p">)</span><span class="o">*</span><span class="nb">norm</span><span class="p">(</span><span class="n">dVperp</span><span class="p">)))</span><span class="o">./</span><span class="nb">norm</span><span class="p">(</span><span class="n">dVI</span><span class="p">)</span>^<span class="mi">2</span><span class="p">;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-MO01_10_0.png" src="_images/nlo-exercise-MO01_10_0.png" />
-</div>
-</div>
-<p>Read task 3 from
-<a class="reference external" href="https://see.stanford.edu/materials/lsocoee364a/hw3extra.pdf">hw3extra.pdf</a>
-and try to find an optimal solution with</p>
-<ol class="simple">
-<li><p>Uniform <span class="math notranslate nohighlight">\(p_{j}\)</span></p></li>
-<li><p>Least-sqares</p></li>
-<li><p>Linear Programming</p></li>
-<li><p>Convex Programming (<a class="reference external" href="https://yalmip.github.io/">https://yalmip.github.io/</a> or
-<a class="reference external" href="http://cvxr.com/cvx/">http://cvxr.com/cvx/</a>).</p></li>
-</ol>
-<p><a class="reference external" href="https://see.stanford.edu/materials/lsocoee364a/hw3sol.pdf">Solution hints</a>.</p>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-exercise-LP03.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -674,7 +511,7 @@ and try to find an optimal solution with</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

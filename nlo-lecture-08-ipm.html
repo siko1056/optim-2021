@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interior-Point Methods (IPM) &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -362,19 +361,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Interior-Point Methods (IPM)</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Interior-Point Methods (IPM)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ipm-example-1-barrier-method">
    IPM: Example 1 - Barrier Method
@@ -409,12 +409,14 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="interior-point-methods-ipm">
+  <div class="tex2jax_ignore mathjax_ignore section" id="interior-point-methods-ipm">
 <h1>Interior-Point Methods (IPM)<a class="headerlink" href="#interior-point-methods-ipm" title="Permalink to this headline">¶</a></h1>
 <p>Penalty-, Barrier-, and Interior-Point Methods are a group of methods
 that solve constrained optimization problems
@@ -492,7 +494,7 @@ notice that <span class="math notranslate nohighlight">\(f(x) \equiv 0\)</span> 
 <img alt="_images/nlo-lecture-08-ipm_4_0.png" src="_images/nlo-lecture-08-ipm_4_0.png" />
 </div>
 </div>
-<section id="ipm-example-1-barrier-method">
+<div class="section" id="ipm-example-1-barrier-method">
 <h2>IPM: Example 1 - Barrier Method<a class="headerlink" href="#ipm-example-1-barrier-method" title="Permalink to this headline">¶</a></h2>
 <p>Consider the non-linear optimization problem:</p>
 <div class="math notranslate nohighlight">
@@ -616,8 +618,8 @@ Under mild conditions <strong>convergence</strong> to the optimal solution can b
 <li><p>Disadvantage: <strong>ill-conditioning</strong> of the Hessian matrix of <span class="math notranslate nohighlight">\(\beta(x,\mu)\)</span>
 for small <span class="math notranslate nohighlight">\(\mu &gt; 0\)</span>.</p></li>
 </ul>
-</section>
-<section id="ipm-example-2-ill-conditioned-hessian-matrix">
+</div>
+<div class="section" id="ipm-example-2-ill-conditioned-hessian-matrix">
 <h2>IPM: Example 2 - Ill-conditioned Hessian matrix<a class="headerlink" href="#ipm-example-2-ill-conditioned-hessian-matrix" title="Permalink to this headline">¶</a></h2>
 <p>Consider the non-linear optimization problem:</p>
 <div class="math notranslate nohighlight">
@@ -766,8 +768,8 @@ However,
 for applying Newton’s method the Hessian matrix <span class="math notranslate nohighlight">\(\nabla_{x,x}^{2} \beta(x,\mu)\)</span>
 for <span class="math notranslate nohighlight">\(\mu = 0.001\)</span> and smaller
 is ill-conditioned and the resulting linear system is difficult to solve.</p>
-</section>
-<section id="a-simple-transformation">
+</div>
+<div class="section" id="a-simple-transformation">
 <h2>A simple transformation<a class="headerlink" href="#a-simple-transformation" title="Permalink to this headline">¶</a></h2>
 <p>Interest was renewed in 1984 by Karmarkar’s paper <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id11">Kar84</a>]</span>.
 Consider a general optimization problem:</p>
@@ -861,8 +863,8 @@ h(x^{k})
 <li><p>The Hessian is now well-conditioned due to the additional variables <span class="math notranslate nohighlight">\(s\)</span>.</p></li>
 <li><p>There are several modifications due to solving Newton’s equations.</p></li>
 </ul>
-</section>
-<section id="ipm-example-3-linear-program">
+</div>
+<div class="section" id="ipm-example-3-linear-program">
 <h2>IPM Example 3 - Linear Program<a class="headerlink" href="#ipm-example-3-linear-program" title="Permalink to this headline">¶</a></h2>
 <p>Consider a <a class="reference internal" href="nlo-lecture-10-LP.html#lp"><span class="std std-ref">Linear Program</span></a> (LP):</p>
 <div class="math notranslate nohighlight">
@@ -930,7 +932,7 @@ The set of feasible points is visualized in the following figure.</p>
 <img alt="_images/nlo-lecture-08-ipm_33_0.png" src="_images/nlo-lecture-08-ipm_33_0.png" />
 </div>
 </div>
-<section id="simplified-ipm-algorithm-for-lp">
+<div class="section" id="simplified-ipm-algorithm-for-lp">
 <h3>Simplified IPM algorithm for LP<a class="headerlink" href="#simplified-ipm-algorithm-for-lp" title="Permalink to this headline">¶</a></h3>
 <p>The following listing sketches a very simplified IPM algorithm
 to solve Linear Programs.
@@ -1043,9 +1045,9 @@ The <strong>central path</strong> is shown in the following figure.</p>
 <p>Already after the first step the simple IPM computes a point
 close to the optimal point and only improves the accuracy
 with decreasing values of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-</section>
-</section>
-<section id="summarizing">
+</div>
+</div>
+<div class="section" id="summarizing">
 <h2>Summarizing<a class="headerlink" href="#summarizing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Interior-Point Methods (IPMs) impose a penalty for reaching the boundary
@@ -1062,8 +1064,8 @@ Specialized solving techniques are required for practical applications.</p></li>
 <li><p>A simplified IPM for LP problems has been presented.</p></li>
 <li><p>Suggested reading <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id6">GNS08</a>]</span> (chapter 16).</p></li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1087,689 +1089,8 @@ Specialized solving techniques are required for practical applications.</p></li>
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="interior-point-methods-ipm">
-<h1>Interior-Point Methods (IPM)<a class="headerlink" href="#interior-point-methods-ipm" title="Permalink to this headline">¶</a></h1>
-<p>Penalty-, Barrier-, and Interior-Point Methods are a group of methods
-that solve constrained optimization problems
-iteratively by solving a sequence of unconstrained optimization problems
-and penalizing the violation of constraints:</p>
-<ul class="simple">
-<li><p><strong>Penalty Methods:</strong> impose a penalty for violating a constraint</p></li>
-<li><p><strong>Barrier methods, IPM:</strong> impose a penalty for reaching the boundary
-of an inequality constraint</p></li>
-</ul>
-<p><strong>Idea:</strong> Suppose that the constrained optimization problem has the form</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{ll}
-\textrm{minimize}   &amp; f(x)    \\
-\textrm{subject to} &amp; x \in X.
-\end{array}
-\end{split}\]</div>
-<p>Define <span class="math notranslate nohighlight">\(\mathfrak{b}(x) = 0\)</span> for <span class="math notranslate nohighlight">\(x \in X\)</span>
-and <span class="math notranslate nohighlight">\(\mathfrak{b}(x) = +\infty\)</span> otherwise <strong>(penalty)</strong>.
-Then the constrained problem is equivalent to the unconstrained problem</p>
-<div class="math notranslate nohighlight">
-\[
-\textrm{minimize}\quad f(x) {\color{red}{\;+\;\mathfrak{b}(x)}}
-\]</div>
-<p>for all <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span>.</p>
-<p>Consider the non-linear inequality-constrained optimization problem</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lll}
-\textrm{minimize}   &amp;     f(x)         &amp; \\
-\textrm{subject to} &amp; g_{j}(x) \geq 0, &amp; j = 1, \ldots, m.
-\end{array}
-\end{split}\]</div>
-<p>IPMs maintain feasibility
-by creating a barrier function <span class="math notranslate nohighlight">\(\beta(x,\mu)\)</span>
-keeping the iterates <span class="math notranslate nohighlight">\(x(\mu^{k})\)</span>
-for decreasing <span class="math notranslate nohighlight">\(\mu = \mu^{k} \to 0\)</span>
-away from the boundary of the feasible region:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lrll}
-\textrm{minimize}   &amp; \beta(x,\mu) &amp;:= f(x) {\color{red}{\;-\; \mu \displaystyle\sum_{j = 1}^{m}\log(g_{j}(x))}} &amp; \\
-\textrm{subject to} &amp; g_{j}(x) &amp;&gt; 0, &amp; j = 1, \ldots, m, \\
-&amp; \mu &amp;&gt; 0. &amp;
-\end{array}
-\end{split}\]</div>
-<p><strong>Example:</strong> <span class="math notranslate nohighlight">\(\beta(x,\mu) := 0 - \mu\left( \log(x - a) + \log(b - x) \right)\)</span>,
-notice that <span class="math notranslate nohighlight">\(f(x) \equiv 0\)</span> implies that each feasible point <span class="math notranslate nohighlight">\(x \in [a, b]\)</span> is optimal.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">b</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="nb">beta</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="p">)</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="nb">log</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nb">log</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">x</span><span class="p">));</span>
-<span class="n">mu</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mf">0.1</span><span class="p">;</span> <span class="mf">0.01</span><span class="p">];</span>
-<span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="n">y</span> <span class="p">=</span> <span class="nb">beta</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">);</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">plot</span> <span class="p">([</span><span class="n">a</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
-<span class="nb">plot</span> <span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
-<span class="nb">plot</span> <span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
-<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="mi">4</span><span class="p">]);</span>
-<span class="nb">legend</span> <span class="p">(</span><span class="nb">strcat</span> <span class="p">({</span><span class="s">&#39;\mu = &#39;</span><span class="p">},</span> <span class="p">...</span>
-  <span class="nb">cellfun</span> <span class="p">(@</span><span class="n">num2str</span><span class="p">,</span> <span class="n">num2cell</span> <span class="p">(</span><span class="n">mu</span><span class="p">),</span> <span class="p">...</span>
-    <span class="s">&#39;UniformOutput&#39;</span><span class="p">,</span> <span class="nb">false</span><span class="p">)),</span> <span class="p">...</span>
-  <span class="s">&#39;Location&#39;</span><span class="p">,</span> <span class="s">&#39;North&#39;</span><span class="p">);</span>
-<span class="nb">text</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">);</span>
-<span class="nb">text</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">);</span>
-<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-08-ipm_4_0.png" src="_images/nlo-lecture-08-ipm_4_0.png" />
-</div>
-</div>
-<section id="ipm-example-1-barrier-method">
-<h2>IPM: Example 1 - Barrier Method<a class="headerlink" href="#ipm-example-1-barrier-method" title="Permalink to this headline">¶</a></h2>
-<p>Consider the non-linear optimization problem:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{llll}
-\textrm{minimize}   &amp; f(x_{1}, x_{2})     =&amp; x_{1} - 2 x_{2} &amp; \\
-\textrm{subject to} &amp; g_{1}(x_{1}, x_{2}) =&amp; 1 + x_{1} - x_{2}^{2} &amp;\geq 0, \\
-&amp; g_{2}(x_{1}, x_{2}) =&amp; x_{2} &amp;\geq 0.
-\end{array}
-\end{split}\]</div>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Optimal point.</span>
-<span class="n">px</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">py</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">pz</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
-
-<span class="p">[</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span><span class="nb">linspace</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">500</span><span class="p">));</span>
-<span class="n">FX</span> <span class="p">=</span> <span class="n">X1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">X2</span><span class="p">;</span>
-
-<span class="c">% Remove infeasible points.</span>
-<span class="n">FX</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">X1</span> <span class="o">-</span> <span class="n">X2</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">=</span> <span class="nb">inf</span><span class="p">;</span>
-<span class="nb">surf</span> <span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">FX</span><span class="p">);</span>
-<span class="nb">shading</span> <span class="n">flat</span><span class="p">;</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot3</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
-<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
-<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x_1,x_2)&#39;</span><span class="p">);</span>
-<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;3D plot&#39;</span><span class="p">);</span>
-<span class="nb">view</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-08-ipm_6_0.png" src="_images/nlo-lecture-08-ipm_6_0.png" />
-</div>
-</div>
-<p>Then the logarithmic barrier function gives the unconstrained problem</p>
-<div class="math notranslate nohighlight">
-\[
-\min\limits_{x} \beta(x,\mu) :=
-x_{1} - 2 x_{2} - \mu \log( 1 + x_{1} - x_{2}^{2} ) - \mu \log( x_{2} )
-\]</div>
-<p>for a sequence of decreasing barrier parameters.
-For a specific parameter <span class="math notranslate nohighlight">\(\mu\)</span>,
-the first-order necessary conditions for optimality are:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
- 1 - \frac{\mu}{1 + x_{1} - x_{2}^{2}} &amp; = 0, \\
--2 - \frac{2 \mu x_{2}}{1 + x_{1} - x_{2}^{2}} - \frac{\mu}{x_{2}} &amp; = 0.
-\end{aligned}
-\end{split}\]</div>
-<p>If the constraints are strictly satisfied,
-the denominators are positive.
-An equation for <span class="math notranslate nohighlight">\(x_{2}\)</span> can be derived:</p>
-<div class="math notranslate nohighlight">
-\[
-x_{2}^{2} - x_{2} - \frac{1}{2}\mu = 0.
-\]</div>
-<p>This equation can be solved to determine <span class="math notranslate nohighlight">\(x_{2}\)</span> and <span class="math notranslate nohighlight">\(x_{1}\)</span> in terms of <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-x_{1}(\mu) &amp;= \frac{\sqrt{1 + 2\mu} + 3\mu - 1}{2}, \\
-x_{2}(\mu) &amp;= \frac{\sqrt{1 + 2\mu} + 1}{2}.
-\end{aligned}
-\end{split}\]</div>
-<p>The unconstrained objective is strictly convex
-and hence this solution is the unique local minimizer in the feasible region.
-As <span class="math notranslate nohighlight">\(\mu\)</span> approaches zero</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\lim_{\mu \to 0_{+}} x_{1}(\mu) &amp;= \frac{\sqrt{1 + 2\mu} + 3\mu - 1}{2} &amp;= 0, \\
-\lim_{\mu \to 0_{+}} x_{2}(\mu) &amp;= \frac{\sqrt{1 + 2\mu} + 1}{2} &amp;= 1.
-\end{aligned}
-\end{split}\]</div>
-<p>One can verify that <span class="math notranslate nohighlight">\(x^{*} = (0, 1)^{T}\)</span> is indeed the solution to this optimization problem.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="p">=</span> <span class="p">@(</span><span class="n">mu</span><span class="p">)</span> <span class="p">(</span><span class="nb">sqrt</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mu</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">mu</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">x2</span> <span class="p">=</span> <span class="p">@(</span><span class="n">mu</span><span class="p">)</span> <span class="p">(</span><span class="nb">sqrt</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mu</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-<span class="n">mu</span> <span class="p">=</span> <span class="mf">10.</span>^<span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">x1</span> <span class="p">=</span> <span class="n">x1</span><span class="p">(</span><span class="n">mu</span><span class="p">);</span>
-<span class="n">x2</span> <span class="p">=</span> <span class="n">x2</span><span class="p">(</span><span class="n">mu</span><span class="p">);</span>
-<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;  mu        x1(mu)      x2(mu) &#39;</span><span class="p">)</span>
-<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;-------------------------------&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span> <span class="p">(</span><span class="n">mu</span><span class="p">)</span>
-  <span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;10^(%2d)   %.7f   %.7f\n&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x1</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">x2</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  mu        x1(mu)      x2(mu) 
--------------------------------
-10^( 0)   1.8660254   1.3660254
-10^(-1)   0.1977226   1.0477226
-10^(-2)   0.0199752   1.0049752
-10^(-3)   0.0019998   1.0004998
-10^(-4)   0.0002000   1.0000500
-10^(-5)   0.0000200   1.0000050
-10^(-6)   0.0000020   1.0000005
-</pre></div>
-</div>
-</div>
-</div>
-<p>This example demonstrates a number of features typical for IPMs:</p>
-<ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is convex,
-then <span class="math notranslate nohighlight">\(\beta(x,\mu)\)</span> is strictly convex,
-since the barrier function is strictly convex,
-and the minimizer <span class="math notranslate nohighlight">\(x(\mu)\)</span> is unique.</p></li>
-<li><p><strong>Central path</strong>
-<span class="math notranslate nohighlight">\(\{ x(\mu) := \arg\min\limits_{x} \beta(x,\mu) \colon \mu &gt; 0 \}\)</span>.
-IPMs that maintain close to the central path are called
-<strong>path-following IPMs</strong>.
-Under mild conditions <strong>convergence</strong> to the optimal solution can be proved.</p></li>
-<li><p>Disadvantage: <strong>ill-conditioning</strong> of the Hessian matrix of <span class="math notranslate nohighlight">\(\beta(x,\mu)\)</span>
-for small <span class="math notranslate nohighlight">\(\mu &gt; 0\)</span>.</p></li>
-</ul>
-</section>
-<section id="ipm-example-2-ill-conditioned-hessian-matrix">
-<h2>IPM: Example 2 - Ill-conditioned Hessian matrix<a class="headerlink" href="#ipm-example-2-ill-conditioned-hessian-matrix" title="Permalink to this headline">¶</a></h2>
-<p>Consider the non-linear optimization problem:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{llll}
-\textrm{minimize}   &amp; f(x)     =&amp; x_{1}^{2} + x_{2}^{2} &amp; \\
-\textrm{subject to} &amp; g_{1}(x) =&amp; x_{1} - 1 &amp;\geq 0, \\
-&amp; g_{2}(x) =&amp; x_{2} + 1 &amp;\geq 0.
-\end{array}
-\end{split}\]</div>
-<p>The solution to this problem is <span class="math notranslate nohighlight">\(x^{*} = (1, 0)^{T}\)</span>.
-The first inequality is active at <span class="math notranslate nohighlight">\(x^{*}\)</span>,
-and the corresponding Lagrange multiplier is <span class="math notranslate nohighlight">\(\lambda_{1}^{*} = 2\)</span>.
-The second constraint is inactive;
-hence its Lagrange multiplier is <span class="math notranslate nohighlight">\(\lambda_{2}^{*} = 0\)</span>.</p>
-<blockquote>
-<div><p>Try to show this using the <a class="reference internal" href="nlo-lecture-06-con-min-theory.html#theorem9"><span class="std std-ref">KKT optimality conditions</span></a>.</p>
-</div></blockquote>
-<p>The Lagrangian is</p>
-<div class="math notranslate nohighlight">
-\[
-L(x,\lambda) :=
-x_{1}^{2} + x_{2}^{2} - \lambda_{1} ( x_{1} - 1 ) - \lambda_{2} ( x_{2} + 1 )
-\]</div>
-<p>and respective the stationary conditions are</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\nabla_{x_{1}} L(x,\lambda) &amp;= 2x_{1} - \lambda_{1} = 0, \\
-\nabla_{x_{2}} L(x,\lambda) &amp;= 2x_{2} - \lambda_{2} = 0.
-\end{aligned}
-\end{split}\]</div>
-<p>Suppose the problem is solved via a logarithmic barrier function
-using an unconstrained minimization solver such as Newton’s method:</p>
-<div class="math notranslate nohighlight">
-\[
-\min\limits_{x} \beta(x,\mu) :=
-x_{1}^{2} + x_{2}^{2} - \mu \log( x_{1} - 1 ) - \mu \log( x_{2} + 1 )
-\]</div>
-<p>for a decreasing sequence of barrier parameters <span class="math notranslate nohighlight">\(\mu\)</span> that converge to zero.
-The first-order necessary conditions for optimality <span class="math notranslate nohighlight">\(\nabla_{x} \beta(x,\mu) = 0\)</span> are:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-2x_{1} - \underbrace{\frac{\mu}{x_{1} - 1}}_{{\color{red}{KKT\;\lambda_{1}}}} &amp;= 0, \\
-2x_{2} - \underbrace{\frac{\mu}{x_{2} + 1}}_{{\color{red}{KKT\;\lambda_{2}}}} &amp;= 0,
-\end{aligned}
-\end{split}\]</div>
-<p>yielding the unconstrained minimizers</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-x_{1}(\mu) &amp;= \frac{ 1 + \sqrt{1 + 2\mu}}{2}, \\
-x_{2}(\mu) &amp;= \frac{-1 + \sqrt{1 + 2\mu}}{2}.
-\end{aligned}
-\end{split}\]</div>
-<p>From the KKT stationary conditions for small <span class="math notranslate nohighlight">\(\mu &gt; 0\)</span> one obtains</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\lambda_{1}(\mu) := 2x_{1}(\mu) \approx 2, \\
-\lambda_{2}(\mu) := 2x_{2}(\mu) \approx 0.
-\end{aligned}
-\end{split}\]</div>
-<p>Since</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla_{x,x}^{2} \beta(x,\mu) =
-\begin{pmatrix}
-2 + \dfrac{\mu}{(x_{1} - 1)^{2}} &amp; 0 \\
-0 &amp; 2 + \dfrac{\mu}{(x_{2} - 1)^{2}}
-\end{pmatrix}
-\end{split}\]</div>
-<p>for small <span class="math notranslate nohighlight">\(\mu\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla_{x,x}^{2} \beta(x,\mu) =
-\begin{pmatrix}
-2 + \dfrac{\lambda_{1}^{2}(\mu)}{\mu} &amp; 0 \\
-0 &amp; 2 + \dfrac{\lambda_{2}^{2}(\mu)}{\mu}
-\end{pmatrix}
-\approx
-\begin{pmatrix}
-2 + \dfrac{4}{\mu} &amp; 0 \\
-0 &amp; 2
-\end{pmatrix}
-\end{split}\]</div>
-<p>The condition number of the Hessian matrix is approximately equal to</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{2 + \frac{4}{\mu}}{2} = 1 + \frac{2}{\mu} = O \left( \frac{1}{\mu} \right).
-\]</div>
-<p>Hence the matrix is ill-conditioned.
-Although the calculations were performed for a point on the barrier trajectory,
-the same results will hold at all points in a neighborhood of the solution.</p>
-<p>The ill-conditioning of the Hessian rules out unconstrained methods such as
-<a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#newtons-method"><span class="std std-ref">Newton’s method</span></a>, trust region methods etc.,
-and led to their abandonment.</p>
-<p>To get the idea right,
-consider the following two plots of the barrier function <span class="math notranslate nohighlight">\(\beta(x,\mu)\)</span>
-for <span class="math notranslate nohighlight">\(\mu = 1\)</span> and <span class="math notranslate nohighlight">\(\mu = 0.001\)</span>.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Optimal point.</span>
-<span class="n">px</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">py</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">pz</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-
-<span class="p">[</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">));</span>
-<span class="n">FX</span> <span class="p">=</span> <span class="p">@(</span><span class="n">mu</span><span class="p">)</span> <span class="n">X1</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X2</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">.*</span> <span class="nb">log</span><span class="p">(</span> <span class="n">X1</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">.*</span> <span class="nb">log</span><span class="p">(</span> <span class="n">X2</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">);</span>
-
-<span class="nb">surf</span> <span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">FX</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="nb">shading</span> <span class="n">flat</span><span class="p">;</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot3</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
-<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
-<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x_1,x_2)&#39;</span><span class="p">);</span>
-<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;3D plot \beta(x,\mu = 1)&#39;</span><span class="p">);</span>
-<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
-
-<span class="nb">figure</span>
-
-<span class="nb">surf</span> <span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">FX</span><span class="p">(</span><span class="mf">0.001</span><span class="p">));</span>
-<span class="nb">shading</span> <span class="n">flat</span><span class="p">;</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot3</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
-<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
-<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x_1,x_2)&#39;</span><span class="p">);</span>
-<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;3D plot \beta(x,\mu = 0.001)&#39;</span><span class="p">);</span>
-<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-08-ipm_22_0.png" src="_images/nlo-lecture-08-ipm_22_0.png" />
-<img alt="_images/nlo-lecture-08-ipm_22_1.png" src="_images/nlo-lecture-08-ipm_22_1.png" />
-</div>
-</div>
-<p>As seen previous exercises and the theory for unconstrained optimization problems,
-the second figure has an “ideal shape” for applying Newton’s method,
-compared to the first figure.
-The minimum (red circle) is clearly at “the bottom” of the bowl-shaped function.
-However,
-for applying Newton’s method the Hessian matrix <span class="math notranslate nohighlight">\(\nabla_{x,x}^{2} \beta(x,\mu)\)</span>
-for <span class="math notranslate nohighlight">\(\mu = 0.001\)</span> and smaller
-is ill-conditioned and the resulting linear system is difficult to solve.</p>
-</section>
-<section id="a-simple-transformation">
-<h2>A simple transformation<a class="headerlink" href="#a-simple-transformation" title="Permalink to this headline">¶</a></h2>
-<p>Interest was renewed in 1984 by Karmarkar’s paper <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id11">Kar84</a>]</span>.
-Consider a general optimization problem:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lll}
-\textrm{minimize}   &amp; f(x)             &amp; \\
-\textrm{subject to} &amp; g_{i}(x) \leq 0, &amp; i = 1, \ldots, m, \\
-                    &amp; h_{j}(x) =    0, &amp; j = 1, \ldots, p,
-\end{array}
-\end{split}\]</div>
-<p>The optimality conditions of our barrier problem</p>
-<div class="math notranslate nohighlight">
-\[
-\textrm{minimize}\quad \beta(x,\mu,y) :=
-f(x) - \mu \displaystyle\sum_{i = 1}^{m}\log(g_{i}(x))
-+ \displaystyle\sum_{j = 1}^{p} y_{j} h_{j}(x)
-\]</div>
-<p>with lagrange multiplier <span class="math notranslate nohighlight">\(y \in \mathbb{R}^{p}\)</span> are</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\nabla_{x} \beta(x,\mu,y)
-= \nabla f(x) - \displaystyle\sum_{i = 1}^{m} {\color{red}{\frac{\mu}{g_{i}(x)}}} \nabla g_{i}(x)
-  + \displaystyle\sum_{j = 1}^{p} y_{j} \nabla h_{j}(x) &amp; \\
-= \nabla f(x) - \displaystyle\sum_{i = 1}^{m} {\color{red}{s_{i}}} \nabla g_{i}(x) 
-  + \displaystyle\sum_{j = 1}^{p} y_{j} \nabla h_{j}(x) &amp;= 0 \\
-g_{i}(x) &amp;&gt; 0, \quad i = 1, \ldots, m, \\
-h_{j}(x) &amp;= 0, \quad j = 1, \ldots, p,
-\end{aligned}
-\end{split}\]</div>
-<p>with the additional variables <span class="math notranslate nohighlight">\(s_{i} := \dfrac{\mu}{g_{i}(x)} &gt; 0\)</span> for interior points.</p>
-<p>Hence,
-the <strong>first-order optimality conditions of the barrier problem</strong> are</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\nabla f(x) - \displaystyle\sum_{i = 1}^{m} s_{i} \nabla g_{i}(x) 
-  + \displaystyle\sum_{j = 1}^{p} y_{j} \nabla h_{j}(x) &amp;= 0, \\
-h_{j}(x) &amp;= 0, \\
-g_{i}(x) &amp;&gt; 0, \\
-{\color{red}{s_{i} g_{i}(x)}} &amp;= {\color{red}{\mu}}, \\
-s_{i} &amp;&gt; 0,
-\end{aligned}
-\end{split}\]</div>
-<p>for <span class="math notranslate nohighlight">\(i = 1, \ldots, m\)</span> and <span class="math notranslate nohighlight">\(j = 1, \ldots, p\)</span>.</p>
-<p>The equations can be rewritten as <strong>non-linear system of equations</strong>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\nabla f(x) - G'(x)^{T}s + H'(x)^{T}y &amp;= 0, \\
-h(x) &amp;= 0, \\
-{\color{red}{G(x)s \;-\; M}} &amp;= 0,
-\end{aligned}
-\end{split}\]</div>
-<p>with
-<span class="math notranslate nohighlight">\(G(x) := \begin{pmatrix} g_{1}(x) &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; g_{m}(x) \end{pmatrix}\)</span>
-and Jacobian matrix
-<span class="math notranslate nohighlight">\(G'(x) := \begin{pmatrix} \nabla^{T} g_{1}(x) \\ \vdots \\ \nabla^{T} g_{m}(x) \end{pmatrix}\)</span>,
-<span class="math notranslate nohighlight">\(h(x) := \begin{pmatrix} h_{1}(x) \\ \vdots \\ h_{p}(x) \end{pmatrix}\)</span>,
-<span class="math notranslate nohighlight">\(H'(x) := \begin{pmatrix} \nabla^{T} h_{1}(x) \\ \vdots \\ \nabla^{T} h_{p}(x) \end{pmatrix}\)</span>,
-<span class="math notranslate nohighlight">\(s := \begin{pmatrix} s_{1} \\ \vdots \\ s_{m} \end{pmatrix}\)</span>,
-and <span class="math notranslate nohighlight">\(M := \begin{pmatrix} \mu \\ \vdots \\ \mu \end{pmatrix}\)</span>.</p>
-<p>Finally,
-one can apply <strong>Newton’s method</strong></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix} x^{k + 1} \\ s^{k + 1} \\ y^{k + 1} \end{pmatrix}
-= \begin{pmatrix} x^{k} \\ s^{k} \\ y^{k} \end{pmatrix}
-+ \begin{pmatrix} \Delta x \\ \Delta s \\ \Delta y \end{pmatrix}.
-\end{split}\]</div>
-<p>The <strong>linear Newton equation</strong> has the form (cf. <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span>, p. 610):</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix}
-\nabla^{2} f(x^{k}) - \displaystyle\sum_{i = 1}^{m} s^{k}_{i} \nabla^{2} g_{i}(x^{k})
-  + \displaystyle\sum_{j = 1}^{p} y^{k}_{j} \nabla^{2} h_{j}(x^{k})
-&amp; -G'(x^{k})^{T} &amp; H'(x^{k})^{T} \\
-\operatorname {diag}(s^{k}) G'(x^{k}) &amp; G(x^{k}) &amp; 0 \\
-H'(x^{k}) &amp; 0 &amp; 0
-\end{pmatrix}
-\begin{pmatrix} \Delta x \\ \Delta s \\ \Delta y \end{pmatrix}
-=
--\begin{pmatrix}
-\nabla f(x^{k}) - G'(x^{k})^{T}s^{k} + H'(x^{k})^{T}y^{k} \\
-G(x^{k})s^{k} - M \\
-h(x^{k})
-\end{pmatrix}.
-\end{split}\]</div>
-<ul class="simple">
-<li><p>The Hessian is now well-conditioned due to the additional variables <span class="math notranslate nohighlight">\(s\)</span>.</p></li>
-<li><p>There are several modifications due to solving Newton’s equations.</p></li>
-</ul>
-</section>
-<section id="ipm-example-3-linear-program">
-<h2>IPM Example 3 - Linear Program<a class="headerlink" href="#ipm-example-3-linear-program" title="Permalink to this headline">¶</a></h2>
-<p>Consider a <a class="reference internal" href="nlo-lecture-10-LP.html#lp"><span class="std std-ref">Linear Program</span></a> (LP):</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{llll}
-\textrm{minimize}   &amp; f(x) &amp;= c^{T} x \\
-\textrm{subject to} &amp; h(x) &amp;= Ax - b &amp;= 0, \\
-&amp; g(x) &amp;= x &amp;\geq 0,
-\end{array}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(c,x \in \mathbb{R}^{n}\)</span>,
-<span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>,
-and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{m}\)</span>,
-the comparision operator <span class="math notranslate nohighlight">\(\geq\)</span> is element-wise.</p>
-<p>Constructing the linear Newton equation above
-is straight forward for LPs:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{pmatrix}
-0 &amp; -I &amp; A^{T} \\
-\operatorname {diag}(s^{k}) &amp; \operatorname {diag}(x^{k}) &amp; 0 \\
-A &amp; 0 &amp; 0
-\end{pmatrix}
-\begin{pmatrix} \Delta x \\ \Delta s \\ \Delta y \end{pmatrix}
-=
--\begin{pmatrix}
-c - s^{k} + A^{T}y^{k} \\
-\operatorname {diag}(x^{k})s^{k} - M \\
-A x^{k} - b
-\end{pmatrix},
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(I \in \mathbb{R}^{n \times n}\)</span> is the unit matrix.</p>
-<p>Now the theory should be applied to a small LP
-to construct a strongly simplified IPM solution algorithm.
-Consider:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lrl}
-\textrm{minimize}   &amp; \begin{pmatrix} 4 &amp; 3 \end{pmatrix} x \\
-\textrm{subject to} &amp; \begin{pmatrix} 2 &amp; 4 \\ 3 &amp; 2 \end{pmatrix} x 
-&amp;\leq \begin{pmatrix} 220 \\ 150 \end{pmatrix}, \\
-&amp; x &amp;\geq 0,
-\end{array}
-\end{split}\]</div>
-<p>with optimal point <span class="math notranslate nohighlight">\(x^{*} = (20, 45)^{T}\)</span>
-and optimal objective function value <span class="math notranslate nohighlight">\(215\)</span>.
-The set of feasible points is visualized in the following figure.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="n">y1</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">220</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span>
-<span class="n">y2</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">150</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-<span class="nb">fill</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">55</span><span class="p">],</span> <span class="p">...</span>
-      <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
-<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="mi">55</span><span class="p">]);</span>
-<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="mi">60</span><span class="p">]);</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-08-ipm_33_0.png" src="_images/nlo-lecture-08-ipm_33_0.png" />
-</div>
-</div>
-<section id="simplified-ipm-algorithm-for-lp">
-<h3>Simplified IPM algorithm for LP<a class="headerlink" href="#simplified-ipm-algorithm-for-lp" title="Permalink to this headline">¶</a></h3>
-<p>The following listing sketches a very simplified IPM algorithm
-to solve Linear Programs.
-See also <a class="reference internal" href="nlo-lecture-code-listings.html#lp-solver"><span class="std std-ref">lp_solver.m</span></a> in the appendix.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% LP data converted to equality constraints using slack variables.</span>
-<span class="n">c</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">4</span> <span class="mi">3</span>  <span class="mi">0</span>  <span class="mi">0</span> <span class="p">]</span><span class="o">&#39;</span><span class="p">;</span>
-<span class="n">A</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">2</span> <span class="mi">4</span> <span class="o">-</span><span class="mi">1</span>  <span class="mi">0</span><span class="p">;</span> <span class="p">...</span>
-      <span class="mi">3</span> <span class="mi">2</span>  <span class="mi">0</span> <span class="o">-</span><span class="mi">1</span> <span class="p">];</span>
-<span class="n">b</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">220</span><span class="p">;</span> <span class="mi">150</span> <span class="p">];</span>
-
-<span class="n">n</span> <span class="p">=</span> <span class="nb">length</span> <span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="n">m</span> <span class="p">=</span> <span class="nb">length</span> <span class="p">(</span><span class="n">b</span><span class="p">);</span>
-
-<span class="c">% Hessian matrix for Newton step.</span>
-<span class="n">H</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="p">[</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="o">-</span><span class="nb">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span>          <span class="n">A</span><span class="o">&#39;</span><span class="p">;</span> <span class="p">...</span>
-              <span class="nb">diag</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">diag</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span> <span class="p">...</span>
-                    <span class="n">A</span><span class="p">,</span>       <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="n">m</span><span class="p">)</span> <span class="p">];</span>
-
-<span class="c">% Gradient vector for Newton step.</span>
-<span class="n">G</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">mu</span><span class="p">)</span> <span class="p">[</span> <span class="n">c</span> <span class="o">-</span> <span class="n">s</span> <span class="o">+</span> <span class="n">A</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span> <span class="p">...</span>
-                  <span class="n">x</span> <span class="o">.*</span> <span class="n">s</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="nb">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="p">...</span>
-                  <span class="n">A</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span> <span class="p">];</span>
-
-<span class="c">% Initial values.  x should be an inner LP point.</span>
-<span class="n">x</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">10</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">]</span><span class="o">&#39;</span><span class="p">;</span>
-<span class="n">s</span> <span class="p">=</span> <span class="nb">ones</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">y</span> <span class="p">=</span> <span class="nb">ones</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">mu</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
-
-<span class="c">% Track central path.</span>
-<span class="n">xpath</span> <span class="p">=</span> <span class="n">x</span><span class="p">;</span>
-
-<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Iteration   fval     ||dx||      ||dy||      ||ds||\n&#39;</span><span class="p">)</span>
-
-<span class="c">% Newton iteration.</span>
-<span class="c">% Assume 10 steps would be enough.</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
-
-  <span class="c">% Newton step on optimality conditions.</span>
-  <span class="n">d</span> <span class="p">=</span> <span class="n">H</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="o">\</span> <span class="o">-</span><span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">mu</span><span class="p">);</span>
-  
-  <span class="c">% Stop iteration if x does not change any more.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="s">&#39;inf&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">)</span>
-    <span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;\nIPM converged in step %d.\n\n&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-    <span class="k">break</span><span class="p">;</span>
-  <span class="k">end</span>
-
-  <span class="c">% Update variables.</span>
-  <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">);</span>
-  <span class="n">s</span> <span class="p">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
-  <span class="n">y</span> <span class="p">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">));</span>
-  
-  <span class="n">mu</span> <span class="p">=</span> <span class="n">mu</span>^<span class="mi">2</span><span class="p">;</span>  <span class="c">% Shrink mu fast. </span>
-  
-  <span class="c">% Output step statistics.</span>
-  <span class="n">xpath</span><span class="p">(:,</span><span class="k">end</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">;</span>
-  <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%5d      %.2f   %.2e    %.2e    %.2e\n&#39;</span><span class="p">,</span> <span class="p">...</span>
-    <span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="o">&#39;*</span><span class="n">x</span><span class="p">,</span> <span class="p">...</span>
-    <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="s">&#39;inf&#39;</span><span class="p">),</span> <span class="p">...</span>
-    <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span> <span class="s">&#39;inf&#39;</span><span class="p">),</span> <span class="p">...</span>
-    <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)),</span> <span class="s">&#39;inf&#39;</span><span class="p">));</span>
-<span class="k">end</span>
-
-<span class="c">% Output optimal point.</span>
-<span class="n">x</span> <span class="p">=</span> <span class="n">x</span><span class="o">&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration   fval     ||dx||      ||dy||      ||ds||
-    1      215.14   3.50e+01    4.49e+00    2.19e+00
-    2      214.97   1.32e-01    3.49e+00    1.06e+00
-    3      215.00   9.86e-02    2.76e-03    2.06e-03
-    4      215.00   5.47e-04    1.06e-05    4.06e-06
-
-IPM converged in step 5.
-
-x =
-
-   2.0000e+01   4.5000e+01   7.6510e-08   7.9108e-09
-</pre></div>
-</div>
-</div>
-</div>
-<p>After five steps an optimal point with accuracy of <span class="math notranslate nohighlight">\(10^{-6}\)</span> was found.
-The <strong>central path</strong> is shown in the following figure.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-<span class="n">y1</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">220</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span>
-<span class="n">y2</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">150</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-<span class="nb">fill</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">55</span><span class="p">],</span> <span class="p">...</span>
-      <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
-<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="mi">55</span><span class="p">]);</span>
-<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="mi">60</span><span class="p">]);</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">xpath</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">xpath</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="s">&#39;bo-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-08-ipm_37_0.png" src="_images/nlo-lecture-08-ipm_37_0.png" />
-</div>
-</div>
-<p>Already after the first step the simple IPM computes a point
-close to the optimal point and only improves the accuracy
-with decreasing values of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-</section>
-</section>
-<section id="summarizing">
-<h2>Summarizing<a class="headerlink" href="#summarizing" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Interior-Point Methods (IPMs) impose a penalty for reaching the boundary
-of an inequality constraint.</p></li>
-<li><p>IPM uses a barrier function
-<span class="math notranslate nohighlight">\(\beta(x,\mu) := f(x) - \mu \displaystyle\sum_{i = 1}^{m}\log(g_{i}(x))\)</span>
-to achieve this goal.</p></li>
-<li><p>Solving the first-order optimality condition with Newton’s Method
-is difficult due to an <strong>ill-conditioned Hessian matrix</strong>.</p></li>
-<li><p>Introducing additional variables <span class="math notranslate nohighlight">\(s_{i} := \frac{\mu}{g_{i}(x)} &gt; 0\)</span>
-improves the Hessian matrix condition,
-but increases the system to solve.
-Specialized solving techniques are required for practical applications.</p></li>
-<li><p>A simplified IPM for LP problems has been presented.</p></li>
-<li><p>Suggested reading <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id6">GNS08</a>]</span> (chapter 16).</p></li>
-</ul>
-</section>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-lecture-07-sqp.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1786,7 +1107,7 @@ Specialized solving techniques are required for practical applications.</p></li>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

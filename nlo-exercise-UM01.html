@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UM01 &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -322,19 +321,22 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>UM01</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>UM01</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="um01">
+  <div class="tex2jax_ignore mathjax_ignore section" id="um01">
 <h1>UM01<a class="headerlink" href="#um01" title="Permalink to this headline">¶</a></h1>
 <p>Consider the function <span class="math notranslate nohighlight">\(f(x,y) = x^{4} + 2xy + (1 + y)^{2}\)</span>.</p>
 <p><strong>1. Create a 3D plot of <span class="math notranslate nohighlight">\(f\)</span> for <span class="math notranslate nohighlight">\(-3 \leq x,y \leq 3\)</span>.</strong></p>
@@ -453,7 +455,7 @@ Thus the Hessian matrix is positive definite and <span class="math notranslate n
 </div>
 </details><p><strong>5. Numerical experiments.</strong></p>
 <p>Study <a class="reference internal" href="nlo-lecture-code-listings.html#um01-experiment"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">um01_experiment</span></code></span></a> in Matlab/Octave.</p>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -477,159 +479,8 @@ Thus the Hessian matrix is positive definite and <span class="math notranslate n
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="um01">
-<h1>UM01<a class="headerlink" href="#um01" title="Permalink to this headline">¶</a></h1>
-<p>Consider the function <span class="math notranslate nohighlight">\(f(x,y) = x^{4} + 2xy + (1 + y)^{2}\)</span>.</p>
-<p><strong>1. Create a 3D plot of <span class="math notranslate nohighlight">\(f\)</span> for <span class="math notranslate nohighlight">\(-3 \leq x,y \leq 3\)</span>.</strong></p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-
-<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>
-<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
-<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
-<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
-<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^4 + 2xy + (1 + y)^2&#39;</span><span class="p">);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-UM01_2_0.png" src="_images/nlo-exercise-UM01_2_0.png" />
-</div>
-</div>
-<p><strong>2. Compute the gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> and the Hessian matrix <span class="math notranslate nohighlight">\(\nabla^{2} f\)</span>.</strong></p>
-<details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
-<strong>Solution:</strong><div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla f(x,y) =
-\begin{pmatrix}
-\dfrac{\strut\partial}{\strut\partial x} f(x,y) \\
-\dfrac{\strut\partial}{\strut\partial y} f(x,y)
-\end{pmatrix}
-= \begin{pmatrix} 4x^{3} + 2y \\ 2x + 2(1 + y) \end{pmatrix}
-\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla^{2} f(x,y) =
-\begin{pmatrix}
-\dfrac{\strut\partial^{2}}{\strut\partial x\strut\partial x} f(x,y)
-&amp; \dfrac{\strut\partial^{2}}{\strut\partial x\strut\partial y} f(x,y) \\
-\dfrac{\strut\partial^{2}}{\strut\partial y \strut\partial x} f(x,y)
-&amp; \dfrac{\strut\partial^{2}}{\strut\partial y \strut\partial y} f(x,y)
-\end{pmatrix}
-= \begin{pmatrix} 12x^{2} &amp; 2 \\ 2 &amp; 2 \end{pmatrix}
-\end{split}\]</div>
-</div>
-</details><p><strong>3. Compute all real stationary points and the respective function values.</strong></p>
-<details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
-<strong>Solution:</strong><div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<p class="card-text">Stationary points: <span class="math notranslate nohighlight">\(\nabla f = 0\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-4x^{3} + 2y &amp;= 0 \\
-2x + 2y + 2 &amp;= 0 \\
-\end{aligned}
-\end{split}\]</div>
-<p class="card-text">From the second equation follows <span class="math notranslate nohighlight">\(y = -(x + 1)\)</span>.
-The resulting equation</p>
-<div class="math notranslate nohighlight">
-\[
-2x^{3} - x - 1 = 0
-\]</div>
-<p class="card-text">yields the real stationary point <span class="math notranslate nohighlight">\(P_{1} = (1,-2)^{T}\)</span>
-with <span class="math notranslate nohighlight">\(f(P_{1}) = -2\)</span>.</p>
-<p class="card-text">Use polynomial long division to find more potential real roots:</p>
-<div class="math notranslate nohighlight">
-\[
-(2x^{3} - x - 1) : (x - 1) = 2x^{2} + 2x + 1
-\]</div>
-<p class="card-text">Finally the equation</p>
-<div class="math notranslate nohighlight">
-\[
-x^{2} + x + 0.5 = 0
-\]</div>
-<p class="card-text">has only complex roots.</p>
-<p class="card-text">Thus <span class="math notranslate nohighlight">\(P_{1}\)</span> is the only real stationary point.</p>
-</div>
-</details><p><strong>4. Classify all stationary points.</strong></p>
-<details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
-<strong>Solution:</strong><div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<p class="card-text">Hessian matrix at <span class="math notranslate nohighlight">\(P_{1}\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla^{2} f(P_{1}) = \begin{pmatrix} 12 &amp; 2 \\ 2 &amp; 2 \end{pmatrix}
-\end{split}\]</div>
-<p class="card-text">Classification with eigenvalues (roots of the characteristic polynomial):</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-0 = \det\begin{pmatrix} 12 - \lambda &amp; 2 \\ 2 &amp; 2 - \lambda \end{pmatrix}
-= (12 - \lambda)(2 - \lambda) - 4
-= \lambda^{2} - 14\lambda + 20
-\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[
-\Rightarrow \lambda_{1,2} = 7 \pm \sqrt{29} \approx 7 \pm 5.385\ldots &gt; 0
-\]</div>
-<p class="card-text">The roots of the characteristic polynomial are all positive.
-Thus the Hessian matrix is positive definite and <span class="math notranslate nohighlight">\(P_{1}\)</span> is a <strong>strict local minimum</strong>.</p>
-</div>
-</details><p><strong>5. Numerical experiments.</strong></p>
-<p>Study <a class="reference internal" href="nlo-lecture-code-listings.html#um01-experiment"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">um01_experiment</span></code></span></a> in Matlab/Octave.</p>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-lecture-10-LP.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -646,7 +497,7 @@ Thus the Hessian matrix is positive definite and <span class="math notranslate n
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

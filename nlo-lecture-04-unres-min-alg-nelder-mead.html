@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nelder–Mead method &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -361,19 +360,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Nelder–Mead method</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Nelder–Mead method</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iteration-step-of-the-simplex-method-n-geq-2">
    Iteration step of the simplex method (
@@ -407,12 +407,14 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="neldermead-method">
+  <div class="tex2jax_ignore mathjax_ignore section" id="neldermead-method">
 <h1>Nelder–Mead method<a class="headerlink" href="#neldermead-method" title="Permalink to this headline">¶</a></h1>
 <p>In the previous subsection,
 the <strong>gradient methods</strong> require the objective function
@@ -465,7 +467,7 @@ For dimension <span class="math notranslate nohighlight">\(n = 3\)</span>, a non
 <img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_2_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_2_0.png" />
 </div>
 </div>
-<section id="iteration-step-of-the-simplex-method-n-geq-2">
+<div class="section" id="iteration-step-of-the-simplex-method-n-geq-2">
 <h2>Iteration step of the simplex method (<span class="math notranslate nohighlight">\(n \geq 2\)</span>)<a class="headerlink" href="#iteration-step-of-the-simplex-method-n-geq-2" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Compute the following indices <span class="math notranslate nohighlight">\(s, a, b \in \{ 1, \ldots, n + 1 \}\)</span>:</p>
@@ -536,7 +538,7 @@ For dimension <span class="math notranslate nohighlight">\(n = 3\)</span>, a non
 <img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_5_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_5_0.png" />
 </div>
 </div>
-<section id="case-1-reflect">
+<div class="section" id="case-1-reflect">
 <h3>Case 1: Reflect<a class="headerlink" href="#case-1-reflect" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>“New point is good.”</p>
@@ -589,8 +591,8 @@ For dimension <span class="math notranslate nohighlight">\(n = 3\)</span>, a non
 <img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_7_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_7_0.png" />
 </div>
 </div>
-</section>
-<section id="case-2-expand">
+</div>
+<div class="section" id="case-2-expand">
 <h3>Case 2: Expand<a class="headerlink" href="#case-2-expand" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>“New point is excellent.”</p>
@@ -651,8 +653,8 @@ e := m + \beta (m - x^s),
 <img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_9_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_9_0.png" />
 </div>
 </div>
-</section>
-<section id="case-3-contract-shrink">
+</div>
+<div class="section" id="case-3-contract-shrink">
 <h3>Case 3: Contract / Shrink<a class="headerlink" href="#case-3-contract-shrink" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>“New point is worse.”</p>
@@ -755,9 +757,9 @@ There is no guarantee for convergence to a local minimum.</p>
   \]</div>
 </li>
 </ul>
-</section>
-</section>
-<section id="start-simplex">
+</div>
+</div>
+<div class="section" id="start-simplex">
 <h2>Start simplex<a class="headerlink" href="#start-simplex" title="Permalink to this headline">¶</a></h2>
 <p>Given one vertex <span class="math notranslate nohighlight">\(x^1\)</span> and one edge length <span class="math notranslate nohighlight">\(l\)</span>, a regular simplex can be constructed as follows:</p>
 <ul>
@@ -778,8 +780,8 @@ There is no guarantee for convergence to a local minimum.</p>
 <p>where <span class="math notranslate nohighlight">\(e^1, \ldots, e^n\)</span> are the standard unit vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>.</p>
 </li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -803,407 +805,8 @@ There is no guarantee for convergence to a local minimum.</p>
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="neldermead-method">
-<h1>Nelder–Mead method<a class="headerlink" href="#neldermead-method" title="Permalink to this headline">¶</a></h1>
-<p>In the previous subsection,
-the <strong>gradient methods</strong> require the objective function
-to be once or twice continously differentiable.</p>
-<p>The <strong>Nelder–Mead method</strong> <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id8">NM65</a>]</span>
-described in this subsection,
-requires the objective function to be <strong>continous only</strong>.
-Therefore it is an example
-of a <strong>derivative-free</strong> optimization method.</p>
-<p>This method is implemented in the Matlab/Octave function
-<a class="reference external" href="https://www.mathworks.com/help/matlab/ref/fminsearch.html"><code class="docutils literal notranslate"><span class="pre">fminsearch</span></code></a>.
-See <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id9">LRWW98</a>]</span> and <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id10">PCB02</a>]</span> for modifications
-and references.</p>
-<p>Basic concept of this method is a <strong>simplex</strong> (<strong>polyhedron</strong>),
-here defined as a set of <span class="math notranslate nohighlight">\(n + 1\)</span> linear independent points
-<span class="math notranslate nohighlight">\(P = \{ x_1, x_2, \ldots, x_{n + 1} \} \subset \mathbb{R}^{n}\)</span>
-(the vertices of the simplex).</p>
-<p>In geometry the convex hull of <span class="math notranslate nohighlight">\(P\)</span> is usually defined as simplex.
-For dimension <span class="math notranslate nohighlight">\(n = 2\)</span>,
-the simplex is a <strong>non-degenerate triangle</strong>,
-as in the following figure.
-For dimension <span class="math notranslate nohighlight">\(n = 3\)</span>, a non-degenerate tetrahedron.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
-<span class="n">x2</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">];</span>
-<span class="n">x3</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
-<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">;</span> <span class="n">x2</span><span class="p">;</span> <span class="n">x3</span><span class="p">;</span> <span class="n">x1</span><span class="p">];</span>
-<span class="n">x_label</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;x_1&#39;</span><span class="p">,</span> <span class="s">&#39;x_2&#39;</span><span class="p">,</span> <span class="s">&#39;x_3&#39;</span><span class="p">};</span>
-<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko-&#39;</span><span class="p">);</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-
-<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.08</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="mf">0.02</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="nb">text</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_offset</span><span class="p">,</span> <span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">x_label</span><span class="p">{</span><span class="n">i</span><span class="p">},</span> <span class="n">tprops</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="nb">text</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
-<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
-<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_2_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_2_0.png" />
-</div>
-</div>
-<section id="iteration-step-of-the-simplex-method-n-geq-2">
-<h2>Iteration step of the simplex method (<span class="math notranslate nohighlight">\(n \geq 2\)</span>)<a class="headerlink" href="#iteration-step-of-the-simplex-method-n-geq-2" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Compute the following indices <span class="math notranslate nohighlight">\(s, a, b \in \{ 1, \ldots, n + 1 \}\)</span>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x^{s} := \operatorname{argmax} \{ f(x) \colon x \in P \}\)</span> (worst point)</p></li>
-<li><p><span class="math notranslate nohighlight">\(x^{a} := \operatorname{argmax} \{ f(x) \colon x \in P, a \neq s \}\)</span> (second worst point)</p></li>
-<li><p><span class="math notranslate nohighlight">\(x^{b} := \operatorname{argmin} \{ f(x) \colon x \in P, b \neq s, b \neq a \}\)</span> (best point)</p></li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><p>Compute the <strong>centroid</strong> <span class="math notranslate nohighlight">\(m\)</span> of the <span class="math notranslate nohighlight">\(n\)</span> best points</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   m := \frac{1}{n} \sum_{\substack{i = 0 \\ i \neq s}}^{n + 1} x^i,
-   \end{split}\]</div>
-<p>and the point <span class="math notranslate nohighlight">\(r\)</span> <strong>reflected</strong> at the center <span class="math notranslate nohighlight">\(m\)</span></p>
-<div class="math notranslate nohighlight">
-\[
-   r := m + \alpha (m - x^s),
-   \]</div>
-<p>with <span class="math notranslate nohighlight">\(\alpha = 1\)</span>.</p>
-</li>
-</ol>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">plot_line </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nb">plot</span> <span class="p">(</span><span class="n">points</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">points</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="k">function</span><span class="w"> </span><span class="nf">plot_triangle </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="c">% Repeat first point.</span>
-  <span class="n">plot_line</span> <span class="p">([</span><span class="n">points</span><span class="p">;</span> <span class="n">points</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)],</span> <span class="n">LineSpec</span><span class="p">);</span>  
-<span class="k">end</span>
-
-<span class="n">xb</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
-<span class="n">xa</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">];</span>
-<span class="n">xs</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">xb</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">xa</span> <span class="o">-</span> <span class="n">xb</span><span class="p">);</span>
-<span class="n">r</span> <span class="p">=</span> <span class="n">m</span>  <span class="o">+</span>        <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-
-<span class="n">points</span> <span class="p">=</span> <span class="p">[</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">;</span> <span class="n">m</span><span class="p">;</span> <span class="n">r</span><span class="p">];</span>
-<span class="n">plabel</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;x^b&#39;</span><span class="p">,</span> <span class="s">&#39;x^a&#39;</span><span class="p">,</span> <span class="s">&#39;x^s&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">};</span>
-
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">quiver</span> <span class="p">(</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="n">plot_line</span> <span class="p">([</span><span class="n">r</span> <span class="p">;</span> <span class="n">m</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">});</span>
-
-<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span> <span class="p">(</span><span class="n">plabel</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.08</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="mf">0.04</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.04</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="nb">text</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_offset</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_offset</span><span class="p">,</span> <span class="n">plabel</span><span class="p">{</span><span class="n">i</span><span class="p">},</span> <span class="n">tprops</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
-<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_5_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_5_0.png" />
-</div>
-</div>
-<section id="case-1-reflect">
-<h3>Case 1: Reflect<a class="headerlink" href="#case-1-reflect" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>“New point is good.”</p>
-</div></blockquote>
-<p>Replace <span class="math notranslate nohighlight">\(x^s\)</span> by <span class="math notranslate nohighlight">\(r\)</span>, if <span class="math notranslate nohighlight">\(f(x^b) \leq f(r) \leq f(x^a)\)</span> and <strong>case 2</strong> does not apply.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">plot_line </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nb">plot</span> <span class="p">(</span><span class="n">points</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">points</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="k">function</span><span class="w"> </span><span class="nf">plot_triangle </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="c">% Repeat first point.</span>
-  <span class="n">plot_line</span> <span class="p">([</span><span class="n">points</span><span class="p">;</span> <span class="n">points</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)],</span> <span class="n">LineSpec</span><span class="p">);</span>  
-<span class="k">end</span>
-
-<span class="n">xb</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
-<span class="n">xa</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">];</span>
-<span class="n">xs</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">xb</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">xa</span> <span class="o">-</span> <span class="n">xb</span><span class="p">);</span>
-<span class="n">r</span> <span class="p">=</span> <span class="n">m</span>  <span class="o">+</span>        <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-
-<span class="n">points</span> <span class="p">=</span> <span class="p">[</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">;</span> <span class="n">m</span><span class="p">;</span> <span class="n">r</span><span class="p">];</span>
-<span class="n">plabel</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;x^b&#39;</span><span class="p">,</span> <span class="s">&#39;x^a&#39;</span><span class="p">,</span> <span class="s">&#39;x^s&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">};</span>
-
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko--&#39;</span><span class="p">});</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">r</span><span class="p">]</span> <span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
-<span class="nb">quiver</span> <span class="p">(</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="n">plot_line</span> <span class="p">([</span><span class="n">r</span> <span class="p">;</span> <span class="n">m</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">});</span>
-
-<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span> <span class="p">(</span><span class="n">plabel</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.08</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="mf">0.04</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.04</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="nb">text</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_offset</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_offset</span><span class="p">,</span> <span class="n">plabel</span><span class="p">{</span><span class="n">i</span><span class="p">},</span> <span class="n">tprops</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
-<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_7_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_7_0.png" />
-</div>
-</div>
-</section>
-<section id="case-2-expand">
-<h3>Case 2: Expand<a class="headerlink" href="#case-2-expand" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>“New point is excellent.”</p>
-</div></blockquote>
-<p>If <span class="math notranslate nohighlight">\(f(r) &lt; f(x^b)\)</span>, compute <strong>expanded point</strong></p>
-<div class="math notranslate nohighlight">
-\[
-e := m + \beta (m - x^s),
-\]</div>
-<p>with <span class="math notranslate nohighlight">\(\beta &gt; \alpha\)</span>, here <span class="math notranslate nohighlight">\(\beta = 2\)</span>.</p>
-<p>Replace <span class="math notranslate nohighlight">\(x^s\)</span> by <span class="math notranslate nohighlight">\(e\)</span>, if <span class="math notranslate nohighlight">\(f(e) &lt; f(r)\)</span>, otherwise replace <span class="math notranslate nohighlight">\(x^s\)</span> by <span class="math notranslate nohighlight">\(r\)</span>.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">plot_line </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nb">plot</span> <span class="p">(</span><span class="n">points</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">points</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="k">function</span><span class="w"> </span><span class="nf">plot_triangle </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="c">% Repeat first point.</span>
-  <span class="n">plot_line</span> <span class="p">([</span><span class="n">points</span><span class="p">;</span> <span class="n">points</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)],</span> <span class="n">LineSpec</span><span class="p">);</span>  
-<span class="k">end</span>
-
-<span class="n">xb</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
-<span class="n">xa</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">];</span>
-<span class="n">xs</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">xb</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">xa</span> <span class="o">-</span> <span class="n">xb</span><span class="p">);</span>
-<span class="n">r</span> <span class="p">=</span> <span class="n">m</span>  <span class="o">+</span> <span class="mf">1.0</span> <span class="o">*</span>  <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-<span class="nb">e</span> <span class="p">=</span> <span class="n">m</span>  <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span>  <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-
-<span class="n">points</span> <span class="p">=</span> <span class="p">[</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">;</span> <span class="n">m</span><span class="p">;</span> <span class="n">r</span><span class="p">;</span> <span class="nb">e</span><span class="p">];</span>
-<span class="n">plabel</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;x^b&#39;</span><span class="p">,</span> <span class="s">&#39;x^a&#39;</span><span class="p">,</span> <span class="s">&#39;x^s&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">};</span>
-
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko--&#39;</span><span class="p">});</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">r</span><span class="p">]</span> <span class="p">,</span> <span class="p">{</span><span class="s">&#39;ko--&#39;</span><span class="p">});</span>
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="nb">e</span><span class="p">]</span> <span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
-<span class="nb">quiver</span> <span class="p">(</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="n">plot_line</span> <span class="p">([</span><span class="nb">e</span><span class="p">;</span> <span class="n">r</span><span class="p">;</span> <span class="n">m</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">});</span>
-
-<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span> <span class="p">(</span><span class="n">plabel</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.12</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="mf">0.04</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.04</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="nb">text</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_offset</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_offset</span><span class="p">,</span> <span class="n">plabel</span><span class="p">{</span><span class="n">i</span><span class="p">},</span> <span class="n">tprops</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
-<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_9_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_9_0.png" />
-</div>
-</div>
-</section>
-<section id="case-3-contract-shrink">
-<h3>Case 3: Contract / Shrink<a class="headerlink" href="#case-3-contract-shrink" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>“New point is worse.”</p>
-</div></blockquote>
-<p>If <span class="math notranslate nohighlight">\(f(r) &gt; f(x^a)\)</span>, compute a contracting point
-with <span class="math notranslate nohighlight">\(0 &lt; \gamma &lt; \alpha\)</span>, here <span class="math notranslate nohighlight">\(\gamma = 0.5\)</span>:</p>
-<ul>
-<li><p>If <span class="math notranslate nohighlight">\(f(r) &gt; f(x^s)\)</span>, <strong>contract inside</strong></p>
-<div class="math notranslate nohighlight">
-\[
-  c := m - \gamma (m - x^s)
-  \]</div>
-</li>
-<li><p>Otherwise <strong>contract outside</strong></p>
-<div class="math notranslate nohighlight">
-\[
-  c := m + \gamma (m - x^s)
-  \]</div>
-</li>
-</ul>
-<p>Replace <span class="math notranslate nohighlight">\(x^s\)</span> by <span class="math notranslate nohighlight">\(c\)</span>, if <span class="math notranslate nohighlight">\(f(c) &lt; f(x^s)\)</span>, otherwise
-<strong>shrink</strong> (case 4) the whole simplex around <span class="math notranslate nohighlight">\(x^b\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-x^i := \frac{x^i + x^b}{2},
-\]</div>
-<p>for all <span class="math notranslate nohighlight">\(i = 1, \ldots, n + 1\)</span>.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">plot_line </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="nb">plot</span> <span class="p">(</span><span class="n">points</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">points</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="k">function</span><span class="w"> </span><span class="nf">plot_triangle </span><span class="p">(</span>points, LineSpec<span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="c">% Repeat first point.</span>
-  <span class="n">plot_line</span> <span class="p">([</span><span class="n">points</span><span class="p">;</span> <span class="n">points</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)],</span> <span class="n">LineSpec</span><span class="p">);</span>  
-<span class="k">end</span>
-
-<span class="n">xb</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">];</span>
-<span class="n">xa</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">];</span>
-<span class="n">xs</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
-<span class="n">m</span> <span class="p">=</span> <span class="n">xb</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">xa</span> <span class="o">-</span> <span class="n">xb</span><span class="p">);</span>
-<span class="n">r</span> <span class="p">=</span>  <span class="n">m</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">*</span>  <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-<span class="n">co</span> <span class="p">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span>  <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-<span class="n">ci</span> <span class="p">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span>  <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">xs</span><span class="p">);</span>
-
-<span class="n">points</span> <span class="p">=</span> <span class="p">[</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">;</span> <span class="n">m</span><span class="p">;</span> <span class="n">r</span><span class="p">;</span> <span class="n">co</span><span class="p">;</span> <span class="n">ci</span><span class="p">];</span>
-<span class="n">plabel</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;x^b&#39;</span><span class="p">,</span> <span class="s">&#39;x^a&#39;</span><span class="p">,</span> <span class="s">&#39;x^s&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;c_{outside}&#39;</span><span class="p">,</span> <span class="s">&#39;c_{inside}&#39;</span><span class="p">};</span>
-
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">xs</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko--&#39;</span><span class="p">});</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">co</span><span class="p">]</span> <span class="p">,</span> <span class="p">{</span><span class="s">&#39;ko--&#39;</span><span class="p">});</span>
-<span class="n">plot_triangle</span> <span class="p">([</span><span class="n">xb</span><span class="p">;</span> <span class="n">xa</span><span class="p">;</span> <span class="n">ci</span><span class="p">]</span> <span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
-<span class="nb">quiver</span> <span class="p">(</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">xs</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="n">plot_line</span> <span class="p">([</span><span class="n">r</span><span class="p">;</span> <span class="n">m</span><span class="p">],</span> <span class="p">{</span><span class="s">&#39;ko-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">});</span>
-
-<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
-<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span> <span class="p">(</span><span class="n">plabel</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.12</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="mf">0.04</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.04</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span>  <span class="c">% c_{inner}</span>
-    <span class="n">x_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">;</span>
-    <span class="n">y_offset</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.07</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="nb">text</span> <span class="p">(</span><span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_offset</span><span class="p">,</span> <span class="n">points</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_offset</span><span class="p">,</span> <span class="n">plabel</span><span class="p">{</span><span class="n">i</span><span class="p">},</span> <span class="n">tprops</span><span class="p">{:});</span>
-<span class="k">end</span>
-
-<span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
-<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-lecture-04-unres-min-alg-nelder-mead_11_0.png" src="_images/nlo-lecture-04-unres-min-alg-nelder-mead_11_0.png" />
-</div>
-</div>
-<p>This concludes one step of the simplex method.
-There is no guarantee for convergence to a local minimum.</p>
-<p>Potential stopping criteria are:</p>
-<ul>
-<li><div class="math notranslate nohighlight">
-\[
-  \forall i,j \in \{ 1, \ldots, n + 1 \} \colon\quad \lVert x^i - x^j \rVert \leq \text{TOL}.
-  \]</div>
-</li>
-<li><div class="math notranslate nohighlight">
-\[
-  \frac{1}{n + 1} \sum _{i = 1}^{n + 1} \left( f(x^i) - f(m) \right)^2 \leq (\text{TOL})^2.
-  \]</div>
-</li>
-<li><div class="math notranslate nohighlight">
-\[
-  \frac{1}{n + 1} \sum _{i = 1}^{n + 1} \left( f(x^i) - \bar{f} \right)^2 \leq (\text{TOL})^2, \quad
-  \bar{f} := \frac{1}{n + 1} \sum _{i = 1}^{n + 1} f(x^i).
-  \]</div>
-</li>
-</ul>
-</section>
-</section>
-<section id="start-simplex">
-<h2>Start simplex<a class="headerlink" href="#start-simplex" title="Permalink to this headline">¶</a></h2>
-<p>Given one vertex <span class="math notranslate nohighlight">\(x^1\)</span> and one edge length <span class="math notranslate nohighlight">\(l\)</span>, a regular simplex can be constructed as follows:</p>
-<ul>
-<li><div class="math notranslate nohighlight">
-\[
-  p := \frac{l}{\sqrt{2}} \frac{\sqrt{n + 1} - 1}{n}
-  \]</div>
-</li>
-<li><div class="math notranslate nohighlight">
-\[
-  q := p (1, \ldots, 1)^{T} \in \mathbb{R}^{n}
-  \]</div>
-</li>
-<li><div class="math notranslate nohighlight">
-\[
-  x^j := x^1 + q + \frac{l}{\sqrt{2}} e^{j-1}, \quad j = 2, \ldots, n + 1,
-  \]</div>
-<p>where <span class="math notranslate nohighlight">\(e^1, \ldots, e^n\)</span> are the standard unit vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>.</p>
-</li>
-</ul>
-</section>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-lecture-03-unres-min-alg.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1220,7 +823,7 @@ There is no guarantee for convergence to a local minimum.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

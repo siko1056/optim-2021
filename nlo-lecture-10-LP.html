@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Linear Programming &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -335,19 +334,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Linear Programming</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Linear Programming</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#meeting-other-lp-standard-forms">
    Meeting other LP standard forms
@@ -355,12 +355,14 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="linear-programming">
+  <div class="tex2jax_ignore mathjax_ignore section" id="linear-programming">
 <span id="lp"></span><h1>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this headline">¶</a></h1>
 <p>Linear Programming (LP; same abbreviation for “Linear Program”) is
 a linear optimization technique
@@ -382,7 +384,7 @@ rather than the action of writing a program in a particular programming language
 \end{array}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(c,x \in \mathbb{R}^{n}\)</span>, <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{m}\)</span>.</p>
-<section id="meeting-other-lp-standard-forms">
+<div class="section" id="meeting-other-lp-standard-forms">
 <h2>Meeting other LP standard forms<a class="headerlink" href="#meeting-other-lp-standard-forms" title="Permalink to this headline">¶</a></h2>
 <p>To compute an optimal LP solution,
 there exist many functions or programs,
@@ -499,8 +501,8 @@ and a small tolerance <span class="math notranslate nohighlight">\(\varepsilon &
 </ul>
 <p>For more information on LP and equivalent formulations,
 see <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (part I) and <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 4).</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -524,180 +526,8 @@ see <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="linear-programming">
-<span id="lp"></span><h1>Linear Programming<a class="headerlink" href="#linear-programming" title="Permalink to this headline">¶</a></h1>
-<p>Linear Programming (LP; same abbreviation for “Linear Program”) is
-a linear optimization technique
-which became widely known
-for <strong>resource planning tasks</strong> after World War II.
-As the name suggests,
-the objective function and (in-)equality constraint functions are linear.</p>
-<blockquote>
-<div><p>The term “programming” should be understood as “planning” or “conception”,
-rather than the action of writing a program in a particular programming language.</p>
-</div></blockquote>
-<p>In this work the following <strong>LP standard form</strong> is chosen:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lll}
-\textrm{minimize}   &amp; c^{T} x \\
-\textrm{subject to} &amp; Ax = b \\
-&amp; x \geq 0,
-\end{array}
-\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(c,x \in \mathbb{R}^{n}\)</span>, <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{m}\)</span>.</p>
-<section id="meeting-other-lp-standard-forms">
-<h2>Meeting other LP standard forms<a class="headerlink" href="#meeting-other-lp-standard-forms" title="Permalink to this headline">¶</a></h2>
-<p>To compute an optimal LP solution,
-there exist many functions or programs,
-which are referred to in short as <strong>solver</strong>.
-An LP solver usually specifies an own standard form.
-In the following a few <strong>conversion techniques</strong> are described.</p>
-<ul>
-<li><p>“minimize <span class="math notranslate nohighlight">\(c^{T}x\)</span>” is equivalent to “maximize <span class="math notranslate nohighlight">\(-c^{T}x\)</span>”.
-<strong>Flip the sign</strong> of the computed objective value.</p></li>
-<li><p><strong>Slack variables</strong> <span class="math notranslate nohighlight">\(s \in \mathbb{R}^{m}\)</span>
-help expressing inequality constraints as equality constraints:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x \\
-  \textrm{subject to} &amp; Ax {\color{red}{\;\leq\;}} b \\
-  &amp; x \geq 0
-  \end{array}
-  \quad\iff\quad
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\; [0]^{T} s}} \\
-  \textrm{subject to} &amp; Ax      {\color{red}{\;+\; Is =}}\; b \\
-  &amp; x \geq 0 \\
-  &amp; {\color{red}{s \geq 0}}
-  \end{array}
-  \end{split}\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x \\
-  \textrm{subject to} &amp; Ax {\color{red}{\;\geq\;}} b \\
-  &amp; x \geq 0
-  \end{array}
-  \quad\iff\quad
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\; [0]^{T} s}} \\
-  \textrm{subject to} &amp; Ax      {\color{red}{\;-\; Is =}}\; b \\
-  &amp; x \geq 0 \\
-  &amp; {\color{red}{s \geq 0}}
-  \end{array}
-  \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(m \times m\)</span> unit matrix (main diagonal elements are <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(0\)</span> otherwise)
-and <span class="math notranslate nohighlight">\([0] \in \mathbb{R}^{m}\)</span> is a vector of zeros.</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>Free variables</strong> <span class="math notranslate nohighlight">\(y \in \mathbb{R}^{k}\)</span> can be modeled
-as difference of two non-negative LP variables <span class="math notranslate nohighlight">\(y := y^{+} - y^{-}\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\;d^{T} y}} \\
-  \textrm{subject to} &amp; Ax {\color{red}{\;+\;By}} = b \\
-  &amp; x \geq 0 \\
-  &amp; {\color{red}{y \quad\text{&quot;free&quot;}}}
-  \end{array}
-  \quad\iff\quad
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x {\color{red}{\;+\;d^{T} y^{+} \;-\; d^{T} y^{-}}} \\
-  \textrm{subject to} &amp; Ax {\color{red}{\;+\;By^{+} \;-\; By^{-}}} = b \\
-  &amp; x \geq 0 \\
-  &amp; {\color{red}{y^{+} \geq 0}} \\
-  &amp; {\color{red}{y^{-} \geq 0}}
-  \end{array}
-  \end{split}\]</div>
-<p>However,
-due to the introduced redundancy this approach might fail in practical applications
-and other techniques are known, see <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (part I).</p>
-</li>
-</ul>
-<ul>
-<li><p>Expressing <strong>box constraints</strong> <span class="math notranslate nohighlight">\(l,x,u \in \mathbb{R}^{n}\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x \\
-  \textrm{subject to} &amp; Ax = b \\
-  &amp; {\color{red}{l \;\leq\; x \;\leq\; u}}
-  \end{array}
-  \quad\iff\quad
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x \\
-  \textrm{subject to} &amp; Ax = b \\
-  &amp; {\color{red}{-Ix\;\leq\;-l}} \\
-  &amp; {\color{red}{Ix\;\leq\;u}} \\
-  &amp; {\color{red}{x \quad\text{&quot;free&quot;}}}
-  \end{array}
-  \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(I\)</span> is the <span class="math notranslate nohighlight">\(n \times n\)</span> unit matrix (main diagonal elements are <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(0\)</span> otherwise).
-See also the note about “free variables” above.</p>
-</li>
-</ul>
-<ul>
-<li><p>Expressing equality constraints with inequality constraints.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x \\
-  \textrm{subject to} &amp; Ax {\color{red}{\;=\;}} b \\
-  &amp; x \geq 0
-  \end{array}
-  \quad\iff\quad
-  \begin{array}{ll}
-  \textrm{minimize}   &amp; c^{T} x \\
-  \textrm{subject to} &amp; Ax {\color{red}{\;\leq\;}} b\; {\color{red}{(\;+\;\varepsilon)}} \\
-  &amp; Ax {\color{red}{\;\geq\;}} b\; {\color{red}{(\;-\;\varepsilon)}} \\
-  &amp; x \geq 0
-  \end{array}
-  \end{split}\]</div>
-<p>The resulting problem is usually ill-posed
-and a small tolerance <span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span> can be added to each element of <span class="math notranslate nohighlight">\(b\)</span> for numerical stability.</p>
-</li>
-</ul>
-<p>For more information on LP and equivalent formulations,
-see <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (part I) and <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 4).</p>
-</section>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-lecture-09-penalty.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -714,7 +544,7 @@ see <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

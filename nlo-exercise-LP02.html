@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LP02 &#8212; Selected Topics in Mathematical Optimization</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
@@ -352,19 +351,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>LP02</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>LP02</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linear-classification">
    Linear classification
@@ -389,17 +389,19 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="lp02">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lp02">
 <span id="id1"></span><h1>LP02<a class="headerlink" href="#lp02" title="Permalink to this headline">¶</a></h1>
-<section id="linear-classification">
+<div class="section" id="linear-classification">
 <h2>Linear classification<a class="headerlink" href="#linear-classification" title="Permalink to this headline">¶</a></h2>
 <p>See also <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 8.6).</p>
-<section id="creation-of-labeled-measurements-training-data">
+<div class="section" id="creation-of-labeled-measurements-training-data">
 <h3>Creation of labeled measurements (“training data”)<a class="headerlink" href="#creation-of-labeled-measurements-training-data" title="Permalink to this headline">¶</a></h3>
 <p>Create <span class="math notranslate nohighlight">\(m\)</span> random data pairs <span class="math notranslate nohighlight">\((w_i, l_i)\)</span> of weights and lengths.</p>
 <div class="cell docutils container">
@@ -440,8 +442,8 @@ and <strong>“bad”</strong> otherwise.</p>
 <img alt="_images/nlo-exercise-LP02_6_0.png" src="_images/nlo-exercise-LP02_6_0.png" />
 </div>
 </div>
-</section>
-<section id="classification">
+</div>
+<div class="section" id="classification">
 <h3>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
 <p>Looking at the figure above,
 it seems possible to find a seperating hyperplane.
@@ -458,8 +460,8 @@ f_{\text{linear}}(w_i,l_i)
 <li><p>the <strong>“bad”</strong> red crosses: <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i) \geq 1\)</span> for <span class="math notranslate nohighlight">\(k &lt; i \leq m\)</span>.</p></li>
 </ul>
 <p><strong>Note:</strong> <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(l_i\)</span> are the variables of <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i)\)</span>!</p>
-</section>
-<section id="feasibility-problem-as-linear-program-lp">
+</div>
+<div class="section" id="feasibility-problem-as-linear-program-lp">
 <h3>Feasibility problem as Linear Program (LP)<a class="headerlink" href="#feasibility-problem-as-linear-program-lp" title="Permalink to this headline">¶</a></h3>
 <p>This classification problem can be formulated as LP:</p>
 <div class="math notranslate nohighlight">
@@ -531,9 +533,9 @@ Plotting the resulting function shows that it perfectly discriminates the measur
 </div>
 <p>After this “training” the linear discrimination function <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i)\)</span>
 can be used to classify other data pairs as well.</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -557,179 +559,8 @@ can be used to classify other data pairs as well.</p>
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="lp02">
-<span id="id1"></span><h1>LP02<a class="headerlink" href="#lp02" title="Permalink to this headline">¶</a></h1>
-<section id="linear-classification">
-<h2>Linear classification<a class="headerlink" href="#linear-classification" title="Permalink to this headline">¶</a></h2>
-<p>See also <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 8.6).</p>
-<section id="creation-of-labeled-measurements-training-data">
-<h3>Creation of labeled measurements (“training data”)<a class="headerlink" href="#creation-of-labeled-measurements-training-data" title="Permalink to this headline">¶</a></h3>
-<p>Create <span class="math notranslate nohighlight">\(m\)</span> random data pairs <span class="math notranslate nohighlight">\((w_i, l_i)\)</span> of weights and lengths.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="p">=</span> <span class="mi">300</span><span class="p">;</span>
-<span class="n">w</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% weight</span>
-<span class="n">l</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% length</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Split the measurements into two sets,
-such that a data pair <span class="math notranslate nohighlight">\((w_i, l_i)\)</span> is considered as <strong>“good”</strong> for <span class="math notranslate nohighlight">\(1 \leq i \leq k \leq m\)</span>
-and <strong>“bad”</strong> otherwise.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="p">=</span> <span class="n">m</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
-<span class="n">w</span> <span class="p">=</span> <span class="p">[</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">);</span> <span class="n">w</span><span class="p">((</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-<span class="n">l</span> <span class="p">=</span> <span class="p">[</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">);</span> <span class="n">l</span><span class="p">((</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Plot the resulting data to discriminate.</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">axis</span> <span class="n">equal</span>
-<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="s">&#39;o&#39;</span><span class="p">);</span>  <span class="c">% good</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="s">&#39;x&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
-<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;weight&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;length&#39;</span><span class="p">);</span>
-<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">});</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-LP02_6_0.png" src="_images/nlo-exercise-LP02_6_0.png" />
-</div>
-</div>
-</section>
-<section id="classification">
-<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
-<p>Looking at the figure above,
-it seems possible to find a seperating hyperplane.
-That is a linear function with unknown coefficients <span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>, and <span class="math notranslate nohighlight">\(x_2\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-f_{\text{linear}}(w_i,l_i)
-= x_0 + \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}^{T} \begin{pmatrix} w_i \\ l_i \end{pmatrix}
-= x_0 + x_1 \cdot w_i + x_2 \cdot l_i
-\end{split}\]</div>
-<p>to seperate</p>
-<ul class="simple">
-<li><p>the <strong>“good”</strong> blue cicles: <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i) \leq -1\)</span> for <span class="math notranslate nohighlight">\(1 \leq i \leq k \leq m\)</span> and</p></li>
-<li><p>the <strong>“bad”</strong> red crosses: <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i) \geq 1\)</span> for <span class="math notranslate nohighlight">\(k &lt; i \leq m\)</span>.</p></li>
-</ul>
-<p><strong>Note:</strong> <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(l_i\)</span> are the variables of <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i)\)</span>!</p>
-</section>
-<section id="feasibility-problem-as-linear-program-lp">
-<h3>Feasibility problem as Linear Program (LP)<a class="headerlink" href="#feasibility-problem-as-linear-program-lp" title="Permalink to this headline">¶</a></h3>
-<p>This classification problem can be formulated as LP:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{array}{lrll}
-\textrm{minimize}   &amp; \begin{pmatrix} 0 &amp; 0 &amp; 0 \end{pmatrix} &amp; x &amp; \\
-\textrm{subject to} &amp;
-\begin{pmatrix}
-1 &amp; w_i &amp; l_i
-\end{pmatrix}
-&amp; x \leq -1, &amp; i = 1, \ldots, k, \\
-&amp; -\begin{pmatrix}
-1 &amp; w_i &amp; l_i
-\end{pmatrix}
-&amp; x \leq -1, &amp; i = k + 1, \ldots, m,
-\end{array}
-\end{split}\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
-<span class="n">A</span> <span class="p">=</span> <span class="p">[</span> <span class="nb">ones</span><span class="p">(</span><span class="n">k</span><span class="p">,</span>  <span class="mi">1</span><span class="p">),</span>  <span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>    <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">);</span> <span class="p">...</span>
-     <span class="o">-</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="o">-</span><span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="p">];</span>
-<span class="n">b</span> <span class="p">=</span> <span class="o">-</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No equality constraints</span>
-<span class="n">beq</span> <span class="p">=</span> <span class="p">[];</span>
-<span class="n">lb</span> <span class="p">=</span> <span class="o">-</span><span class="nb">inf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% x0 to x2 are free variables</span>
-<span class="n">ub</span> <span class="p">=</span>  <span class="nb">inf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x &lt;= b(i)</span>
-<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
-<span class="c">%[x,~,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0);  % Matlab: exitflag=1 success</span>
-<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>            <span class="c">% Octave: exitflag=0 success</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x =
-
-  -23.712
-   10.969
-   11.999
-
-exitflag = 0
-</pre></div>
-</div>
-</div>
-</div>
-<p>The computed solution <span class="math notranslate nohighlight">\(x\)</span> are the sought coefficients for <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i)\)</span>.
-Plotting the resulting function shows that it perfectly discriminates the measurements (test data).</p>
-<div class="cell tag_hide_input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">axis</span> <span class="n">equal</span>
-<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="s">&#39;o&#39;</span><span class="p">);</span>  <span class="c">% good</span>
-<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
-<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="s">&#39;x&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
-
-<span class="n">f_quad</span> <span class="p">=</span> <span class="p">@(</span><span class="n">w</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="mf">1.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="nb">ezplot</span> <span class="p">(</span><span class="n">f_quad</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span>
-
-<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">);</span>
-<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;weight&#39;</span><span class="p">);</span>
-<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;length&#39;</span><span class="p">);</span>
-<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">,</span> <span class="s">&#39;f_{linear}&#39;</span><span class="p">});</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/nlo-exercise-LP02_11_0.png" src="_images/nlo-exercise-LP02_11_0.png" />
-</div>
-</div>
-<p>After this “training” the linear discrimination function <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i)\)</span>
-can be used to classify other data pairs as well.</p>
-</section>
-</section>
-</section>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "octave"
-        },
-        kernelOptions: {
-            kernelName: "octave",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'octave'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="nlo-exercise-LP01.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -746,7 +577,7 @@ can be used to classify other data pairs as well.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
