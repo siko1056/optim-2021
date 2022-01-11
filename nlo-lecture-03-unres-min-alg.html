@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -386,7 +386,647 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Unconstrained minimization algorithms</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-methods">
+   Gradient methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent">
+     Gradient Descent
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-can-go-wrong">
+       What can go wrong?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choosing-the-step-size">
+       Choosing the step size
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-gradient-descent-zig-zagging">
+       Example: gradient descent zig-zagging
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-s-method">
+     Newton’s method
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-newton-s-method">
+       Example: Newton’s method
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choices-of-stopping-criteria">
+   Choices of stopping criteria
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-approaches">
+   Further approaches
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="unconstrained-minimization-algorithms">
+<h1>Unconstrained minimization algorithms<a class="headerlink" href="#unconstrained-minimization-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Consider the following quadratic unconstrained problem</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; f(x) = \frac{1}{2}x^{T}Ax + b^{T}x + c &amp; \\
+\end{array}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is a symmetric <span class="math notranslate nohighlight">\(n \times n\)</span> matrix, <span class="math notranslate nohighlight">\(x,b \in \mathbb{R}^{n}\)</span>, and <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(f\)</span> is a <span class="math notranslate nohighlight">\(C^{\infty}\)</span>-function with</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla f(x) = Ax + b \quad\text{and}\quad \nabla^{2} f(x) = A.
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is convex <span class="math notranslate nohighlight">\(\iff A \succeq 0\)</span> (positive semi-definite).</p>
+<ul>
+<li><p><strong>Local minima are global for convex functions!</strong> (See <a class="reference internal" href="nlo-lecture-05-convex-functions.html#theorem6"><span class="std std-ref">Theorem 6</span></a>).</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is strict convex <span class="math notranslate nohighlight">\(\iff A \succ 0\)</span> (positive definite).</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> invertible and <span class="math notranslate nohighlight">\(x^{*} = -A^{-1}b\)</span> is the <strong>unique global minimum</strong>.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(A \nsucceq 0 \implies f\)</span> has no local minima.</p></li>
+</ul>
+<section id="gradient-methods">
+<span id="id1"></span><h2>Gradient methods<a class="headerlink" href="#gradient-methods" title="Permalink to this headline">¶</a></h2>
+<p>The general idea of gradient methods is
+to find the minimum of an optimization problem of the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize} &amp; f(x), &amp; \\
+\end{array}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>.</p>
+<p>Many common solution strategies try to find the minimum step-wise.
+From a <strong>starting point</strong> <span class="math notranslate nohighlight">\(x^{0} \in \mathbb{R}^{n}\)</span>
+in each step <span class="math notranslate nohighlight">\(k = 0, 1, \ldots\)</span> those strategies determine</p>
+<ol class="simple">
+<li><p>a <strong>descent direction</strong> <span class="math notranslate nohighlight">\(d^{k} \in \mathbb{R}^{n}\)</span> and</p></li>
+<li><p>a positive bounded <strong>step size</strong> <span class="math notranslate nohighlight">\(0 &lt; \alpha^{k} &lt; \delta\)</span>,
+with <span class="math notranslate nohighlight">\(\alpha^{k}, \delta \in \mathbb{R}\)</span>,</p></li>
+</ol>
+<p>such that the objective function value at a new point</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} + \alpha^{k} d^{k}, \quad k = 0, 1, \ldots
+\]</div>
+<p>is smaller than the previous one <span class="math notranslate nohighlight">\(f(x^{k + 1}) &lt; f(x^{k})\)</span>.</p>
+<p>A vector <span class="math notranslate nohighlight">\(d^{k} \in \mathbb{R}^{n}\)</span> is called <strong>descent direction</strong>
+in a point <span class="math notranslate nohighlight">\(x^{k} \in \mathbb{R}^{n}\)</span>,
+if there exists a <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> such that for all
+<span class="math notranslate nohighlight">\(0 &lt; \alpha^{k} &lt; \delta\)</span> the inequality</p>
+<div class="math notranslate nohighlight">
+\[
+f(x^{k} + \alpha^{k} d^{k}) &lt; f(x^{k})
+\]</div>
+<p>holds.</p>
+<p>The following figure sketches
+<span class="math notranslate nohighlight">\(\Phi(\alpha^{k}) = f(x^{k} + \alpha^{k} d^{k})\)</span>,
+that is the objective function value
+as function of the step size <span class="math notranslate nohighlight">\(\alpha^{k}\)</span>
+for a given descent direction <span class="math notranslate nohighlight">\(d^{k}\)</span> at a given point <span class="math notranslate nohighlight">\(x^{k}\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">phi</span> <span class="p">=</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;ro--&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]);</span>
+<span class="n">ylim</span> <span class="p">([</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">]);</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="s">&#39;\leq     \alpha^{k}     \leq&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">3.8</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="s">&#39;\delta&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">4.1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&#39;\Phi(\alpha^{k})&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-unres-min-alg_6_0.png" src="_images/nlo-lecture-03-unres-min-alg_6_0.png" />
+</div>
+</div>
+<p>According to <strong>Taylor’s theorem</strong>,
+close to a point <span class="math notranslate nohighlight">\(x^{k} \in \mathbb{R}^{n}\)</span>
+a function <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>
+can be locally approximated by a linear function</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{f}(x^{k} + \alpha^{k} d^{k}) := f(x^{k}) + \nabla f(x^{k})^{T}(\alpha^{k} d^{k})
+\]</div>
+<p>or if <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span> by a quadratic function</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{f}(x^{k} + \alpha^{k} d^{k}) := f(x^{k}) + \nabla f(x^{k})^{T}(\alpha^{k} d^{k})
+  + \frac{1}{2}(\alpha^{k} d^{k})^{T}\nabla^{2} f(x^{k})(\alpha^{k} d^{k}).
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 5:</strong> Descent direction</p>
+<p>If <span class="math notranslate nohighlight">\(\nabla f(x^{k})^{T}d^{k} &lt; 0\)</span> holds, then <span class="math notranslate nohighlight">\(d^{k}\)</span> is a descent direction of <span class="math notranslate nohighlight">\(f\)</span> in the point <span class="math notranslate nohighlight">\(x^{k}\)</span>.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">For the <span class="math notranslate nohighlight">\(C^{1}\)</span>-function <span class="math notranslate nohighlight">\(\Phi(\alpha^{k}) := \tilde{f}(x^{k} + \alpha^{k} d^{k})\)</span>
+there is <span class="math notranslate nohighlight">\(\Phi'(0) = \nabla f(x^{k})^{T} d^{k}\)</span> &lt; 0.
+From this follows the assertion.</p>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+</div>
+</details><section id="gradient-descent">
+<h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h3>
+<p>The most obvious choice for such a descent direction
+is <span class="math notranslate nohighlight">\(d^{k} := -\nabla f(x^{k})\)</span>.
+This leads to the first algorithm for unconstrained minimization problems.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Gradient descent</strong> or <strong>steepest descent</strong> performs the iteration:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} - \alpha^{k} \nabla f(x^{k}), \quad k = 0, 1, \ldots
+\]</div>
+</div>
+<section id="what-can-go-wrong">
+<h4>What can go wrong?<a class="headerlink" href="#what-can-go-wrong" title="Permalink to this headline">¶</a></h4>
+<p>Consider the function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>,
+the descent directions <span class="math notranslate nohighlight">\(d^{k} = (-1)^{k + 1}\)</span>,
+the step sizes <span class="math notranslate nohighlight">\(\alpha^{k} = 2 + \frac{3}{2^{k + 1}}\)</span>
+and a starting point <span class="math notranslate nohighlight">\(x_{0} = 2\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="n">alpha</span> <span class="p">=</span> <span class="p">@(</span><span class="n">k</span><span class="p">)</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>^<span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">N</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+<span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="n">x</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>^<span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;ro-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-unres-min-alg_13_0.png" src="_images/nlo-lecture-03-unres-min-alg_13_0.png" />
+</div>
+</div>
+<p><strong>Step size too large:</strong> convergence against pair <span class="math notranslate nohighlight">\(\pm 1\)</span>.</p>
+<p>Consider the function <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>,
+the descent directions <span class="math notranslate nohighlight">\(d^{k} = -1\)</span>,
+the step sizes <span class="math notranslate nohighlight">\(\alpha^{k} = \frac{1}{2^{k + 1}}\)</span>
+and a starting point <span class="math notranslate nohighlight">\(x_{0} = 2\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="n">alpha</span> <span class="p">=</span> <span class="p">@(</span><span class="n">k</span><span class="p">)</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>^<span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">N</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+<span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="n">x</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;ro-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-unres-min-alg_16_0.png" src="_images/nlo-lecture-03-unres-min-alg_16_0.png" />
+</div>
+</div>
+<p><strong>Step size too short.</strong></p>
+</section>
+<section id="choosing-the-step-size">
+<h4>Choosing the step size<a class="headerlink" href="#choosing-the-step-size" title="Permalink to this headline">¶</a></h4>
+<p>From the two (admittedly constructed) examples of the previous section
+it becomes apparent
+that not any <strong>step size</strong> <span class="math notranslate nohighlight">\(\alpha^{k}\)</span> is suiteable
+for the <strong>gradient descent method</strong> or other <strong>gradient methods</strong>.</p>
+<p>One classical method to choose the step size
+is the <strong>Armijo rule</strong>.
+This method is in general not efficient,
+but illustrates key ideas
+about other step size determination methods.</p>
+<p>A possible Matlab/Octave implementation of the Armijo rule
+is given in the following listing.
+To improve readability,
+the step index <span class="math notranslate nohighlight">\(k\)</span> has been omitted.</p>
+<p>The inputs of the <code class="docutils literal notranslate"><span class="pre">armijo_rule</span></code> function are:
+a <span class="math notranslate nohighlight">\(C^{1}\)</span>-function <span class="math notranslate nohighlight">\(f\)</span>,
+a current iteration point <span class="math notranslate nohighlight">\(x := x^{k}\)</span>
+with its first derivate <span class="math notranslate nohighlight">\(\texttt{dfx} := \nabla f(x^{k})\)</span>,
+and a descent direction <span class="math notranslate nohighlight">\(d := d^{k}\)</span>.</p>
+<p>Furthermore,
+three parameters are defined in the function:
+a start value for the step size <span class="math notranslate nohighlight">\(\texttt{alpha} := \alpha^{k}\)</span>,
+<span class="math notranslate nohighlight">\(\texttt{beta} := \beta\)</span> with <span class="math notranslate nohighlight">\(0 &lt; \beta &lt; 1\)</span>,
+and a shrink factor <span class="math notranslate nohighlight">\(\texttt{tau} := \tau\)</span> with <span class="math notranslate nohighlight">\(0 &lt; \tau &lt; 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>alpha<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">armijo_rule </span><span class="p">(</span>f, x, dfx, d<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">alpha</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>    <span class="c">% initial value</span>
+  <span class="nb">beta</span>  <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+  <span class="n">tau</span>   <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c">% shrink factor</span>
+  <span class="n">fx</span>    <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">fx</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="nb">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">dfx</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">d</span><span class="p">))</span>
+    <span class="n">alpha</span> <span class="p">=</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">;</span>  <span class="c">% shrink alpha</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>An illustration of the algorithm is given in the following Figure.</p>
+<p>Starting with some value for <span class="math notranslate nohighlight">\(\alpha^{k}\)</span>,
+the value is shrunk by <span class="math notranslate nohighlight">\(\tau\)</span>
+until the objective function value
+<span class="math notranslate nohighlight">\(f(x^{k} + \alpha^{k} d^{k})\)</span>
+is below the red line, depending on <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<p>This ensures a decreasing objective function value.
+However,
+a bad parameter choice might slow the convergence down.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">phi</span> <span class="p">=</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;mo:&#39;</span><span class="p">);</span>
+<span class="n">alpha</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span>        <span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">+</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;b-&#39;</span><span class="p">);</span>
+<span class="nb">beta</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>
+<span class="n">alpha</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="nb">beta</span> <span class="o">*</span> <span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">+</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;r-&#39;</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">0.8</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;ko&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">]);</span>
+<span class="n">ylim</span> <span class="p">([</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span>
+<span class="nb">axis</span> <span class="n">off</span><span class="p">;</span>
+<span class="n">tprops</span> <span class="p">=</span> <span class="p">{</span><span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">};</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="s">&#39;\leq     \alpha^{k}     \leq&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">3.8</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="s">&#39;\delta&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="s">&#39;f(x^{k} + \alpha^{k} d^{k})&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:});</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">3.6</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="s">&#39;f(x^{k}) + \beta \alpha^{k} \nabla f(x^{k})^{T}d^{k}&#39;</span><span class="p">,</span> <span class="p">...</span>
+      <span class="n">tprops</span><span class="p">{:},</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">&#39;f(x^{k}) + \alpha^{k} \nabla f(x^{k})^{T}d^{k}&#39;</span><span class="p">,</span> <span class="p">...</span>
+      <span class="n">tprops</span><span class="p">{:},</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s">&#39;\alpha^{k}_{opt}&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:},</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">);</span>
+<span class="nb">quiver</span> <span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;\beta \rightarrow 0&#39;</span><span class="p">,</span> <span class="n">tprops</span><span class="p">{:},</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-unres-min-alg_22_0.png" src="_images/nlo-lecture-03-unres-min-alg_22_0.png" />
+</div>
+</div>
+<p>In the optimization literature,
+depending on the given particular problem,
+there are better algorithms for choosing the step size available.</p>
+</section>
+<section id="example-gradient-descent-zig-zagging">
+<h4>Example: gradient descent zig-zagging<a class="headerlink" href="#example-gradient-descent-zig-zagging" title="Permalink to this headline">¶</a></h4>
+<p>Consider the quadratic unconstrained problem
+with the quadratic objective function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f(x,y) = \frac{1}{2}(x^2 + M y^2)
+       = \frac{1}{2}\begin{pmatrix} x &amp; y \end{pmatrix}
+                    \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; M \end{pmatrix}
+                    \begin{pmatrix} x \\ y \end{pmatrix}
+\end{split}\]</div>
+<p>and with the respective gradient</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla f(x,y) = \begin{pmatrix} x \\ My \end{pmatrix}.
+\end{split}\]</div>
+<p>The step sizes <span class="math notranslate nohighlight">\(\alpha^{k}\)</span> are determined by the <strong>Armijo rule</strong>
+and consider the starting point <span class="math notranslate nohighlight">\(x_{0} = (M, 1)^{T}\)</span>
+for different values of <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">MM</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span>
+  <span class="nb">subplot</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+  <span class="n">M</span> <span class="p">=</span> <span class="n">MM</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">M</span> <span class="o">*</span> <span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">...</span>
+                     <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">));</span>
+  <span class="nb">contour</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+  <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+  <span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">M</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">df</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="n">M</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>  <span class="c">% Gradient</span>
+
+  <span class="n">N</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+  <span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">;</span> <span class="mi">1</span><span class="p">];</span>
+  <span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">d</span> <span class="p">=</span> <span class="n">df</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="n">k</span><span class="p">));</span>
+    <span class="n">alpha</span> <span class="p">=</span> <span class="n">armijo_rule</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">(:,</span><span class="n">k</span><span class="p">),</span> <span class="n">d</span><span class="p">,</span> <span class="o">-</span><span class="n">d</span><span class="p">);</span>
+    <span class="n">x</span><span class="p">(:,</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(:,</span><span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="n">plot3</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;ro-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+  <span class="nb">title</span> <span class="p">([</span><span class="s">&#39;M = &#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="n">M</span><span class="p">)]);</span>
+  <span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+  <span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-unres-min-alg_25_0.png" src="_images/nlo-lecture-03-unres-min-alg_25_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Fast convergence, if <span class="math notranslate nohighlight">\(M\)</span> close to 1.
+The gradient “points” in the direction of the global minimum.</p></li>
+<li><p>Slow zig-zagging, if <span class="math notranslate nohighlight">\(M \gg 1\)</span> or <span class="math notranslate nohighlight">\(M \ll 1\)</span>.
+In each step the gradient “points away” from the global minimum.</p></li>
+<li><p><strong>Note:</strong> with optimal step size, the convergence behavior is similar.</p></li>
+</ul>
+</section>
+</section>
+<section id="newton-s-method">
+<span id="newtons-method"></span><h3>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h3>
+<p>A more sophisticated choice for the descent direction <span class="math notranslate nohighlight">\(d^{k}\)</span>
+can be obtained from the quadratic Taylor approximation.</p>
+<p>Like in the example from the introduction
+this is a quadratic unconstrained problem
+and it has a unique global minimum,
+if the Hessian matrix is positive definite.</p>
+<p>Thus deriving the quadratic Taylor approximation to <span class="math notranslate nohighlight">\(d^{k}\)</span>
+and choosing without loss of generality <span class="math notranslate nohighlight">\(\alpha^{k} = 1\)</span>,
+one obtains for the first order necessary condition</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla \tilde{f}(x^{k} + d^{k}) := \nabla f(x^{k}) + \nabla^{2} f(x^{k}) d^{k} = 0.
+\]</div>
+<p>Finally, the descent direction <span class="math notranslate nohighlight">\(d^{k}\)</span> is the solution of the following
+linear system of equations:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{2} f(x^{k}) d^{k} = -\nabla f(x^{k}).
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Newton’s method</strong> performs the iteration:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} - \alpha^{k} (\nabla^{2} f(x^{k}))^{-1} \nabla f(x^{k}), \quad k = 0, 1, \ldots
+\]</div>
+</div>
+<section id="example-newton-s-method">
+<h4>Example: Newton’s method<a class="headerlink" href="#example-newton-s-method" title="Permalink to this headline">¶</a></h4>
+<p>Consider again the previous quadratic unconstrained problem
+with the objective function
+<span class="math notranslate nohighlight">\(f(x,y) = \frac{1}{2}(x^2 + M y^2)\)</span>.</p>
+<p>The step sizes are <span class="math notranslate nohighlight">\(\alpha^{k} = 1\)</span>
+and consider the starting point <span class="math notranslate nohighlight">\(x_{0} = (M, 1)^{T}\)</span>
+for different values of <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">MM</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span>
+  <span class="nb">subplot</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+  <span class="n">M</span> <span class="p">=</span> <span class="n">MM</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">M</span> <span class="o">*</span> <span class="n">y</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="p">...</span>
+                     <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">40</span><span class="p">));</span>
+  <span class="nb">contour</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+  <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+
+  <span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">M</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">fgrad</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="n">M</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>  <span class="c">% Gradient</span>
+  <span class="n">fhess</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">M</span><span class="p">];</span>           <span class="c">% Hessian matrix</span>
+
+  <span class="n">N</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="nb">zeros</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>
+  <span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">;</span> <span class="mi">1</span><span class="p">];</span>
+  <span class="k">for</span> <span class="n">k</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">d</span> <span class="p">=</span> <span class="n">fhess</span> <span class="o">\</span> <span class="o">-</span><span class="n">fgrad</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="n">k</span><span class="p">));</span>
+    <span class="n">x</span><span class="p">(:,</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(:,</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="n">plot3</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;ro-&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="nb">axis</span> <span class="n">equal</span><span class="p">;</span>
+  <span class="nb">title</span> <span class="p">([</span><span class="s">&#39;M = &#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="n">M</span><span class="p">)]);</span>
+  <span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+  <span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-03-unres-min-alg_30_0.png" src="_images/nlo-lecture-03-unres-min-alg_30_0.png" />
+</div>
+</div>
+<p>While the gradient descent method converged in the latter case zig-zagging,
+Newton’s method seems unaffected by the elliptic shape of the objective function
+and converges in one step.</p>
+<p>This beneficial convergence behavior
+comes at the price of having to evaluate the Hessian matrix
+and solving a linear system of equations in each iteration step.</p>
+</section>
+</section>
+</section>
+<section id="choices-of-stopping-criteria">
+<h2>Choices of stopping criteria<a class="headerlink" href="#choices-of-stopping-criteria" title="Permalink to this headline">¶</a></h2>
+<p>As important as good convergence towards the minimal point,
+is to decide when to stop the optimization algorithm.</p>
+<p>In literature there is a huge choice of stopping criteria,
+just to list a few:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\quad f(x^{k-1}) - f(x^{k}) \quad \leq \quad \text{TOL} (1 + \lvert f(x^{k}) \rvert )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad \lVert x^{k-1} - x^{k} \rVert \quad \leq \quad \text{TOL} (1 + \lVert x^{k} \rVert )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad \lVert \nabla f(x^{k}) \rVert \quad \leq \quad \text{TOL} (1 + \lvert f(x^{k}) \rvert )\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad \lVert \nabla f(x^{k}) \rVert \quad \leq \quad\)</span> machine precision</p></li>
+<li><p><span class="math notranslate nohighlight">\(\quad k \quad \geq \quad k_{\max}\)</span></p></li>
+</ol>
+<p>Criteria 1 to 3 monitor the progress of the algorithm,
+while criteria 4 and 5 can be regarded as “emergency breaks”.
+It is useful to implement criteria like 4 and 5
+to avoid <strong>infinite loops</strong> or to stop stuck algorithm runs.</p>
+<p>However, it often depends on the given problem
+which other stopping criteria are useful.
+For example,
+if the objective function is expensive to evaluate,
+“cheap” stopping criteria which do not cause computational overhead
+or are computed by the algorithms anyways might be preferable.</p>
+</section>
+<section id="further-approaches">
+<h2>Further approaches<a class="headerlink" href="#further-approaches" title="Permalink to this headline">¶</a></h2>
+<p>Other gradient methods follow in principal the form</p>
+<div class="math notranslate nohighlight">
+\[
+x^{k + 1} = x^{k} - \alpha^{k} D^{k} \nabla f(x^{k}), \quad k = 0, 1, \ldots,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D^{k} \succ 0\)</span> is a symmetric positive definite matrix.</p>
+<p>For example:</p>
+<ul>
+<li><p><strong>Diagonally scaled steepest descent</strong></p>
+<p><span class="math notranslate nohighlight">\(D^{k}\)</span> is a diagonal approximation to <span class="math notranslate nohighlight">\((\nabla^{2} f(x^{k}))^{-1}\)</span></p>
+</li>
+<li><p><strong>Modified Newton’s method</strong></p>
+<div class="math notranslate nohighlight">
+\[
+  D^{k} = (\nabla^{2} f(x^{0}))^{-1}, \quad k = 0, 1, \ldots
+  \]</div>
+</li>
+</ul>
+<ul>
+<li><p><strong>Discretized Newton’s method</strong></p>
+<div class="math notranslate nohighlight">
+\[
+  D^{k} = (H(x^{k}))^{-1}, \quad k = 0, 1, \ldots,
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(H(x^{k})\)</span> is a finite difference based approximation of <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{k})\)</span>.</p>
+<p>For example the <strong>forward-</strong> and <strong>central finite difference</strong> formulas:</p>
+<div class="math notranslate nohighlight">
+\[
+  \frac{\partial f(x^{k})}{\partial x_{i}} \approx \frac{1}{h}
+    \left( f(x^{k} + he_{i}) - f(x^{k}) \right),
+  \]</div>
+<div class="math notranslate nohighlight">
+\[
+  \frac{\partial f(x^{k})}{\partial x_{i}} \approx \frac{1}{2h}
+    \left( f(x^{k} + he_{i}) - f(x^{k} - he_{i}) \right),
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(e_{i}\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>-th unit vector and <span class="math notranslate nohighlight">\(h\)</span> an appropriate small quantity
+taller than the machine precision.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Quasi Newton Methods</strong></p>
+<p>Another strategy to avoid the computationally expensive evaluation
+of the whole Hessian matrix in each step is to
+<strong>update the existing Hessian matrix</strong> in the so-called
+<strong>Broyden–Fletcher–Goldfarb–Shanno (BFGS) algorithm</strong>:</p>
+<p>Determine a new step <span class="math notranslate nohighlight">\(x^{k + 1}\)</span> from solving the Newton direction
+with Hessian matrix approximation <span class="math notranslate nohighlight">\(D^{k}\)</span>.
+Then set
+<span class="math notranslate nohighlight">\(q^{k} = x^{k + 1} - x^{k}\)</span> and
+<span class="math notranslate nohighlight">\(p^{k} = \nabla f(x^{k + 1}) - \nabla f(x^{k})\)</span>
+and finally update the current Hessian matrix approximation</p>
+<div class="math notranslate nohighlight">
+\[
+  D^{k + 1} = D^{k} + \frac{p^{k}p^{k^{T}}}{p^{k^{T}}q^{k}}
+                    - \frac{D^{k}q^{k}q^{k^{T}}D^{k}}{q^{k^{T}}D^{k}q^{k}}.
+  \]</div>
+</li>
+</ul>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>The zoo of optimization algorithms and their flavors grows steadily.
+It is beyond the scope of a seminar to cover them all in detail.</p>
+<p><strong>Gradient descent</strong> and <strong>Newton’s methods</strong>
+are well-studied in the optimization literature
+and have been presented without detailed analysis or proof
+of their convergence behavior.</p>
+<p>Summarizing, typical pitfalls for <strong>gradient methods</strong> are:</p>
+<ul class="simple">
+<li><p>Step size too long or short (“damping”, Armijo rule, etc.).</p></li>
+<li><p>Convergence to stationary points (<span class="math notranslate nohighlight">\(\nabla f(x) = 0\)</span>)
+that are no local minima (e.g. saddle points).</p></li>
+<li><p>Stagnation when starting at a stationary point.</p></li>
+<li><p>Alternating sequence of iteration points.</p></li>
+<li><p>No or slow convergence
+if started “too far” away from the local optimum.</p></li>
+<li><p>In case of Newton’s method: <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{k}) \nsucc 0\)</span>, convergence unknown.</p></li>
+</ul>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -974,15 +1614,13 @@ if started “too far” away from the local optimum.</p></li>
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

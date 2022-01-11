@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -352,7 +352,301 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>LP03</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-linear-classification">
+   Non-linear classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creation-of-labeled-measurements-training-data">
+     Creation of labeled measurements (“training data”)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification">
+     Classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feasibility-problem-as-linear-program-lp">
+     Feasibility problem as Linear Program (LP)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lp03">
+<span id="id1"></span><h1>LP03<a class="headerlink" href="#lp03" title="Permalink to this headline">¶</a></h1>
+<section id="non-linear-classification">
+<h2>Non-linear classification<a class="headerlink" href="#non-linear-classification" title="Permalink to this headline">¶</a></h2>
+<p>See also <a class="reference internal" href="nlo-exercise-LP02.html#lp02"><span class="std std-ref">exercise LP02</span></a> <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 8.6).</p>
+<section id="creation-of-labeled-measurements-training-data">
+<h3>Creation of labeled measurements (“training data”)<a class="headerlink" href="#creation-of-labeled-measurements-training-data" title="Permalink to this headline">¶</a></h3>
+<p>Create <span class="math notranslate nohighlight">\(m\)</span> random data pairs <span class="math notranslate nohighlight">\((w_i, l_i)\)</span> of weights and lengths.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="p">=</span> <span class="mi">300</span><span class="p">;</span>
+<span class="n">w</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% weight</span>
+<span class="n">l</span> <span class="p">=</span> <span class="nb">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% length</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Split the measurements into two sets according to a non-linear function
+(in this case an unit circle),
+such that a data pair <span class="math notranslate nohighlight">\((w_i, l_i)\)</span> is considered as <strong>“good”</strong> for <span class="math notranslate nohighlight">\(1 \leq i \leq k \leq m\)</span>
+and <strong>“bad”</strong> otherwise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="p">=</span> <span class="nb">sqrt</span> <span class="p">(</span><span class="n">w</span> <span class="o">.^</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">l</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">k</span> <span class="p">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+<span class="n">w</span> <span class="p">=</span> <span class="p">[</span><span class="n">w</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span> <span class="n">w</span><span class="p">(</span><span class="o">~</span><span class="n">idx</span><span class="p">)];</span>
+<span class="n">l</span> <span class="p">=</span> <span class="p">[</span><span class="n">l</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span> <span class="n">l</span><span class="p">(</span><span class="o">~</span><span class="n">idx</span><span class="p">)];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the resulting data to discriminate.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">axis</span> <span class="n">equal</span>
+<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="s">&#39;o&#39;</span><span class="p">);</span>  <span class="c">% good</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="s">&#39;x&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;weight&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;length&#39;</span><span class="p">);</span>
+<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-exercise-LP03_6_0.png" src="_images/nlo-exercise-LP03_6_0.png" />
+</div>
+</div>
+</section>
+<section id="classification">
+<h3>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
+<p>It is obvious,
+that linear discrimination fails.
+There exists no linear function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_{\text{linear}}(w_i,l_i)
+= x_0 + \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}^{T} \begin{pmatrix} w_i \\ l_i \end{pmatrix}
+= x_0 + x_1 \cdot w_i + x_2 \cdot l_i
+\end{split}\]</div>
+<p>to seperate</p>
+<ul class="simple">
+<li><p>the <strong>“good”</strong> blue cicles: <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i) \leq -1\)</span> for <span class="math notranslate nohighlight">\(1 \leq i \leq k \leq m\)</span> and</p></li>
+<li><p>the <strong>“bad”</strong> red crosses: <span class="math notranslate nohighlight">\(f_{\text{linear}}(w_i,l_i) \geq 1\)</span> for <span class="math notranslate nohighlight">\(k &lt; i \leq m\)</span>.</p></li>
+</ul>
+<p>However,
+using a quadratic discrimination function will work in this example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+f_{\text{quad}}(w_i,l_i)
+&amp;= x_0 + \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}^{T} \begin{pmatrix} w_i \\ l_i \end{pmatrix}
+ + \begin{pmatrix} w_i \\ l_i \end{pmatrix}^{T} \begin{pmatrix} x_4 &amp; x_3 \\ x_3 &amp; x_5 \end{pmatrix}
+   \begin{pmatrix} w_i \\ l_i \end{pmatrix} \\
+&amp;= x_0 + x_1 \cdot w_i + x_2 \cdot l_i + 2 x_3 \cdot w_i \cdot l_i
+ + x_4 \cdot w_i^2 + x_5 \cdot l_i^2
+\end{aligned}
+\end{split}\]</div>
+<p>Roughly speaking,
+the quadratic discrimination function maps the data into higher dimensions <strong>(expanded measurement vector)</strong>
+and projects it to a scalar value.
+The optimization problem becomes finding a separating hyperplane in the expanded measurement vector,
+which is a linear classifier with the parameters <span class="math notranslate nohighlight">\(x_0\)</span> to <span class="math notranslate nohighlight">\(x_5\)</span>.
+This technique has been used in extending <strong>neural network models for pattern recognition</strong>.</p>
+<p>To illustrate the approach,
+consider the squared sum of the test data’s weights and lengths:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{wl}(i) = w_i^2 + l_i^2,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(1 \leq i \leq m\)</span>.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">axis</span> <span class="n">equal</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">,</span>   <span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)</span> <span class="o">.^</span> <span class="mi">2</span>   <span class="o">+</span> <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)</span> <span class="o">.^</span> <span class="mi">2</span><span class="p">,</span>   <span class="s">&#39;bo&#39;</span><span class="p">);</span>  <span class="c">% good</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">,</span> <span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">.^</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">.^</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;rx&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="n">k</span><span class="p">,</span><span class="n">k</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;LineWidth&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">text</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;FontSize&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">)</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;f_{wl}(i)&#39;</span><span class="p">)</span>
+<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-exercise-LP03_9_0.png" src="_images/nlo-exercise-LP03_9_0.png" />
+</div>
+</div>
+<p>Regarding the construction of the data set above,
+it is no surprise that <span class="math notranslate nohighlight">\(f_{wl}(i) = w_i^2 + l_i^2 = 1\)</span> is a separating hyperplane.</p>
+</section>
+<section id="feasibility-problem-as-linear-program-lp">
+<h3>Feasibility problem as Linear Program (LP)<a class="headerlink" href="#feasibility-problem-as-linear-program-lp" title="Permalink to this headline">¶</a></h3>
+<p>For now let’s pretend,
+that the structure of the measurements (test data) is not known,
+and a general quadratic classifier is sought.</p>
+<p>Like in <a class="reference internal" href="nlo-exercise-LP02.html#lp02"><span class="std std-ref">exercise LP02</span></a> this optimization problem
+can be formulated as LP on the expanded measurement vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lrll}
+\textrm{minimize}   &amp; \begin{pmatrix} 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{pmatrix} &amp; x &amp; \\
+\textrm{subject to} &amp;
+\begin{pmatrix}
+1 &amp; w_i &amp; l_i &amp; 2 w_i l_i &amp; w_i^2 &amp; l_i^2
+\end{pmatrix}
+&amp; x \leq -1, &amp; i = 1, \ldots, k, \\
+&amp; -\begin{pmatrix}
+1 &amp; w_i &amp; l_i &amp; 2 w_i l_i &amp; w_i^2 &amp; l_i^2
+\end{pmatrix}
+&amp; x \leq -1, &amp; i = k + 1, \ldots, m,
+\end{array}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">];</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span> <span class="nb">ones</span><span class="p">(</span><span class="n">k</span><span class="p">,</span>  <span class="mi">1</span><span class="p">),</span>  <span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>    <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>    <span class="mf">2.</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)</span>  <span class="o">.*</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>    <span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)</span>  <span class="o">.^</span><span class="mi">2</span><span class="p">,</span>  <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)</span>  <span class="o">.^</span><span class="mi">2</span><span class="p">;</span> <span class="p">...</span>
+     <span class="o">-</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="o">-</span><span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span><span class="o">.*</span><span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="o">-</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="o">-</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No equality constraints</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="o">-</span><span class="nb">inf</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c">% x0 to x5 are free variables</span>
+<span class="n">ub</span> <span class="p">=</span>  <span class="nb">inf</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x &lt;= b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,~,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0);  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>            <span class="c">% Octave: exitflag=0 success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x =
+
+     6.6295
+  -113.1690
+  -171.7719
+    57.0760
+   115.8150
+   162.4596
+
+exitflag = 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The computed solution differs from the unit circle,
+but nevertheless perfectly discriminates the test data
+and a quadratic classifier is found
+without prior knowledge of the test data structure.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">axis</span> <span class="n">equal</span>
+<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="s">&#39;o&#39;</span><span class="p">);</span>  <span class="c">% good</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">scatter</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="s">&#39;x&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
+
+<span class="n">f_quad</span> <span class="p">=</span> <span class="p">@(</span><span class="n">w</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="mf">1.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">w</span><span class="o">.*</span><span class="n">l</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="o">.^</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="o">.^</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="nb">ezplot</span> <span class="p">(</span><span class="n">f_quad</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>
+
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;weight&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;length&#39;</span><span class="p">);</span>
+<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">,</span> <span class="s">&#39;f_{quad}&#39;</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-exercise-LP03_14_0.png" src="_images/nlo-exercise-LP03_14_0.png" />
+</div>
+</div>
+<p>The quadratic discrimination function <span class="math notranslate nohighlight">\(f_{quad}(w,l)\)</span> maps all data into higher dimensions
+and projects it to a scalar value to distinguish “good” and “bad” data pairs.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="nb">subplot</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="nb">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>   <span class="n">f_quad</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)),</span>   <span class="s">&#39;bo&#39;</span><span class="p">);</span>  <span class="c">% good</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">f_quad</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)),</span> <span class="s">&#39;rx&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">)</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;f_{quad}&#39;</span><span class="p">)</span>
+<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">})</span>
+<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mi">100</span> <span class="mi">100</span><span class="p">]);</span>
+
+<span class="nb">subplot</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="nb">zeros</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>   <span class="n">f_quad</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">),</span>   <span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="p">)),</span>   <span class="s">&#39;bo&#39;</span><span class="p">);</span>  <span class="c">% good</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">f_quad</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">),</span> <span class="n">l</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)),</span> <span class="s">&#39;rx&#39;</span><span class="p">);</span>  <span class="c">% bad</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="o">-</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;k&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">)</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;f_{quad}&#39;</span><span class="p">)</span>
+<span class="nb">legend</span> <span class="p">({</span><span class="s">&#39;good&#39;</span><span class="p">,</span> <span class="s">&#39;bad&#39;</span><span class="p">})</span>
+<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mi">10</span> <span class="mi">10</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-exercise-LP03_16_0.png" src="_images/nlo-exercise-LP03_16_0.png" />
+</div>
+</div>
+<p>After this “training” the discrimination function can be used to classify other data pairs as well.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -628,15 +922,13 @@ and projects it to a scalar value to distinguish “good” and “bad” data p
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

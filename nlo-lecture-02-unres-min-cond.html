@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -340,7 +340,235 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Unconstrained minimization problems</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#necessary-conditions-for-a-local-minimum">
+   Necessary conditions for a local minimum
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sufficient-condition-for-a-strict-local-minimum">
+   Sufficient condition for a strict local minimum
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="unconstrained-minimization-problems">
+<h1>Unconstrained minimization problems<a class="headerlink" href="#unconstrained-minimization-problems" title="Permalink to this headline">¶</a></h1>
+<p>This section considers the minimization of a function <span class="math notranslate nohighlight">\(f \colon \mathbb{R}^{n} \to \mathbb{R}\)</span>
+without any constraint functions.</p>
+<section id="necessary-conditions-for-a-local-minimum">
+<h2>Necessary conditions for a local minimum<a class="headerlink" href="#necessary-conditions-for-a-local-minimum" title="Permalink to this headline">¶</a></h2>
+<p>Zero slope at a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla f(x^{*}) = 0
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 2:</strong> 1st order optimality condition</p>
+<p>Let the open set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> and let <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span>.
+If the point <span class="math notranslate nohighlight">\(x^{*} \in X\)</span> is a local minimum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>,
+then <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span>.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Let <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{0\}\)</span>.
+Because <span class="math notranslate nohighlight">\(X\)</span> is an open set and <span class="math notranslate nohighlight">\(x^{*}\)</span> is a local minimum
+<span class="math notranslate nohighlight">\(x^{*} + td \in X\)</span>,
+<span class="math notranslate nohighlight">\(x^{*} - td \in X\)</span>,
+<span class="math notranslate nohighlight">\(f(x^{*} + td) - f(x^{*}) \geq 0\)</span>, and
+<span class="math notranslate nohighlight">\(f(x^{*} - td) - f(x^{*}) \geq 0\)</span>
+hold for sufficiently small <span class="math notranslate nohighlight">\(t &gt; 0\)</span>.
+Because <span class="math notranslate nohighlight">\(f \in C^{1}(\mathbb{R}^{n},\mathbb{R})\)</span> it follows</p>
+<div class="math notranslate nohighlight">
+\[
+0 \leq \lim_{t \to +0}
+\frac{f(x^{*} + td) - f(x^{*})}{t} = \nabla f(x^{*})^{T}d
+\]</div>
+<p class="card-text">and</p>
+<div class="math notranslate nohighlight">
+\[
+0 \leq \lim_{t \to +0}
+\frac{f(x^{*} - td) - f(x^{*})}{t} = -\nabla f(x^{*})^{T}d
+\]</div>
+<p class="card-text">and it follows <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+</div>
+</details><p>Non-negative curvature at a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{2} f(x^{*}) \succeq 0 \quad\text{is positive semi-definite}
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 3:</strong> 2nd order optimality condition</p>
+<p>Let the open set <span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span> and <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span>.
+If the point <span class="math notranslate nohighlight">\(x^{*} \in X\)</span> is a local minimum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>,
+then the Hessian matrix <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{*})\)</span> is positive semi-definite.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Let <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{0\}\)</span> and <span class="math notranslate nohighlight">\(|t|\)</span> sufficiently small
+(such that <span class="math notranslate nohighlight">\(x^{*} + td \in X\)</span> for all <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(|t| &lt; t_{0}\)</span>).</p>
+<p class="card-text">Using Taylor’s theorem (differentiation with chain-rule)
+and regarding <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
+f(x^{*} + td) = f(x^{*}) + \frac{1}{2}t^{2}d^{T}\nabla^{2} f(x^{*})d + o(t^{2}).
+\]</div>
+<p class="card-text">If <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{*})\)</span> was not positive semi-definite,
+there exists a <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{0\}\)</span>
+with <span class="math notranslate nohighlight">\(d^{T}\nabla^{2} f(x^{*})d &lt; 0\)</span>.
+This is a contradiction for the minimality of <span class="math notranslate nohighlight">\(x^{*}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+</div>
+</details><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There may exist points that satisfy the <strong>necessary</strong> 1st and 2nd order conditions
+but are not local minima.  For example:</p>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">.^</span><span class="mi">3</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlim</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]);</span>
+<span class="n">ylim</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]);</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;f(x)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x) = x^3&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-lecture-02-unres-min-cond_6_0.png" src="_images/nlo-lecture-02-unres-min-cond_6_0.png" />
+</div>
+</div>
+</section>
+<section id="sufficient-condition-for-a-strict-local-minimum">
+<h2>Sufficient condition for a strict local minimum<a class="headerlink" href="#sufficient-condition-for-a-strict-local-minimum" title="Permalink to this headline">¶</a></h2>
+<p>Positive curvature at a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span> (strictly convex):</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{2} f(x^{*}) \succ 0 \quad\text{is positive definite}
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title"><strong>Theorem 4:</strong> 2nd order sufficient optimality condition</p>
+<p>Let <span class="math notranslate nohighlight">\(f \in C^{2}(\mathbb{R}^{n},\mathbb{R})\)</span> and <span class="math notranslate nohighlight">\(x^{*} \in X \subset \mathbb{R}^{n}\)</span> with
+<span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span> and <span class="math notranslate nohighlight">\(\nabla^{2} f(x^{*}) \succ 0\)</span> (positive definite),
+then <span class="math notranslate nohighlight">\(x^{*}\)</span> is a strict local minimum of <span class="math notranslate nohighlight">\(f\)</span> over <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+<em>Proof:</em><div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Application of the Rayleigh–Ritz method,
+for symmetric matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>
+and <span class="math notranslate nohighlight">\(d \in \mathbb{R}^{n} \setminus \{ 0 \}\)</span> there is</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_{\min}(A) \leq \frac{d^{T}Ad}{d^{T}d} \leq \lambda_{\max}(A),
+\]</div>
+<p class="card-text">where the minimum or maximum is attained
+for the respective eigenvectors <span class="math notranslate nohighlight">\(d\)</span> of the minimal and maximal eigenvalue.</p>
+<p class="card-text">For a positive definite, symmetric matrix <span class="math notranslate nohighlight">\(A = \nabla^{2} f(x^{*})\)</span>
+there is <span class="math notranslate nohighlight">\(\lambda := \lambda_{\min}(A) &gt; 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+d^{T}\nabla^{2} f(x^{*}) d \geq \lambda \lVert d \rVert_{2}^{2},
+\qquad\forall d \in \mathbb{R}^{n}.
+\]</div>
+<p class="card-text">Applying Taylor’s theorem to <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(x^{*}\)</span> (with remainder) gives</p>
+<div class="math notranslate nohighlight">
+\[
+f(x^{*} + d) = f(x^{*}) + \nabla f(x^{*})^{T}d + \frac{1}{2}d^{T} \nabla^{2} f(\tilde{x})d
+\]</div>
+<p class="card-text">with <span class="math notranslate nohighlight">\(\tilde{x} := x^{*} + \theta d\)</span>, <span class="math notranslate nohighlight">\(0 &lt; \theta &lt; 1\)</span>.</p>
+<p class="card-text">Using <span class="math notranslate nohighlight">\(\nabla f(x^{*}) = 0\)</span> and an expansion:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+f(x^{*} + d) &amp;= f(x^{*})
++ \frac{1}{2}\underbrace{d^{T} \nabla^{2} f(x^{*})d}_{\geq \lambda \lVert d \rVert_{2}^{2}}
++ \frac{1}{2}\underbrace{d^{T} (\nabla^{2} f(\tilde{x}) - \nabla^{2} f(x^{*}))d}_{\text{Cauchy-Schwarz inequality}} \\
+&amp;\geq f(x^{*}) + \frac{1}{2} (\lambda - \lVert \nabla^{2} f(\tilde{x}) - \nabla^{2} f(x^{*}) \rVert_{2}) \lVert d \rVert_{2}^{2}
+\end{aligned}
+\end{split}\]</div>
+<p class="card-text">Because the Hessian matrix is continuous,
+there is <span class="math notranslate nohighlight">\(f(x^{*} + d) &gt; f(x^{*})\)</span> for all <span class="math notranslate nohighlight">\(d \neq 0\)</span> with a sufficiently small norm.</p>
+<div class="math notranslate nohighlight">
+\[\tag*{$\Box$}\]</div>
+</div>
+</details><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The sufficient condition is not necessary.
+See for example <span class="math notranslate nohighlight">\(f(x) = x_{1}^{2} + x_{2}^{4}\)</span>,
+where <span class="math notranslate nohighlight">\(x = 0\)</span> is a strict local minimum.
+However,
+the Hessian matrix is not positive definite.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -562,15 +790,13 @@ the Hessian matrix is not positive definite.</p>
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

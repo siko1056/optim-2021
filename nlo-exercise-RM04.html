@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -340,7 +340,193 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>RM04</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequential-quadratic-programming-sqp">
+   Sequential Quadratic Programming (SQP)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-experiment">
+   Numerical experiment
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="rm04">
+<span id="id1"></span><h1>RM04<a class="headerlink" href="#rm04" title="Permalink to this headline">¶</a></h1>
+<p>Consider the following constrained optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; f(x_1, x_2) &amp;:= e^{3x_1} + e^{-4x_2} \\
+\textrm{subject to} &amp; h(x_1, x_2) &amp;:= x_1^{2} + x_2^{2} - 1 = 0.
+\end{array}
+\end{split}\]</div>
+<p>The corresponding Lagrangian is:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x_1,x_2,\mu) = e^{3x_1} + e^{-4x_2} + \mu (x_1^{2} + x_2^{2} - 1)
+\]</div>
+<p>and the KKT optimality conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nabla_{x_1} L(x_1,x_2,\mu) &amp;:=&amp; 3e^{3x_1} + 2\mu x_1 &amp;= 0, \\
+\nabla_{x_2} L(x_1,x_2,\mu) &amp;:=&amp; -4e^{-4x_2} + 2\mu x_2 &amp;= 0, \\
+h(x) = \nabla_{\mu} L(x_1,x_2,\mu) &amp;:=&amp; x_1^{2} + x_2^{2} - 1 &amp;= 0.
+\end{aligned}
+\end{split}\]</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Optimal point.</span>
+<span class="n">px</span> <span class="p">=</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">;</span>
+<span class="n">py</span> <span class="p">=</span> <span class="mf">0.66</span><span class="p">;</span>
+
+<span class="n">theta</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.02</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">cos</span> <span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span> <span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">z</span> <span class="p">=</span> <span class="nb">exp</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="nb">exp</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="p">);</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="nb">exp</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">px</span><span class="p">)</span> <span class="o">+</span> <span class="nb">exp</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">py</span><span class="p">),</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x_1&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;x_2&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x_1,x_2)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;3D plot&#39;</span><span class="p">);</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">133</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/nlo-exercise-RM04_4_0.png" src="_images/nlo-exercise-RM04_4_0.png" />
+</div>
+</div>
+<section id="sequential-quadratic-programming-sqp">
+<h2>Sequential Quadratic Programming (SQP)<a class="headerlink" href="#sequential-quadratic-programming-sqp" title="Permalink to this headline">¶</a></h2>
+<p>Formulate the KKT optimality conditions
+of the quadratic sub-problem <a class="reference internal" href="nlo-lecture-07-sqp.html#equation-sqp-sub-problem">(2)</a> in matrix form,
+which correspond to the following non-linear system of equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+Q &amp; B^{T} \\
+B &amp; 0
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+= -\begin{pmatrix} \nabla_{x} L(x,\mu) \\ h(x) \end{pmatrix},
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(B = \nabla^{T} h(x) = (2 x_1, 2 x_2)\)</span> and <span class="math notranslate nohighlight">\(Q = \nabla^{2}_{x,x} L(x,\mu) = \)</span>
+<span class="math notranslate nohighlight">\(\begin{pmatrix} 9e^{3x_1} + 2\mu &amp; 0 \\ 0 &amp; 16e^{-4x_2} + 2\mu \end{pmatrix}\)</span>.</p>
+<p>For the starting point
+<span class="math notranslate nohighlight">\(\mathbf{x_{0}} = (x_{0}, y_{0}, \mu_{0})^{T} = (-1, 1, 1)^{T}\)</span>
+the linear system to solve to compute the first Newton correction is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+2.44808 &amp;       0 &amp; -2 \\
+      0 &amp; 2.29305 &amp;  2 \\
+     -2 &amp;       2 &amp;  0
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta y \\ \Delta \mu \end{pmatrix}
+= \begin{pmatrix} 1.8506 \\ -1.9267 \\ -1 \end{pmatrix}
+\end{split}\]</div>
+</section>
+<section id="numerical-experiment">
+<h2>Numerical experiment<a class="headerlink" href="#numerical-experiment" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">format</span> <span class="n">shortE</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">exp</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">h</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c">% Lagrange multiplier is x(3).</span>
+
+<span class="n">grad_L</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">[</span> <span class="mi">3</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+               <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+
+<span class="n">B</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)];</span>
+
+<span class="n">Q</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="p">[</span><span class="mi">9</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)];</span>
+
+<span class="c">% Initial values.</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="nb">disp</span><span class="p">(</span><span class="s">&#39;             x_k               mu_k      ||grad_x L||     ||h||&#39;</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">([</span><span class="n">x0</span><span class="o">&#39;</span><span class="p">,</span> <span class="nb">norm</span><span class="p">(</span><span class="n">grad_L</span><span class="p">(</span><span class="n">x0</span><span class="p">)),</span> <span class="nb">norm</span><span class="p">(</span><span class="n">h</span><span class="p">(</span><span class="n">x0</span><span class="p">))])</span>
+
+<span class="c">% Newton&#39;s method, SQP iteration.</span>
+<span class="n">x</span> <span class="p">=</span> <span class="n">x0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
+  <span class="n">A</span> <span class="p">=</span> <span class="p">[</span> <span class="n">Q</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">B</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span> <span class="p">...</span>
+        <span class="n">B</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>    <span class="mi">0</span>   <span class="p">];</span>
+  <span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="n">grad_L</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="o">-</span><span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">)];</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+  <span class="nb">disp</span><span class="p">([</span><span class="n">x</span><span class="o">&#39;</span><span class="p">,</span> <span class="nb">norm</span><span class="p">(</span><span class="n">grad_L</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="nb">norm</span><span class="p">(</span><span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             x_k               mu_k      ||grad_x L||     ||h||
+  -1.0000e+00   1.0000e+00   1.0000e+00   2.6716e+00   1.0000e+00
+  -7.7423e-01   7.2577e-01   3.5104e-01   3.8268e-01   1.2617e-01
+  -7.4865e-01   6.6614e-01   2.1606e-01   1.1101e-02   4.2107e-03
+  -7.4834e-01   6.6332e-01   2.1232e-01   3.9448e-06   8.0212e-06
+  -7.4834e-01   6.6332e-01   2.1232e-01   3.1054e-11   1.6306e-11
+  -7.4834e-01   6.6332e-01   2.1232e-01   1.2413e-16            0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -520,15 +706,13 @@ the linear system to solve to compute the first Newton correction is:</p>
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

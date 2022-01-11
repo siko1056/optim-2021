@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -281,7 +281,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -315,7 +315,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -358,7 +358,858 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Code Listings</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newton-simple-m">
+   newton_simple.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nelder-mead-m">
+   nelder_mead.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lp-solver-m">
+   lp_solver.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#um01-experiment-m">
+   um01_experiment.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#um02-experiment-m">
+   um02_experiment.m
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#um03-experiment-m">
+   um03_experiment.m
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="code-listings">
+<h1>Code Listings<a class="headerlink" href="#code-listings" title="Permalink to this headline">¶</a></h1>
+<section id="newton-simple-m">
+<span id="newton-simple"></span><h2>newton_simple.m<a class="headerlink" href="#newton-simple-m" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[x, fval, exitflag] = newton_simple </span><span class="p">(</span>fun, x0, options<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="c">% Find minimum of unconstrained multivariable function.</span>
+  <span class="c">%</span>
+  <span class="c">%   Input:</span>
+  <span class="c">%         fun - function (returning function value, gradient</span>
+  <span class="c">%               vector value and Hessian matrix value)</span>
+  <span class="c">%          x0 - initial guess</span>
+  <span class="c">%     options - structure with fields</span>
+  <span class="c">%       .MaxIterations       - max. number of iterations</span>
+  <span class="c">%       .OptimalityTolerance - tolerance for the norm of gradient</span>
+  <span class="c">%       .Display             - display details for &#39;iter&#39;</span>
+  <span class="c">%</span>
+  <span class="c">%   Output:</span>
+  <span class="c">%           x - solution</span>
+  <span class="c">%        fval - objective value at solution</span>
+  <span class="c">%    exitflag - 0 = no solution found</span>
+  <span class="c">%               1 = solution found</span>
+  <span class="c">%</span>
+
+  <span class="n">narginchk</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+  <span class="n">opt</span> <span class="p">=</span> <span class="nb">struct</span> <span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">nargin</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">isstruct</span> <span class="p">(</span><span class="n">options</span><span class="p">))</span>
+    <span class="n">opt</span> <span class="p">=</span> <span class="n">options</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;MaxIterations&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">isempty</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;Display&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;off&#39;</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;OptimalityTolerance&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">OptimalityTolerance</span> <span class="p">=</span> <span class="mf">1e-9</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span><span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Iteration\tStep-size\tf(x)\t\t||df(x)||\n&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="n">x0</span><span class="p">(:);</span>
+  <span class="n">i</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">fval</span><span class="p">,</span> <span class="n">fgrad</span><span class="p">,</span> <span class="n">fhess</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">norm</span> <span class="p">(</span><span class="n">fgrad</span><span class="p">,</span> <span class="s">&#39;inf&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">OptimalityTolerance</span><span class="p">)</span>
+      <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% success!</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="n">d</span> <span class="p">=</span> <span class="n">fhess</span> <span class="o">\</span> <span class="o">-</span><span class="n">fgrad</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+      <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%5d\t\t%e\t%e\t%e\n&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s">&#39;inf&#39;</span><span class="p">),</span> <span class="p">...</span>
+        <span class="n">fval</span><span class="p">,</span> <span class="nb">norm</span> <span class="p">(</span><span class="n">fgrad</span><span class="p">,</span> <span class="s">&#39;inf&#39;</span><span class="p">));</span>
+    <span class="k">end</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+    <span class="n">i</span> <span class="p">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span><span class="p">=</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+    <span class="nb">warning</span> <span class="p">(</span><span class="s">&#39;MaxIterations = %d reached.\n&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">);</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nelder-mead-m">
+<span id="nelder-mead"></span><h2>nelder_mead.m<a class="headerlink" href="#nelder-mead-m" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[x, fval, exitflag] = nelder_mead </span><span class="p">(</span>fun, x0, options<span class="p">)</span><span class="w"></span>
+<span class="c">% Find minimum of unconstrained multivariable function.</span>
+<span class="c">%</span>
+<span class="c">%   Input:</span>
+<span class="c">%         fun - function</span>
+<span class="c">%          x0 - initial guess</span>
+<span class="c">%     options - structure with fields</span>
+<span class="c">%       .MaxIterations  - max. number of iterations</span>
+<span class="c">%       .TolFun         - tolerance for function values</span>
+<span class="c">%       .Display        - display details   for &#39;iter&#39;,</span>
+<span class="c">%                         display animation for &#39;full&#39;.</span>
+<span class="c">%</span>
+<span class="c">%   Output:</span>
+<span class="c">%           x - solution</span>
+<span class="c">%        fval - objective value at solution</span>
+<span class="c">%    exitflag - 0 = no solution found</span>
+<span class="c">%               1 = solution found</span>
+<span class="c">%</span>
+
+  <span class="n">narginchk</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+  <span class="n">opt</span> <span class="p">=</span> <span class="nb">struct</span> <span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">nargin</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">isstruct</span> <span class="p">(</span><span class="n">options</span><span class="p">))</span>
+    <span class="n">opt</span> <span class="p">=</span> <span class="n">options</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;MaxIterations&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">isempty</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;Display&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;off&#39;</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;TolFun&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">TolFun</span> <span class="p">=</span> <span class="mf">1e-9</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span><span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;full&#39;</span><span class="p">))</span>
+    <span class="nb">disp</span> <span class="p">(</span><span class="s">&#39; Iteration   Func-count     min f(x)         Procedure&#39;</span><span class="p">);</span>
+    <span class="n">h1</span> <span class="p">=</span> <span class="p">[];</span>
+    <span class="n">h2</span> <span class="p">=</span> <span class="p">[];</span>
+    <span class="n">h3</span> <span class="p">=</span> <span class="p">[];</span>
+  <span class="k">end</span>
+
+  <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c">% Parameter, here constant.</span>
+  <span class="n">alpha</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nb">beta</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="nb">gamma</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+  <span class="n">len</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="c">% Create start simplex.</span>
+
+  <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span> <span class="p">(</span><span class="n">x0</span><span class="p">);</span>
+  <span class="n">p</span> <span class="p">=</span> <span class="p">(</span><span class="n">len</span> <span class="o">/</span> <span class="nb">sqrt</span> <span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="nb">sqrt</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+  <span class="n">q</span> <span class="p">=</span> <span class="p">[</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="nb">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span><span class="p">];</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="n">x0</span><span class="p">(:),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">q</span> <span class="p">...</span>
+    <span class="o">+</span> <span class="p">[</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">len</span> <span class="o">/</span> <span class="nb">sqrt</span> <span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="nb">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)];</span>
+
+  <span class="c">% Compute all function values.</span>
+
+  <span class="n">fvals</span> <span class="p">=</span> <span class="nb">zeros</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">fvals</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="n">i</span><span class="p">));</span>
+  <span class="k">end</span>
+  <span class="n">fcount</span> <span class="p">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="c">% Sort simplex (left is best).</span>
+
+  <span class="p">[</span><span class="n">fvals</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nb">sort</span> <span class="p">(</span><span class="n">fvals</span><span class="p">);</span>
+  <span class="n">x</span> <span class="p">=</span> <span class="n">x</span><span class="p">(:,</span><span class="n">idx</span><span class="p">);</span>
+
+  <span class="n">i</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+
+    <span class="c">% Compute centroid.</span>
+    <span class="n">m</span> <span class="p">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="c">% Compute reflect.</span>
+    <span class="n">r</span> <span class="p">=</span>  <span class="n">m</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">x</span><span class="p">(:,</span><span class="k">end</span><span class="p">));</span>
+    <span class="n">fr</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">fcount</span> <span class="p">=</span> <span class="n">fcount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;full&#39;</span><span class="p">))</span>
+      <span class="nb">delete</span> <span class="p">(</span><span class="n">h1</span><span class="p">);</span>
+      <span class="nb">delete</span> <span class="p">(</span><span class="n">h2</span><span class="p">);</span>
+      <span class="nb">delete</span> <span class="p">(</span><span class="n">h3</span><span class="p">);</span>
+      <span class="n">h1</span> <span class="p">=</span> <span class="n">plot3</span> <span class="p">([</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">fvals</span><span class="p">,</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">)]);</span>
+      <span class="n">h2</span> <span class="p">=</span> <span class="n">plot3</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+      <span class="n">h3</span> <span class="p">=</span> <span class="n">plot3</span> <span class="p">([</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="k">end</span><span class="p">),</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="k">end</span><span class="p">),</span> <span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="p">[</span><span class="n">fvals</span><span class="p">(</span><span class="k">end</span><span class="p">),</span> <span class="n">fr</span><span class="p">],</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+      <span class="nb">pause</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+    <span class="k">end</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fr</span> <span class="o">&lt;</span><span class="p">=</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c">% Case 1: reflect</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">fr</span> <span class="o">&lt;</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c">% Case 2: expand</span>
+
+        <span class="nb">e</span> <span class="p">=</span> <span class="n">m</span> <span class="o">+</span> <span class="nb">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">x</span><span class="p">(:,</span><span class="k">end</span><span class="p">));</span>
+        <span class="n">fe</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="nb">e</span><span class="p">);</span>
+        <span class="n">fcount</span> <span class="p">=</span> <span class="n">fcount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">fe</span> <span class="o">&lt;</span> <span class="n">fr</span><span class="p">)</span>  <span class="c">% Expansion successful =)</span>
+          <span class="n">r</span> <span class="p">=</span> <span class="nb">e</span><span class="p">;</span>
+          <span class="n">fr</span> <span class="p">=</span> <span class="n">fe</span><span class="p">;</span>
+        <span class="k">end</span>
+
+        <span class="c">% Replace worst x(:,end) with r (or s).</span>
+        <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)];</span>
+        <span class="n">fvals</span> <span class="p">=</span> <span class="p">[</span><span class="n">fr</span><span class="p">,</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)];</span>
+
+        <span class="n">step_method</span> <span class="p">=</span> <span class="s">&#39;expand&#39;</span><span class="p">;</span>
+
+      <span class="k">else</span>
+
+        <span class="c">% Replace worst x(:,end) with r.</span>
+        <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">(:,</span><span class="mi">2</span><span class="p">:</span><span class="n">n</span><span class="p">)];</span>
+        <span class="n">fvals</span> <span class="p">=</span> <span class="p">[</span><span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">fr</span><span class="p">,</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="n">n</span><span class="p">)];</span>
+
+        <span class="n">step_method</span> <span class="p">=</span> <span class="s">&#39;reflect&#39;</span><span class="p">;</span>
+
+      <span class="k">end</span>
+
+    <span class="k">else</span>  <span class="c">% Case 3: Contract / Shrink</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">fr</span> <span class="o">&gt;</span> <span class="n">fvals</span><span class="p">(</span><span class="k">end</span><span class="p">))</span>
+        <span class="n">step_method</span> <span class="p">=</span> <span class="s">&#39;contract inside&#39;</span><span class="p">;</span>
+        <span class="n">c</span> <span class="p">=</span> <span class="n">m</span> <span class="o">-</span> <span class="nb">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">x</span><span class="p">(:,</span><span class="k">end</span><span class="p">));</span>
+      <span class="k">else</span>
+        <span class="n">step_method</span> <span class="p">=</span> <span class="s">&#39;contract outside&#39;</span><span class="p">;</span>
+        <span class="n">c</span> <span class="p">=</span> <span class="n">m</span> <span class="o">+</span> <span class="nb">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="n">x</span><span class="p">(:,</span><span class="k">end</span><span class="p">));</span>
+      <span class="k">end</span>
+
+      <span class="n">fc</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+      <span class="n">fcount</span> <span class="p">=</span> <span class="n">fcount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">fc</span> <span class="o">&lt;</span> <span class="n">fvals</span><span class="p">(</span><span class="k">end</span><span class="p">))</span>
+
+        <span class="c">% Replace worst x(:,end) with c.</span>
+        <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="n">c</span><span class="p">];</span>
+        <span class="n">fvals</span> <span class="p">=</span> <span class="p">[</span><span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="n">fc</span><span class="p">];</span>
+
+      <span class="k">else</span>
+
+        <span class="n">step_method</span> <span class="p">=</span> <span class="s">&#39;shrink&#39;</span><span class="p">;</span>
+
+        <span class="n">x</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="nb">repmat</span> <span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+
+        <span class="c">% Compute new function values again.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">fvals</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="n">i</span><span class="p">));</span>
+        <span class="k">end</span>
+        <span class="n">fcount</span> <span class="p">=</span> <span class="n">fcount</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="k">end</span>
+
+      <span class="c">% Sort again.</span>
+      <span class="p">[</span><span class="n">fvals</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nb">sort</span> <span class="p">(</span><span class="n">fvals</span><span class="p">);</span>
+      <span class="n">x</span> <span class="p">=</span> <span class="n">x</span><span class="p">(:,</span><span class="n">idx</span><span class="p">);</span>
+
+    <span class="k">end</span>
+
+    <span class="n">fval</span> <span class="p">=</span> <span class="n">fvals</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;full&#39;</span><span class="p">))</span>
+      <span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;    %2d           %2d        %+8f         %s\n&#39;</span><span class="p">,</span> <span class="p">...</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">fcount</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">step_method</span><span class="p">);</span>
+    <span class="k">end</span>
+
+    <span class="c">% Check stopping criteria.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">var</span> <span class="p">(</span><span class="n">fvals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">TolFun</span><span class="p">)</span>
+      <span class="n">x</span> <span class="p">=</span> <span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+      <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">% success!</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="k">end</span>
+
+    <span class="n">i</span> <span class="p">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="k">end</span>
+
+  <span class="n">x</span> <span class="p">=</span> <span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span><span class="p">=</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+    <span class="nb">warning</span> <span class="p">(</span><span class="s">&#39;MaxIterations = %d reached.\n&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">);</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lp-solver-m">
+<span id="lp-solver"></span><h2>lp_solver.m<a class="headerlink" href="#lp-solver-m" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[x, fval, exitflag, output] = lp_solver </span><span class="p">(</span>c, A, b, x0, options<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="c">% LP_SOLVER Solver for linear programs (LP).</span>
+  <span class="c">%</span>
+  <span class="c">%    Input:</span>
+  <span class="c">%</span>
+  <span class="c">%       min  c&#39;*x</span>
+  <span class="c">%       s.t. A *x  = b</span>
+  <span class="c">%               x &gt;= 0</span>
+  <span class="c">%</span>
+  <span class="c">%       x0 - initial guess</span>
+  <span class="c">%</span>
+  <span class="c">%   Output:</span>
+  <span class="c">%           x - solution</span>
+  <span class="c">%        fval - objective value at solution</span>
+  <span class="c">%    exitflag - 0 = no solution found</span>
+  <span class="c">%               1 = solution found</span>
+  <span class="c">%      output - struct with fields:</span>
+  <span class="c">%          .xpath - history of x</span>
+  <span class="c">%</span>
+
+  <span class="n">narginchk</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+  <span class="n">opt</span> <span class="p">=</span> <span class="nb">struct</span> <span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">nargin</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">isstruct</span> <span class="p">(</span><span class="n">options</span><span class="p">))</span>
+    <span class="n">opt</span> <span class="p">=</span> <span class="n">options</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;MaxIterations&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nb">isempty</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;Display&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;off&#39;</span><span class="p">;</span>
+  <span class="k">end</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="nb">isfield</span> <span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="s">&#39;OptimalityTolerance&#39;</span><span class="p">))</span>
+    <span class="n">opt</span><span class="p">.</span><span class="n">OptimalityTolerance</span> <span class="p">=</span> <span class="mf">1e-8</span><span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="n">c</span> <span class="p">=</span> <span class="n">c</span><span class="p">(:);</span>
+  <span class="n">b</span> <span class="p">=</span> <span class="n">b</span><span class="p">(:);</span>
+  <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span> <span class="p">(</span><span class="n">c</span><span class="p">);</span>
+  <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span> <span class="p">(</span><span class="n">b</span><span class="p">);</span>
+
+  <span class="c">% Hessian matrix for Newton step.</span>
+  <span class="n">H</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="p">[</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="o">-</span><span class="nb">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span>          <span class="n">A</span><span class="o">&#39;</span><span class="p">;</span> <span class="p">...</span>
+                <span class="nb">diag</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">diag</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span> <span class="p">...</span>
+                      <span class="n">A</span><span class="p">,</span>       <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="n">m</span><span class="p">)</span> <span class="p">];</span>
+
+  <span class="c">% Gradient vector for Newton step.</span>
+  <span class="n">G</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">mu</span><span class="p">)</span> <span class="p">[</span> <span class="n">c</span> <span class="o">-</span> <span class="n">s</span> <span class="o">+</span> <span class="n">A</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span> <span class="p">...</span>
+                    <span class="n">x</span> <span class="o">.*</span> <span class="n">s</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="nb">ones</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="p">...</span>
+                    <span class="n">A</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span> <span class="p">];</span>
+
+  <span class="c">% Initial values.  x should be an inner LP point.</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nb">nargin</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">~</span><span class="nb">isempty</span> <span class="p">(</span><span class="n">x0</span><span class="p">))</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="n">x0</span><span class="p">(:);</span>
+  <span class="k">else</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="nb">ones</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">end</span>
+  <span class="n">s</span> <span class="p">=</span> <span class="nb">ones</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">y</span> <span class="p">=</span> <span class="nb">ones</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">mu</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+
+  <span class="c">% Track central path.</span>
+  <span class="n">output</span><span class="p">.</span><span class="n">xpath</span> <span class="p">=</span> <span class="n">x</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+    <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Iteration   fval     ||dx||      ||dy||      ||ds||\n&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">fval</span> <span class="p">=</span> <span class="n">c</span><span class="o">&#39;*</span><span class="n">x</span><span class="p">;</span>
+  <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c">% Newton iteration.</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span>
+
+    <span class="c">% Newton step on optimality conditions.</span>
+    <span class="n">d</span> <span class="p">=</span> <span class="n">H</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="o">\</span> <span class="o">-</span><span class="n">G</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">mu</span><span class="p">);</span>
+
+    <span class="c">% Stop iteration if x does not change any more.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="s">&#39;inf&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">opt</span><span class="p">.</span><span class="n">OptimalityTolerance</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+        <span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;\nIPM converged in step %d.\n\n&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+      <span class="k">end</span>
+      <span class="n">exitflag</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">end</span>
+
+    <span class="c">% Update variables.</span>
+    <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">s</span> <span class="p">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+    <span class="n">y</span> <span class="p">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">));</span>
+
+    <span class="n">fval</span> <span class="p">=</span> <span class="n">c</span><span class="o">&#39;*</span><span class="n">x</span><span class="p">;</span>
+
+    <span class="n">mu</span> <span class="p">=</span> <span class="n">mu</span>^<span class="mi">2</span><span class="p">;</span>  <span class="c">% Shrink mu fast.</span>
+
+    <span class="c">% Output step statistics.</span>
+    <span class="n">output</span><span class="p">.</span><span class="n">xpath</span><span class="p">(:,</span><span class="k">end</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">strcmp</span> <span class="p">(</span><span class="n">opt</span><span class="p">.</span><span class="n">Display</span><span class="p">,</span> <span class="s">&#39;iter&#39;</span><span class="p">))</span>
+      <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%5d      %.2f   %.2e    %.2e    %.2e\n&#39;</span><span class="p">,</span> <span class="p">...</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="p">...</span>
+        <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">),</span> <span class="s">&#39;inf&#39;</span><span class="p">),</span> <span class="p">...</span>
+        <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="p">),</span> <span class="s">&#39;inf&#39;</span><span class="p">),</span> <span class="p">...</span>
+        <span class="nb">norm</span> <span class="p">(</span><span class="n">d</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)),</span> <span class="s">&#39;inf&#39;</span><span class="p">));</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">)</span>
+    <span class="nb">warning</span> <span class="p">(</span><span class="s">&#39;MaxIterations = %d reached.\n&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="p">.</span><span class="n">MaxIterations</span><span class="p">);</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="um01-experiment-m">
+<span id="um01-experiment"></span><h2>um01_experiment.m<a class="headerlink" href="#um01-experiment-m" title="Permalink to this headline">¶</a></h2>
+<p>Requires <a class="reference internal" href="#newton-simple"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">newton_simple</span></code></span></a> and <a class="reference internal" href="#nelder-mead"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">nelder_mead</span></code></span></a> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">um01_experiment </span><span class="p">()</span><span class="w"></span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 1: plotting the problem&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^4 + 2xy + (1 + y)^2&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">70</span><span class="p">);</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 2: Try fminsearch&#39;</span><span class="p">)</span>
+
+<span class="n">format</span> <span class="n">long</span><span class="p">;</span>
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminsearch</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 3: Try fminunc&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">GradObj</span> <span class="p">=</span> <span class="s">&#39;on&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminunc</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;go-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 4: Try newton_simple&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">newton_simple</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;ro-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 5: Try nelder_mead&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">nelder_mead</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;mo-&#39;</span><span class="p">});</span>
+
+
+<span class="c">% Nested function to pass to fminsearch and fminunc.</span>
+
+  <span class="k">function</span> <span class="p">[</span><span class="n">fx</span><span class="p">,</span> <span class="n">gx</span><span class="p">,</span> <span class="n">hx</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">fx</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">4</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+    
+    <span class="n">gx</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">4.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>   <span class="p">...</span>
+           <span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="p">];</span>
+    
+    <span class="n">hx</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">12.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="p">...</span>
+                     <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span>  <span class="p">];</span>
+    
+    <span class="n">xpath</span> <span class="p">=</span> <span class="p">[</span><span class="n">xpath</span><span class="p">;</span> <span class="n">x</span><span class="p">(:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">fx</span><span class="p">];</span>  <span class="c">% Memorize path</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="nf">animate_path </span><span class="p">(</span>xpath, LineSpec<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">size</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot3</span> <span class="p">(</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
+    <span class="nb">pause</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+    <span class="nb">drawnow</span> <span class="p">();</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="um02-experiment-m">
+<span id="um02-experiment"></span><h2>um02_experiment.m<a class="headerlink" href="#um02-experiment-m" title="Permalink to this headline">¶</a></h2>
+<p>Requires <a class="reference internal" href="#newton-simple"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">newton_simple</span></code></span></a> and <a class="reference internal" href="#nelder-mead"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">nelder_mead</span></code></span></a> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">um02_experiment </span><span class="p">()</span><span class="w"></span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 1: plotting the problem&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="n">x</span><span class="o">.^</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">8.</span><span class="o">*</span><span class="n">y</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">));</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;f(x,y) = x^3 - 6xy + 8y^3&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 2: Try fminsearch&#39;</span><span class="p">)</span>
+
+<span class="n">format</span> <span class="n">long</span><span class="p">;</span>
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminsearch</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 3: Try fminunc&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">GradObj</span> <span class="p">=</span> <span class="s">&#39;on&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminunc</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;go-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 4: Try newton_simple&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">newton_simple</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;ro-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 5: Try nelder_mead&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">nelder_mead</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;mo-&#39;</span><span class="p">});</span>
+
+
+<span class="c">% Nested function to pass to fminsearch and fminunc.</span>
+
+  <span class="k">function</span> <span class="p">[</span><span class="n">fx</span><span class="p">,</span> <span class="n">gx</span><span class="p">,</span> <span class="n">hx</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">fx</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">8.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">3</span><span class="p">;</span>
+    
+    <span class="n">gx</span> <span class="p">=</span> <span class="p">[</span>  <span class="mf">3.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="p">...</span>
+           <span class="mf">24.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="p">];</span>
+    
+    <span class="n">hx</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">6.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>       <span class="o">-</span><span class="mi">6</span><span class="p">;</span> <span class="p">...</span>
+                <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mf">48.</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="p">];</span>
+    
+    <span class="n">xpath</span> <span class="p">=</span> <span class="p">[</span><span class="n">xpath</span><span class="p">;</span> <span class="n">x</span><span class="p">(:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">fx</span><span class="p">];</span>  <span class="c">% Memorize path</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="nf">animate_path </span><span class="p">(</span>xpath, LineSpec<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">size</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot3</span> <span class="p">(</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
+    <span class="nb">pause</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+    <span class="nb">drawnow</span> <span class="p">();</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="um03-experiment-m">
+<span id="um03-experiment"></span><h2>um03_experiment.m<a class="headerlink" href="#um03-experiment-m" title="Permalink to this headline">¶</a></h2>
+<p>Requires <a class="reference internal" href="#newton-simple"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">newton_simple</span></code></span></a> and <a class="reference internal" href="#nelder-mead"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">nelder_mead</span></code></span></a> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">um03_experiment </span><span class="p">()</span><span class="w"></span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 1: plotting the problem&#39;</span><span class="p">)</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span> <span class="p">(</span><span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="nb">linspace</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">));</span>
+<span class="nb">mesh</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">));</span>
+<span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
+<span class="nb">zlabel</span> <span class="p">(</span><span class="s">&#39;f(x,y)&#39;</span><span class="p">);</span>
+<span class="nb">title</span> <span class="p">(</span><span class="s">&#39;Rosenbrock function&#39;</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="n">plot3</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;ro&#39;</span><span class="p">);</span>
+
+<span class="nb">view</span> <span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 2: Try fminsearch&#39;</span><span class="p">)</span>
+
+<span class="n">format</span> <span class="n">long</span><span class="p">;</span>
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminsearch</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;bo-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 3: Try fminunc&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">GradObj</span> <span class="p">=</span> <span class="s">&#39;on&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">fminunc</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;go-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 4: Try newton_simple&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">newton_simple</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;ro-&#39;</span><span class="p">});</span>
+
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Step 5: Try nelder_mead&#39;</span><span class="p">)</span>
+
+<span class="n">xpath</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c">% Memorize path</span>
+
+<span class="c">%x0 = [1, 1];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">Display</span> <span class="p">=</span> <span class="s">&#39;iter&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">MaxIterations</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">[</span><span class="n">xopt</span><span class="p">,</span> <span class="n">fval</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="n">nelder_mead</span> <span class="p">(@</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">xopt</span><span class="p">);</span>
+
+<span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Objective value at solution&#39;</span><span class="p">);</span>
+<span class="nb">disp</span> <span class="p">(</span><span class="n">fval</span><span class="p">);</span>
+
+<span class="nb">fprintf</span> <span class="p">(</span><span class="s">&#39;exitflag = %d\n&#39;</span><span class="p">,</span> <span class="n">exitflag</span><span class="p">);</span>
+
+<span class="n">animate_path</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;mo-&#39;</span><span class="p">});</span>
+
+
+  <span class="c">% Nested function to pass to fminsearch and fminunc.</span>
+  <span class="k">function</span> <span class="p">[</span><span class="n">fx</span><span class="p">,</span> <span class="n">gx</span><span class="p">,</span> <span class="n">hx</span><span class="p">]</span> <span class="p">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">fx</span> <span class="p">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+    
+    <span class="n">gx</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">400</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="p">...</span>
+           <span class="mi">200</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">)];</span>
+    
+    <span class="n">hx</span> <span class="p">=</span> <span class="p">[(</span><span class="mi">1200</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">400</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">400</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="p">...</span>
+                                 <span class="o">-</span><span class="mi">400</span> <span class="o">*</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mi">200</span><span class="p">];</span>
+    
+    <span class="n">xpath</span> <span class="p">=</span> <span class="p">[</span><span class="n">xpath</span><span class="p">;</span> <span class="n">x</span><span class="p">(:)</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">fx</span><span class="p">];</span>  <span class="c">% Memorize path</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="nf">animate_path </span><span class="p">(</span>xpath, LineSpec<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span> <span class="n">i</span> <span class="p">=</span> <span class="mi">2</span><span class="p">:</span><span class="nb">size</span> <span class="p">(</span><span class="n">xpath</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot3</span> <span class="p">(</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">LineSpec</span><span class="p">{:});</span>
+    <span class="nb">pause</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+    <span class="nb">drawnow</span> <span class="p">();</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -1183,15 +2034,13 @@
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -280,7 +280,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -314,12 +314,83 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Bibliography</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="bibliography">
+<span id="id1"></span><h1>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h1>
+<p id="id2"><dl class="citation">
+<dt class="label" id="id5"><span class="brackets">Ber16</span></dt>
+<dd><p>Dimitri P. Bertsekas. <em>Nonlinear Programming</em>. Athena Scientific, third edition, 2016. ISBN 978-1-886529-05-2. <span>URL: <a class="reference external" href="#"></a></span>http://www.athenasc.com/nonlinbook.html.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">BV04</span></dt>
+<dd><p>S. Boyd and L. Vandenberghe. <em>Convex Optimization</em>. Cambridge University Press, 2004. ISBN 978-0-521-83378-3. <span>URL: <a class="reference external" href="#"></a></span>https://web.stanford.edu/ boyd/cvxbook/.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">CT17</span></dt>
+<dd><p>Richard W. Cottle and Mukund N. Thapa. <em>Linear and Nonlinear Optimization</em>. International Series in Operations Research &amp; Management Science. Springer, 2017. ISBN 978-1-4939-7053-7. <a class="reference external" href="https://doi.org/10.1007/978-1-4939-7055-1">doi:10.1007/978-1-4939-7055-1</a>.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">GNS08</span></dt>
+<dd><p>Igor Griva, Stephen G. Nash, and Ariela Sofer. <em>Linear and Nonlinear Optimization</em>. SIAM, second edition, 2008. ISBN 978-0-89871-661-0. <span>URL: <a class="reference external" href="#"></a></span>https://bookstore.siam.org/OT108/.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">Kar84</span></dt>
+<dd><p>N. Karmarkar. A new polynomial-time algorithm for linear programming. <em>Combinatorica</em>, 4(4):373–395, 1984. <a class="reference external" href="https://doi.org/10.1007/BF02579150">doi:10.1007/BF02579150</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">LRWW98</span></dt>
+<dd><p>Jeffrey C. Lagarias, James A. Reeds, Margaret H. Wright, and Paul E. Wright. Convergence Properties of the Nelder–Mead Simplex Method in Low Dimensions. <em>SIAM Journal on Optimization</em>, 9(1):112–147, 1998. <a class="reference external" href="https://doi.org/10.1137/S1052623496303470">doi:10.1137/S1052623496303470</a>.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">LY16</span></dt>
+<dd><p>David G. Luenberger and Yinyu Ye. <em>Linear and Nonlinear Programming</em>. International Series in Operations Research &amp; Management Science. Springer, fourth edition, 2016. ISBN 978-3-319-18841-6. <span>URL: <a class="reference external" href="#"></a></span>http://www.athenasc.com/nonlinbook.html.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">NM65</span></dt>
+<dd><p>J. A. Nelder and R. Mead. A Simplex Method for Function Minimization. <em>The Computer Journal</em>, 7(4):308–313, 1965. <a class="reference external" href="https://doi.org/10.1093/comjnl/7.4.308">doi:10.1093/comjnl/7.4.308</a>.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">PCB02</span></dt>
+<dd><p>C.J. Price, I.D. Coope, and D. Byatt. A Convergent Variant of the Nelder–Mead Algorithm. <em>Journal of Optimization Theory and Applications</em>, 113(1):5–19, 2002. <a class="reference external" href="https://doi.org/10.1023/A:1014849028575">doi:10.1023/A:1014849028575</a>.</p>
+</dd>
+</dl>
+</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -395,15 +466,13 @@
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

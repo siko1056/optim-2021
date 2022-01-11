@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -360,7 +360,511 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>LP01</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collection-of-linear-programming-lp-exercises">
+   Collection of Linear Programming (LP) exercises
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-1-car-factory">
+   Example 1: Car factory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-2-alloy-production">
+   Example 2: Alloy production
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-3-oil-refinery">
+   Example 3: Oil refinery
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-4-car-parts">
+   Example 4: Car parts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-5-transport-cost-minimization">
+   Example 5: Transport cost minimization
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lp01">
+<span id="id1"></span><h1>LP01<a class="headerlink" href="#lp01" title="Permalink to this headline">¶</a></h1>
+<section id="collection-of-linear-programming-lp-exercises">
+<h2>Collection of Linear Programming (LP) exercises<a class="headerlink" href="#collection-of-linear-programming-lp-exercises" title="Permalink to this headline">¶</a></h2>
+<p>See the <a class="reference internal" href="nlo-lecture-10-LP.html#lp"><span class="std std-ref">section about Linear Programming</span></a> before working on the exercises.</p>
+</section>
+<section id="example-1-car-factory">
+<h2>Example 1: Car factory<a class="headerlink" href="#example-1-car-factory" title="Permalink to this headline">¶</a></h2>
+<p><img alt="convex_sets" src="_images/quantamagazine_lp.png" /></p>
+<p>Source: <a class="reference external" href="https://www.quantamagazine.org/surprising-limits-discovered-in-quest-for-optimal-solutions-20211101/">quantamagazine (2021-11-01)</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="p">=</span> <span class="o">-</span><span class="p">[</span> <span class="mi">10000</span> <span class="mi">20000</span> <span class="p">];</span>  <span class="c">% Maximize profit margin</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">30</span> <span class="mi">100</span><span class="p">;</span> <span class="p">...</span>
+      <span class="mi">30</span>  <span class="mi">30</span> <span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">20000</span><span class="p">;</span> <span class="mi">8000</span> <span class="p">];</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No equality constraints</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="p">[</span>   <span class="mi">0</span>   <span class="mi">0</span> <span class="p">];</span>
+<span class="n">ub</span> <span class="p">=</span> <span class="p">[</span> <span class="nb">inf</span> <span class="nb">inf</span> <span class="p">];</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x &lt;= b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,fval,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0)  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>           <span class="c">% Octave: exitflag=0 success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x =
+
+    95.238
+   171.429
+
+fval = -4.3810e+06
+exitflag = 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>This result is of course very “technical” and needs interpretation to be useful for the car company.</p>
+<p>The quantity of produced cars should be integers.
+A safe strategy is rounding the results down:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">cheapo</span> <span class="p">=</span> <span class="nb">floor</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">deluxe</span> <span class="p">=</span> <span class="nb">floor</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cheapo = 95
+deluxe = 171
+</pre></div>
+</div>
+</div>
+</div>
+<p>The computed profit <code class="docutils literal notranslate"><span class="pre">fval</span></code> is negative.
+However to adapt to the standard form of a minimization problem,
+the objective function was negated.</p>
+<p>Furthermore,
+after rounding the values, the new profit can be computed from the objective function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">profit</span> <span class="p">=</span> <span class="o">-</span><span class="n">c</span> <span class="o">*</span> <span class="p">[</span><span class="n">cheapo</span><span class="p">;</span> <span class="n">deluxe</span><span class="p">]</span>  <span class="c">% dollar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>profit = 4370000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally,
+the budgets for the painting and assembly line time can be checked with <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">required_time</span> <span class="p">=</span> <span class="n">A</span> <span class="o">*</span> <span class="p">[</span><span class="n">cheapo</span><span class="p">;</span> <span class="n">deluxe</span><span class="p">]</span>  <span class="c">% minutes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>required_time =
+
+   19950
+    7980
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">permitted_time</span> <span class="p">=</span> <span class="n">b</span>  <span class="c">% minutes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>permitted_time =
+
+   20000
+    8000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus the problem is optimally solved.
+Not a single deluxe or cheapo could be manufactured with the given time budget:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">remaining_budget</span> <span class="p">=</span> <span class="n">permitted_time</span> <span class="o">-</span> <span class="n">required_time</span>  <span class="c">% minutes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>remaining_budget =
+
+   50
+   20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-alloy-production">
+<h2>Example 2: Alloy production<a class="headerlink" href="#example-2-alloy-production" title="Permalink to this headline">¶</a></h2>
+<p>Source: <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (p. 27).</p>
+<p>A manufacturer wishes to produce an alloy that is,
+by weight, 30 % metal A and 70 % metal B.
+Five alloys are available at various prices as indicated below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rccccc}
+\text{Alloy}         &amp;  1 &amp;  2 &amp;  3 &amp;  4 &amp;  5 \\\hline
+\% A                 &amp; 10 &amp; 25 &amp; 50 &amp; 75 &amp; 95 \\
+\% B                 &amp; 90 &amp; 75 &amp; 50 &amp; 25 &amp;  5 \\\hline
+\text{Price [\$]/kg} &amp;  5 &amp;  4 &amp;  3 &amp;  2 &amp;  1.5
+\end{array}
+\end{split}\]</div>
+<p>The desired alloy will be produced by combining some of the other alloys.
+The manufacturer wishes to find the amounts of the various alloys
+needed and to determine the least expensive combination.
+Formulate this problem as a linear program.</p>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mf">1.5</span> <span class="p">];</span>  <span class="c">% Minimize price</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No inequality constraints</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">10</span> <span class="mi">25</span> <span class="mi">50</span> <span class="mi">75</span> <span class="mi">95</span><span class="p">;</span> <span class="p">...</span>
+        <span class="mi">90</span> <span class="mi">75</span> <span class="mi">50</span> <span class="mi">25</span>  <span class="mi">5</span> <span class="p">];</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">30</span><span class="p">;</span> <span class="mi">70</span> <span class="p">];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ub</span> <span class="p">=</span>  <span class="o">+</span><span class="nb">inf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x = b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,fval,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0)  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">Aeq</span><span class="p">,</span><span class="n">beq</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>       <span class="c">% Octave: exitflag=0 success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x =
+
+        0
+   0.9000
+        0
+   0.1000
+        0
+
+fval = 3.8000
+exitflag = 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-3-oil-refinery">
+<h2>Example 3: Oil refinery<a class="headerlink" href="#example-3-oil-refinery" title="Permalink to this headline">¶</a></h2>
+<p>Source: <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (p. 28).</p>
+<p>An oil refinery has two sources of crude oil:
+a light crude that costs 35 dollar/barrel
+and a heavy crude that costs 30 dollar/barrel.
+The refinery produces gasoline, heating oil,
+and jet fuel from crude in the amounts per barrel
+indicated in the following table:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rccc}
+&amp; \text{Gasoline} &amp; \text{Heating oil} &amp; \text{Jet fuel} \\\hline
+\text{Light crude} &amp; 0.3 &amp; 0.4 &amp; 0.3 \\
+\text{Heavy crude} &amp; 0.3 &amp; 0.2 &amp; 0.2
+\end{array}
+\end{split}\]</div>
+<p>The refinery has contracted to supply
+900,000 barrels of gasoline,
+800,000 barrels of heating oil,
+and 500,000 barrels of jet fuel.
+The refinery wishes to find the amounts of light and heavy crude
+to purchase so as to be able to meet its obligations at minimum cost.
+Formulate this problem as a linear program.</p>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Formulation with equality constraints not solvable.</span>
+
+<span class="n">c</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">35</span> <span class="mi">30</span> <span class="p">];</span>  <span class="c">% Minimize price</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No inequality constraints</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[</span> <span class="mf">0.3</span> <span class="mf">0.3</span><span class="p">;</span> <span class="p">...</span>
+        <span class="mf">0.4</span> <span class="mf">0.2</span><span class="p">;</span> <span class="p">...</span>
+        <span class="mf">0.3</span> <span class="mf">0.2</span> <span class="p">];</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">900000</span><span class="p">;</span> <span class="mi">800000</span><span class="p">;</span> <span class="mi">500000</span> <span class="p">];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ub</span> <span class="p">=</span>  <span class="o">+</span><span class="nb">inf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x = b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,fval,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0)  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">Aeq</span><span class="p">,</span><span class="n">beq</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>       <span class="c">% Octave: exitflag=0 success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>glp_simplex: unable to recover undefined or non-optimal solution
+x =
+
+    NA
+    NA
+
+fval =  NA
+exitflag = 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="c">% Formulation with inequality constraints.</span>
+
+<span class="n">c</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">35</span> <span class="mi">30</span> <span class="p">];</span>  <span class="c">% Minimize price</span>
+<span class="n">A</span> <span class="p">=</span> <span class="o">-</span><span class="p">[</span> <span class="mf">0.3</span> <span class="mf">0.3</span><span class="p">;</span> <span class="p">...</span>
+       <span class="mf">0.4</span> <span class="mf">0.2</span><span class="p">;</span> <span class="p">...</span>
+       <span class="mf">0.3</span> <span class="mf">0.2</span> <span class="p">];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="o">-</span><span class="p">[</span> <span class="mi">900000</span><span class="p">;</span> <span class="mi">800000</span><span class="p">;</span> <span class="mi">500000</span> <span class="p">];</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No equality constraints</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ub</span> <span class="p">=</span>  <span class="o">+</span><span class="nb">inf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: -A(i,:)*x &lt;= -b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,fval,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0)  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>           <span class="c">% Octave: exitflag=0 success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x =
+
+   1.0000e+06
+   2.0000e+06
+
+fval = 9.5000e+07
+exitflag = 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">A</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>  <span class="c">% barrel overproduction</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ans =
+
+        0
+        0
+   200000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-4-car-parts">
+<h2>Example 4: Car parts<a class="headerlink" href="#example-4-car-parts" title="Permalink to this headline">¶</a></h2>
+<p>Source: <span id="id4">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (p. 28-29).</p>
+<p>A small firm specializes in making five types of spare automobile parts.
+Each part is first cast from iron in the casting shop
+and then sent to the finishing shop where holes are drilled,
+surfaces are turned, and edges are ground.
+The required worker-hours (per 100 units) for each of the parts of the two shops
+are shown below:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rccccc}
+\text{Part}      &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\\hline
+\text{Casting}   &amp; 2 &amp; 1 &amp; 3 &amp; 3 &amp; 1 \\
+\text{Finishing} &amp; 3 &amp; 2 &amp; 2 &amp; 1 &amp; 1
+\end{array}
+\end{split}\]</div>
+<p>The profits (in dollar per 100 units) from the parts are
+30, 20, 40, 25, and 10, respectively.
+The capacities of the casting and finishing shops over the next month are
+700 and 1,000 worker-hours, respectively.
+Formulate the problem of determining the quantities of each spare part
+to be made during the month so as to maximize profit.</p>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="p">=</span> <span class="o">-</span><span class="p">[</span> <span class="mi">30</span> <span class="mi">20</span> <span class="mi">40</span> <span class="mi">25</span> <span class="mi">10</span> <span class="p">];</span>  <span class="c">% Maximize profit</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No inequality constraints</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">1</span><span class="p">;</span> <span class="p">...</span>
+        <span class="mi">3</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span> <span class="p">];</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">700</span><span class="p">;</span> <span class="mi">1000</span> <span class="p">];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ub</span> <span class="p">=</span>  <span class="o">+</span><span class="nb">inf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x = b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,fval,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0)  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">Aeq</span><span class="p">,</span><span class="n">beq</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">)</span>       <span class="c">% Octave: exitflag=0 success</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x =
+
+     0
+   400
+   100
+     0
+     0
+
+fval = -12000
+exitflag = 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-5-transport-cost-minimization">
+<h2>Example 5: Transport cost minimization<a class="headerlink" href="#example-5-transport-cost-minimization" title="Permalink to this headline">¶</a></h2>
+<p>Source: <span id="id5">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (p. 29).</p>
+<p>A large textile firm has two manufacturing plants,
+two sources of raw material,
+and three market centers.
+The transportation costs (dollar per ton) between the sources and the plants
+and between the plants and the markets are as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcc}
+\text{Plant}    &amp; \text{A} &amp; \text{B} \\\hline
+\text{Source 1} &amp; 1 &amp; 1.5 \\
+\text{Source 2} &amp; 2 &amp; 1.5
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rccc}
+\text{Market}  &amp; 1 &amp; 2 &amp; 3 \\\hline
+\text{Plant A} &amp; 4 &amp; 2 &amp; 1 \\
+\text{Plant B} &amp; 3 &amp; 4 &amp; 2
+\end{array}
+\end{split}\]</div>
+<p>Ten tons are available from source 1 and 15 tons from source 2.
+The three market centers require 8 tons, 14 tons, and 3 tons.
+The plants have unlimited processing capacity.</p>
+<ul class="simple">
+<li><p>Formulate the problem of finding the shipping patterns from sources
+to plants to markets that minimizes the total transportation cost.</p></li>
+<li><p>Reduce the problem to a single standard transportation problem
+with two sources and three destinations.
+(Hint: Find minimum cost paths from sources to markets.)</p></li>
+</ul>
+<div class="cell tag_hide_input tag_hide_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-octave notranslate"><div class="highlight"><pre><span></span><span class="n">A1</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mf">1.5</span><span class="p">;</span> <span class="p">...</span>
+       <span class="mi">2</span> <span class="mf">1.5</span> <span class="p">];</span>
+<span class="n">A2</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">;</span> <span class="p">...</span>
+       <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="p">];</span>
+<span class="c">% Minimize transport cost.</span>
+<span class="c">%</span>
+<span class="c">% x = [ S1 to A to M1,</span>
+<span class="c">%               to M2,</span>
+<span class="c">%               to M3,</span>
+<span class="c">%       S1 to B to M1,</span>
+<span class="c">%               to M2,</span>
+<span class="c">%               to M3,</span>
+<span class="c">%       S2 to A to M1,</span>
+<span class="c">%               to M2,</span>
+<span class="c">%               to M3,</span>
+<span class="c">%       S2 to B to M1,</span>
+<span class="c">%               to M2,</span>
+<span class="c">%               to M3 ]</span>
+<span class="n">c</span> <span class="p">=</span> <span class="p">[</span> <span class="n">A1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">A2</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="p">...</span>
+      <span class="n">A1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">A2</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span> <span class="p">...</span>
+      <span class="n">A1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">A2</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span> <span class="p">...</span>
+      <span class="n">A1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">A2</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="p">];</span>
+<span class="n">A</span> <span class="p">=</span> <span class="p">[];</span> <span class="c">% No inequality constraints</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">Aeq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="p">...</span>  <span class="c">% Sum of Source 1</span>
+        <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">;</span> <span class="p">...</span>  <span class="c">% Sum of Source 2</span>
+        <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="p">...</span>  <span class="c">% Sum of Market 1</span>
+        <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="p">...</span>  <span class="c">% Sum of Market 2</span>
+        <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">];</span>    <span class="c">% Sum of Market 3</span>
+<span class="n">beq</span> <span class="p">=</span> <span class="p">[</span> <span class="mi">10</span><span class="p">;</span> <span class="mi">15</span><span class="p">;</span> <span class="mi">8</span><span class="p">;</span> <span class="mi">14</span><span class="p">;</span> <span class="mi">3</span> <span class="p">];</span>
+<span class="n">lb</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ub</span> <span class="p">=</span>  <span class="o">+</span><span class="nb">inf</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">CTYPE</span> <span class="p">=</span> <span class="nb">repmat</span> <span class="p">(</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c">% Octave: A(i,:)*x = b(i)</span>
+<span class="n">x0</span> <span class="p">=</span> <span class="p">[];</span>  <span class="c">% default start value</span>
+<span class="c">%[x,fval,exitflag] = linprog(c,A,b,Aeq,beq,lb,ub,x0);  % Matlab: exitflag=1 success</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">fval</span><span class="p">,</span><span class="n">exitflag</span><span class="p">]</span> <span class="p">=</span> <span class="nb">glpk</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">Aeq</span><span class="p">,</span><span class="n">beq</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,</span><span class="n">CTYPE</span><span class="p">);</span>       <span class="c">% Octave: exitflag=0 success</span>
+<span class="n">x</span><span class="o">&#39;</span>
+<span class="n">fval</span>
+<span class="n">exitflag</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ans =
+
+    0   10    0    0    0    0    0    4    3    8    0    0
+
+fval = 91
+exitflag = 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -838,15 +1342,13 @@ exitflag = 0
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

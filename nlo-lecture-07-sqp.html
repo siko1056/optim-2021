@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -342,7 +342,226 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Constrained minimization algorithms</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequential-quadratic-programming-sqp">
+   Sequential Quadratic Programming (SQP)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summarizing">
+     Summarizing
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="constrained-minimization-algorithms">
+<h1>Constrained minimization algorithms<a class="headerlink" href="#constrained-minimization-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Some of the algorithms and techniques
+used to find local minima
+of <strong>unconstrained</strong> optimization problems
+can be applied <em>mutatis mutandis</em>
+for the <strong>constrained</strong> problem case.</p>
+<section id="sequential-quadratic-programming-sqp">
+<h2>Sequential Quadratic Programming (SQP)<a class="headerlink" href="#sequential-quadratic-programming-sqp" title="Permalink to this headline">¶</a></h2>
+<p>For the sake of simplicity
+the equality constrained minimization problem is considered:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; f(x)          &amp; \\
+\textrm{subject to} &amp; h_{j}(x) = 0, &amp; j = 1, \ldots, p, \\
+\end{array}
+\end{split}\]</div>
+<p>with <strong>optimization variable</strong> <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> and
+twice continuously differentiable
+<strong>objective and constraint functions</strong>
+<span class="math notranslate nohighlight">\(f, h_{j} \in C^{2}(\mathbb{R}^{n}, \mathbb{R})\)</span>,
+<span class="math notranslate nohighlight">\(h := (h_{1}, \ldots, h_{p})^{T} \in C^{2}(\mathbb{R}^{n}, \mathbb{R}^{p})\)</span>.</p>
+<p>The corresponding <strong>Lagrangian</strong> is:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x, \mu) := f(x) + \sum_{j = 1}^{p} \mu_{j} h_{j}(x),
+\]</div>
+<p>and <strong>KKT optimality conditions</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nabla_{x} L(x^{*}, \mu^{*})
+&amp;=\; \nabla f(x^{*}) + \sum_{j = 1}^{p} \mu_{j}^{*} \nabla h_{j}(x^{*})
+&amp;=\; 0 &amp; \\
+\nabla_{\mu} L(x^{*}, \mu^{*})
+&amp;=\; ( h_{j}(x^{*}) ) = h(x^{*})
+&amp;=\; 0 &amp;,
+\quad j = 1, \ldots, p
+\end{aligned}
+\end{split}\]</div>
+<p>Again the goal is to perform an iteration</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha \mathbf{d}^{k}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\mathbf{x} = (x, \mu)^{T}\)</span>,
+which converges from a starting point <span class="math notranslate nohighlight">\(\mathbf{x}^{0}\)</span>
+to a local minimum <span class="math notranslate nohighlight">\(\mathbf{x}^{*}\)</span>
+(a stationary point of the KKT optimality conditions)
+choosing a <strong>descent direction</strong> <span class="math notranslate nohighlight">\(\mathbf{d} = (\Delta x, \Delta \mu)^{T}\)</span>
+and a <strong>step size</strong> <span class="math notranslate nohighlight">\(\alpha\)</span> in each step
+(cf. <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#gradient-methods"><span class="std std-ref">Gradient methods</span></a>).</p>
+<p>Using <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#newtons-method"><span class="std std-ref"><strong>Newton’s method</strong></span></a>
+(quadratic Taylor-approximation of the Lagrangian <span class="math notranslate nohighlight">\(L(x, \mu)\)</span>)
+to determine the descent direction,
+results in solving the following system of non-linear equations:</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^{2} L(x, \mu) \mathbf{d} = -\nabla L(x, \mu)
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\nabla^{2}_{x,x} L(x, \mu)     &amp; \nabla^{2}_{x,\mu} L(x, \mu) \\
+\nabla^{2}_{\mu,x} L(x, \mu) &amp; \nabla^{2}_{\mu,\mu} L(x, \mu)
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+=
+-\begin{pmatrix}
+\nabla_{x} L(x, \mu) \\
+\nabla_{\mu} L(x, \mu)
+\end{pmatrix}
+\end{split}\]</div>
+<p>This <strong>Hessian matrix</strong> has a certain structure:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+Q &amp; B^{T} \\
+B &amp; 0
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+= -\begin{pmatrix} \nabla f(x) + B^{T} \mu \\ h(x) \end{pmatrix}
+= -\begin{pmatrix} \nabla_{x} L(x, \mu)    \\ h(x) \end{pmatrix},
+\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q := \nabla^{2}_{x,x} L(x, \mu) = \nabla^{2} f(x) + \sum_{j = 1}^{p} \mu_{j} \nabla^{2} h_{j}(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B := \nabla^{2}_{\mu,x} L(x, \mu) = \)</span>
+<span class="math notranslate nohighlight">\(\begin{pmatrix} \nabla^{T} h_{1}(x) \\ \vdots \\ \nabla^{T} h_{p}(x) \end{pmatrix}\)</span>
+is the <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(h(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B^{T} = \nabla^{2}_{x,\mu} L(x, \mu) = \begin{pmatrix} \nabla h_{1}(x) &amp; \ldots &amp; \nabla h_{p}(x) \end{pmatrix}\)</span>
+is the transposed <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(h(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla^{2}_{\mu,\mu} L(x, \mu) = 0\)</span> is a zero matrix,
+as <span class="math notranslate nohighlight">\(L(x, \mu)\)</span> is linear in <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+</ul>
+<p>The derived Newton-equation happens to be identical
+to the KKT optimality conditions
+of the following quadratic optimization problem:</p>
+<div class="math notranslate nohighlight" id="equation-sqp-sub-problem">
+<span class="eqno">(2)<a class="headerlink" href="#equation-sqp-sub-problem" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}
+&amp; F(\Delta x)
+&amp;:= \frac{1}{2} (\Delta x)^{T} Q \Delta x + \nabla_{x} L(x,\mu)^{T} \Delta x \\
+\textrm{subject to}
+&amp; H(\Delta x)
+&amp;:= B \Delta x + h(x) = 0.
+\end{array}
+\end{split}\]</div>
+<p>By choosing the Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda = \Delta \mu\)</span> for the equality constraints,
+the corresponding Lagrangian is:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(\Delta x,\lambda) = F(\Delta x) + H(\Delta x)^{T} \lambda
+\]</div>
+<p>and the KKT optimality conditions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nabla_{(\Delta x)} \mathcal{L}(\Delta x,\lambda)
+&amp;:=&amp; Q \Delta x +  \nabla_{x} L(x,\mu) + B^{T} \lambda &amp;= 0, \\
+H(\Delta x) = \nabla_{\lambda} \mathcal{L}(\Delta x,\lambda)
+&amp;:=&amp; B \Delta x + h(x) &amp;= 0.
+\end{aligned}
+\end{split}\]</div>
+<p>or written in matrix notation and regarding <span class="math notranslate nohighlight">\(\lambda = \Delta \mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+Q &amp; B^{T} \\
+B &amp; 0
+\end{pmatrix}
+\begin{pmatrix} \Delta x \\ \Delta \mu \end{pmatrix}
+= -\begin{pmatrix} \nabla_{x} L(x,\mu) \\ h(x) \end{pmatrix}.
+\end{split}\]</div>
+<section id="summarizing">
+<h3>Summarizing<a class="headerlink" href="#summarizing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>SQP methods solve a sequence of <strong>quadratic optimization sub-problems</strong>
+(quadratic objective function and linearized constraints).</p></li>
+<li><p>In the unconstrained case, SQP reduces to <strong>Newton’s method</strong> for finding a stationary point <span class="math notranslate nohighlight">\(\nabla f(x) = 0\)</span>.</p></li>
+<li><p>In the only equality constrained case, the SQP method is equivalent to applying Newton’s method to the KKT optimality conditions.</p></li>
+<li><p>Extensions for equality and inequality constraints exist,
+but are not discussed in this seminar.</p></li>
+<li><p>Similar problems and limitations
+as discussed in the section about <a class="reference internal" href="nlo-lecture-03-unres-min-alg.html#newtons-method"><span class="std std-ref"><strong>Newton’s method</strong></span></a>
+apply to the SQP method.</p>
+<ul>
+<li><p>Computing the Hessian matrix is expensive.</p></li>
+<li><p>If the Hessian matrix is not symmetric positive definite
+or the constraints are not linear independent (LICQ)
+during the iteration,
+convergence cannot be guaranteed.</p></li>
+</ul>
+</li>
+<li><p>See exercise <a class="reference internal" href="nlo-exercise-RM04.html#rm04"><span class="std std-ref">RM04</span></a> for an application example.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -553,15 +772,13 @@ convergence cannot be guaranteed.</p></li>
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

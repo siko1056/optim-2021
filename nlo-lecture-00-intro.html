@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -280,7 +280,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -314,7 +314,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -349,7 +349,151 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Selected Topics in Mathematical Optimization</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modeling">
+     Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-examples-and-software">
+   Applications, examples and software
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="selected-topics-in-mathematical-optimization">
+<h1>Selected Topics in Mathematical Optimization<a class="headerlink" href="#selected-topics-in-mathematical-optimization" title="Permalink to this headline">¶</a></h1>
+<p><img alt="Tokyo Woman's Christian University (TWCU)" src="_images/twcu_logo.png" /></p>
+<ul class="simple">
+<li><p>Kai Torben OHLHUS</p>
+<ul>
+<li><p>カイ トーベン オールフス</p></li>
+<li><p>email: <a class="reference external" href="mailto:ohlhus&#37;&#52;&#48;lab&#46;twcu&#46;ac&#46;jp">mailto:ohlhus<span>&#64;</span>lab<span>&#46;</span>twcu<span>&#46;</span>ac<span>&#46;</span>jp</a></p></li>
+</ul>
+</li>
+<li><p>Last update: 2022-01-11</p></li>
+</ul>
+<blockquote>
+<div><p>Based on lecture material by
+<a class="reference external" href="https://www.tuhh.de/ti3/jansson/">C. Jansson</a> and
+<a class="reference external" href="https://www.math.uni-hamburg.de/home/oberle/skripte/optimierung.html">H. Oberle</a>.</p>
+</div></blockquote>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This one semester course for students of computer science introduces <strong>“classical” optimization methods</strong>.</p>
+<p>The topics covered in this course include:</p>
+<ul class="simple">
+<li><p>Optimality conditions for finite-dimensional (un-)constrained continuous problems</p></li>
+<li><p>(Un-)constrained optimization methods</p></li>
+<li><p>Convex analysis</p></li>
+<li><p>Many examples</p></li>
+</ul>
+<p><strong>What do I need?</strong></p>
+<ul class="simple">
+<li><p>Knowledge of elementary calculus and linear algebra.</p></li>
+<li><p><a class="reference external" href="http://www.math.twcu.ac.jp/ogita/lec/MATLAB_install.htm">Matlab</a>
+or <a class="reference external" href="https://www.octave.org/download">GNU Octave</a>.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Please note:</strong> these seminar notes are <strong>not complete</strong>.
+Several additional parts, comments, proofs, and intermediate calculations
+are given on the blackboard.</p>
+</div></blockquote>
+<section id="modeling">
+<h3>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Real world problem:</strong> mathematical formulation, preferable as a tractable (linear or convex) problem.</p></li>
+<li><p><strong>Software:</strong> try to classify the problem, in order to find the appropriate software.</p></li>
+<li><p><strong>Solution:</strong> depends on your choice of the mathematical model and the input data.</p></li>
+</ul>
+<p>Nearly all scientific and engineering fields make knowingly or unknowingly use of some kind of optimization techniques.
+Starting with “Operations Research”, “Machine Learning”, … It is superfluous to write them all down.</p>
+<p>Even nature optimizes.
+The basic laws of nature can be formulated in terms of <strong>least action principles</strong>.</p>
+</section>
+</section>
+<section id="applications-examples-and-software">
+<h2>Applications, examples and software<a class="headerlink" href="#applications-examples-and-software" title="Permalink to this headline">¶</a></h2>
+<p>Good resource is the homepage by Hans D. Mittelman:
+<a class="reference external" href="http://plato.asu.edu/guide.html">http://plato.asu.edu/guide.html</a>.</p>
+<ul class="simple">
+<li><p><strong>problems/software:</strong> software sorted by problem to be solve</p></li>
+<li><p><strong>benchmarks:</strong> collection of test results and performance tests</p></li>
+<li><p><strong>test cases:</strong> example files ready to use with existing software, in different formats</p></li>
+<li><p><strong>books/tutorials:</strong> a short list of introductory texts, some online</p></li>
+<li><p><strong>tools:</strong> software which helps formulating an optimization problem or simplifying its solution</p></li>
+</ul>
+</section>
+<section id="literature">
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="nlo-lecture-bib.html#bibliography"><span class="std std-ref">bibliography section</span></a> lists teaching books for further studies:
+<span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id3">CT17</a>]</span>, <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span>, <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id5">Ber16</a>]</span>,
+<span id="id4">[<a class="reference internal" href="nlo-lecture-bib.html#id6">GNS08</a>]</span>, and <span id="id5">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span>.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -364,7 +508,7 @@
 <li><p>email: <a class="reference external" href="mailto:ohlhus&#37;&#52;&#48;lab&#46;twcu&#46;ac&#46;jp">mailto:ohlhus<span>&#64;</span>lab<span>&#46;</span>twcu<span>&#46;</span>ac<span>&#46;</span>jp</a></p></li>
 </ul>
 </li>
-<li><p>Last update: 2021-12-21</p></li>
+<li><p>Last update: 2022-01-11</p></li>
 </ul>
 <blockquote>
 <div><p>Based on lecture material by
@@ -468,15 +612,13 @@ The basic laws of nature can be formulated in terms of <strong>least action prin
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 

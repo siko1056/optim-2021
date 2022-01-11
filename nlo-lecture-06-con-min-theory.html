@@ -42,7 +42,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -283,7 +283,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -317,7 +317,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -340,7 +340,217 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Constrained minimization problems</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-lagrangian">
+   The Lagrangian
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kkt-optimality-conditions">
+   KKT optimality conditions
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="constrained-minimization-problems">
+<h1>Constrained minimization problems<a class="headerlink" href="#constrained-minimization-problems" title="Permalink to this headline">¶</a></h1>
+<p>Considering the general optimization problem again</p>
+<div class="math notranslate nohighlight" id="equation-optimization-problem">
+<span class="eqno">(1)<a class="headerlink" href="#equation-optimization-problem" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\begin{array}{lll}
+\textrm{minimize}   &amp; f(x)             &amp; \\
+\textrm{subject to} &amp; g_{i}(x) \leq 0, &amp; i = 1, \ldots, m, \\
+                    &amp; h_{j}(x) =    0, &amp; j = 1, \ldots, p, \\
+\end{array}
+\end{split}\]</div>
+<p>with <strong>optimization variable</strong> <span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span> and
+twice continuously differentiable
+<strong>objective and constraint functions</strong>
+<span class="math notranslate nohighlight">\(f, g_{i}, h_{j} \in C^{2}(\mathbb{R}^{n}, \mathbb{R})\)</span>.</p>
+<p>The set of <strong>feasible points</strong></p>
+<div class="math notranslate nohighlight">
+\[
+X = \left\{ x \in \mathbb{R}^{n} \colon
+    g_{i}(x) \leq 0 \wedge h_{j}(x) = 0 \right\},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(g := (g_{1}, \ldots, g_{m})^{T}\)</span>,
+<span class="math notranslate nohighlight">\(h := (h_{1}, \ldots, h_{p})^{T}\)</span>
+is assumed to be <strong>not empty</strong>.</p>
+<p>For a feasible point <span class="math notranslate nohighlight">\(x \in X\)</span> the set of <strong>active inequalities</strong>
+is denoted by</p>
+<div class="math notranslate nohighlight">
+\[
+I(x) := \left\{ i \in \{ 1, \ldots, m \} \colon g_{i}(x) = 0 \right\}.
+\]</div>
+<p>For a <strong>local minimum</strong> <span class="math notranslate nohighlight">\(x^{*} \in X\)</span>
+the active inequalities can be treated as equations,
+the inactive ones don’t matter.</p>
+<section id="the-lagrangian">
+<h2>The Lagrangian<a class="headerlink" href="#the-lagrangian" title="Permalink to this headline">¶</a></h2>
+<p>The key idea is to <strong>augment</strong> the objective function <span class="math notranslate nohighlight">\(f(x)\)</span>
+with a weighted sum of the constraint functions.</p>
+<p>The <strong>Lagrangian</strong>
+<span class="math notranslate nohighlight">\(L \colon \mathbb{R}^{n} \times \mathbb{R}^{m} \times \mathbb{R}^{p} \to \mathbb{R}\)</span>
+to the optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+L(x, \lambda, \mu) := f(x) + \sum_{i = 1}^{m} \lambda_{i} g_{i}(x)
+  + \sum_{j = 1}^{p} \mu_{j} h_{j}(x)
+\]</div>
+<p>The <strong>Lagrange multipliers</strong>
+<span class="math notranslate nohighlight">\(\lambda := (\lambda_{1}, \ldots, \lambda_{m})^{T}\)</span>
+and <span class="math notranslate nohighlight">\(\mu := (\mu_{1}, \ldots, \mu_{p})^{T}\)</span>
+are associated with the <span class="math notranslate nohighlight">\(i\)</span>-th and <span class="math notranslate nohighlight">\(j\)</span>-th constraint function,
+respectively.</p>
+</section>
+<section id="kkt-optimality-conditions">
+<h2>KKT optimality conditions<a class="headerlink" href="#kkt-optimality-conditions" title="Permalink to this headline">¶</a></h2>
+<p>Having the Lagrangian defined,
+similar to the unconstrained optimization problem,
+first- and higher-order optimality conditions can be defined.</p>
+<p>The first-order conditions are called
+<strong>Karush–Kuhn–Tucker (KKT)</strong> optimality conditions.</p>
+<div class="tip admonition" id="theorem9">
+<p class="admonition-title"><strong>Theorem 9:</strong> KKT optimality conditions</p>
+<p>For a local minimum <span class="math notranslate nohighlight">\(x^{*}\)</span> of the optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a>
+let the gradients</p>
+<div class="math notranslate nohighlight">
+\[
+\left\{ \nabla g_{i}(x^{*}), \nabla h_{j}(x^{*})
+  \colon i \in I(x), j = 1, \ldots, p \right\}
+\]</div>
+<p>be linear independent (<strong>LICQ</strong> = Linear independence constraint qualification).</p>
+<p>Then there exist <strong>unique</strong> Lagrange multipliers <span class="math notranslate nohighlight">\(\lambda^{*} \in \mathbb{R}^{m}\)</span>
+and <span class="math notranslate nohighlight">\(\mu^{*} \in \mathbb{R}^{p}\)</span>,
+such that for the Lagrangian</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+L(x^{*}, \lambda^{*}, \mu^{*})
+:=\;&amp; f(x^{*}) + \sum_{i = 1}^{m} \lambda_{i}^{*} g_{i}(x^{*})
+               + \sum_{j = 1}^{p}     \mu_{j}^{*} h_{j}(x^{*}) \\
+=\;&amp; f(x^{*}) + (\lambda^{*})^{T} g(x^{*}) + (\mu^{*})^{T} h(x^{*})
+\end{aligned}
+\end{split}\]</div>
+<p>the following necessary conditions hold:</p>
+<p><strong>(1) Stationarity</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+{\color{red}{\nabla_{x} L}}(x^{*}, \lambda^{*}, \mu^{*})
+=\;&amp; \nabla f(x^{*}) + \sum_{i = 1}^{m} \lambda_{i}^{*} \nabla g_{i}(x^{*})
+                     + \sum_{j = 1}^{p}     \mu_{j}^{*} \nabla h_{j}(x^{*}) \\
+=\;&amp; \nabla f(x^{*}) + (\lambda^{*})^{T} \nabla g(x^{*}) + (\mu^{*})^{T} \nabla h(x^{*})
+{\color{red}{\;=\; 0}}
+\end{aligned}
+\end{split}\]</div>
+<p><strong>(2) Complementary slackness</strong></p>
+<div class="math notranslate nohighlight">
+\[
+(\lambda^{*})^{T} {\color{red}{\nabla_{\lambda} L}}(x^{*}, \lambda^{*}, \mu^{*})
+=\; \sum_{i = 1}^{m} \lambda_{i}^{*} g_{i}(x^{*})
+=\; (\lambda^{*})^{T} g(x^{*})
+{\color{red}{\;=\; 0}}
+\]</div>
+<p><strong>(3) Primal feasibility</strong></p>
+<div class="math notranslate nohighlight">
+\[
+{\color{red}{\nabla_{\mu} L}}(x^{*}, \lambda^{*}, \mu^{*}) = ( h_{j}(x^{*}) ) {\color{red}{\;= 0}},
+\quad j = 1, \ldots, p
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\nabla_{\lambda} L(x^{*}, \lambda^{*}, \mu^{*}) = ( g_{i}(x^{*}) ) \leq 0,
+\quad i = 1, \ldots, m
+\]</div>
+<p><strong>(4) Dual feasibility</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_{i}^{*} \geq 0, \quad i = 1, \ldots, m
+\]</div>
+<p>Points <span class="math notranslate nohighlight">\((x^{*}, \lambda^{*}, \mu^{*})\)</span> fulfilling the KKT optimality conditions
+are referred to as <strong>KKT-points</strong>.</p>
+</div>
+<p>Study the exercises <a class="reference internal" href="nlo-exercise-RM01.html#rm01"><span class="std std-ref">RM01</span></a>, <a class="reference internal" href="nlo-exercise-RM02.html#rm02"><span class="std std-ref">RM02</span></a>, and <a class="reference internal" href="nlo-exercise-RM03.html#rm03"><span class="std std-ref">RM03</span></a>
+to apply the KKT optimality conditions.</p>
+<p>For a proof and more detailed discussion on the KKT optimality conditions,
+see <span id="id1">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 5) and <span id="id2">[<a class="reference internal" href="nlo-lecture-bib.html#id4">LY16</a>]</span> (chapter 11).</p>
+<p>Summarizing key ideas:</p>
+<ul>
+<li><p>The KKT optimality conditions help to find optimal solutions
+for constraint optimization problems
+by defining a <strong>non-linear system of equations</strong> to solve.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{aligned}
+  \nabla_{x}       L &amp;= 0 \\
+  \nabla_{\lambda} L &amp;= 0 \\
+  \nabla_{\mu}     L &amp;= 0 \\
+  \end{aligned}
+  \end{split}\]</div>
+<p>Many <strong>solution algorithms</strong> for constraint optimization problems
+solve the KKT optimality conditions numerically.</p>
+</li>
+<li><p>KKT-points <span class="math notranslate nohighlight">\((x^{*}, \lambda^{*})\)</span> are <strong>saddle-points</strong> of the Lagrangian.</p></li>
+<li><p>Approach to find a supporting hyperplane on the feasible set of inequality constraints</p>
+<div class="math notranslate nohighlight">
+\[
+  \left\{ x \in X  \colon\; g_{i}(x) \leq 0, \quad i = 1, \ldots ,m \right\}.
+  \]</div>
+<p>The proof of the KKT optimality conditions makes use of the hyperplane separation theorem.</p>
+</li>
+<li><p>From the Lagrangian and the KKT optimality conditions
+to each optimization problem <a class="reference internal" href="#equation-optimization-problem">(1)</a>
+a <strong>convex dual optimization problem</strong> can be formulated.
+See <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id7">BV04</a>]</span> (chapter 5).</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "octave"
+        },
+        kernelOptions: {
+            kernelName: "octave",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'octave'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -544,15 +754,13 @@ See <span id="id3">[<a class="reference internal" href="nlo-lecture-bib.html#id7
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By K. T. Ohlhus<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By K. T. Ohlhus<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 
