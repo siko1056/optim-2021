@@ -25,14 +25,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup System
+        run: |
+          pip3 install jupyter-book
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Build page
         run: |
-          mkdir -p _site
-          echo "Hallo" > _site/index.html
+          jupyter-book build --builder=html --path-output _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
