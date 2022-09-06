@@ -27,9 +27,6 @@ $(TARGET_PDF): $(SRC)
 	sed -i '/^\\setmainlanguage.*/i \\\\usepackage{xeCJK}\n\\setCJKmainfont{IPAMincho}\n\\setCJKsansfont{IPAGothic}\n\\setCJKmonofont{IPAGothic}' $(TARGET_LATEX)
 	cd $(TARGET_LATEX_DIR) && $(MAKE)
 
-publish: $(TARGET_HTML)
-	ghp-import --no-jekyll --push --force $(TARGET_HTML_DIR)
-
 pdf: $(TARGET_PDF)
 	xdg-open $(TARGET_PDF)
 
