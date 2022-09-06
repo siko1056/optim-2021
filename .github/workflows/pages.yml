@@ -24,20 +24,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Setup System
         run: |
           python3 -m venv pyenv
-          bash ./pyenv/bin/activate \
-          && pip3 install --upgrade \
+          ./pyenv/bin/pip3 install --upgrade \
             jupyter-book
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Build page
         run: |
-          bash ./pyenv/bin/activate \
-          && jupyter-book build --builder=html --path-output=_site jupyter
+          ./pyenv/bin/jupyter-book build --builder=html --path-output=_site jupyter
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
