@@ -34,7 +34,7 @@ jobs:
         uses: actions/configure-pages@v2
       - name: Build page
         run: |
-          jupyter-book build --builder=html --path-output _site
+          jupyter-book build --builder=html --path-output=_site .
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
