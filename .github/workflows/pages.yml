@@ -36,7 +36,7 @@ jobs:
       - name: Build page
         run: |
           ./pyenv/bin/jupyter-book build --builder=html jupyter
-          mv _build/html _site
+          mv jupyter/_build/html _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
